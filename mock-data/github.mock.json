@@ -1,0 +1,95 @@
+[
+  {
+    "id": "mock-github-agentic-coding-toolkit",
+    "platform": "github",
+    "contentType": "repo",
+    "title": "示例数据：agentic-coding-toolkit",
+    "url": "mock://github/agentic-coding-toolkit",
+    "author": "mock-org",
+    "publishedAt": "2026-06-17T09:30:00.000Z",
+    "rawExcerpt": "示例数据 README summary for an AI coding toolkit with local task planning, test generation, and pull request review helpers.",
+    "summary": "GitHub repo 示例，展示 AI coding 工具如何把任务拆解、测试生成和代码审查整合进开发工作流。",
+    "engagementMetrics": { "stars": 1840, "forks": 210, "openIssues": 34, "commentsCount": 19 },
+    "comments": [
+      {
+        "author": "mock_issue_author",
+        "summary": "用户反馈最关心本地上下文隔离、可复现测试和生成代码可审计性。",
+        "signalType": "pain_point"
+      },
+      {
+        "author": "mock_maintainer",
+        "summary": "维护者强调 roadmap 会优先改进 adapter 接口和安全边界。",
+        "signalType": "technical"
+      }
+    ],
+    "tags": ["AI coding", "Codex", "agentic coding", "automation"],
+    "isMockData": true,
+    "dataLabel": "示例数据"
+  },
+  {
+    "id": "mock-github-high-relevance-low-engagement-codex-tests",
+    "platform": "github",
+    "contentType": "repo",
+    "title": "示例数据：codex-test-gates",
+    "url": "mock://github/high-relevance-low-engagement-codex-tests",
+    "author": "mock-lab",
+    "publishedAt": "2026-06-19T02:20:00.000Z",
+    "rawExcerpt": "示例数据 repo about Codex, AI coding, test-first workflows, and agent output verification.",
+    "summary": "低 star 但高度相关的 GitHub 示例，聚焦 AI coding 工具的测试门槛和输出验证。",
+    "engagementMetrics": { "stars": 42, "forks": 5, "openIssues": 3, "commentsCount": 4 },
+    "comments": [
+      {
+        "author": "mock_user",
+        "summary": "用户痛点是 agent 生成代码后缺少可重复验证的测试轨道。",
+        "signalType": "pain_point"
+      }
+    ],
+    "tags": ["Codex", "AI coding", "testing", "agentic coding"],
+    "isMockData": true,
+    "dataLabel": "示例数据"
+  },
+  {
+    "id": "mock-github-low-relevance-high-engagement-css-theme",
+    "platform": "github",
+    "contentType": "repo",
+    "title": "示例数据：terminal-color-theme-pack",
+    "url": "mock://github/low-relevance-high-engagement-css-theme",
+    "author": "mock-designers",
+    "publishedAt": "2026-06-18T04:00:00.000Z",
+    "rawExcerpt": "示例数据 popular repository for terminal color themes with no AI coding or market sentiment connection.",
+    "summary": "高 star 但低相关的 GitHub 示例，用于验证互动热度不会压过相关性。",
+    "engagementMetrics": { "stars": 9800, "forks": 900, "openIssues": 12, "commentsCount": 8 },
+    "comments": [
+      {
+        "author": "mock_designer",
+        "summary": "反馈集中在配色和安装体验，与目标分析主题无关。",
+        "signalType": "neutral"
+      }
+    ],
+    "tags": ["terminal", "theme", "design"],
+    "isMockData": true,
+    "dataLabel": "示例数据"
+  },
+  {
+    "id": "mock-github-nvda-earnings-dashboard",
+    "platform": "github",
+    "contentType": "repo",
+    "title": "示例数据：nvda-earnings-sentiment-dashboard",
+    "url": "mock://github/nvda-earnings-dashboard",
+    "author": "mock-finance-lab",
+    "publishedAt": "2026-06-15T11:00:00.000Z",
+    "rawExcerpt": "示例数据 repo that models NVDA earnings discussion, stock market community sentiment, 美股, 股票, and risk notes without trading advice.",
+    "summary": "投资研究示例，展示如何汇总 Nvidia / NVDA earnings、美股市场情绪、股票社区讨论和风险观点。",
+    "engagementMetrics": { "stars": 320, "forks": 45, "openIssues": 11, "commentsCount": 12 },
+    "comments": [
+      {
+        "author": "mock_researcher",
+        "summary": "讨论强调 market sentiment 只能作为观察信号，不能替代财务分析。",
+        "signalType": "market"
+      }
+    ],
+    "tags": ["Nvidia", "NVDA", "earnings", "market sentiment", "stock market", "stocks", "美股", "股票", "市场情绪"],
+    "isMockData": true,
+    "dataLabel": "示例数据"
+  }
+]

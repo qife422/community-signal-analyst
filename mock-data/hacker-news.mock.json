@@ -1,0 +1,100 @@
+[
+  {
+    "id": "mock-hn-ai-coding-workflows",
+    "platform": "hacker_news",
+    "contentType": "discussion",
+    "title": "示例数据：Ask HN: How are developers using AI coding agents in daily workflows?",
+    "url": "mock://hacker-news/ai-coding-workflows",
+    "author": "mock_hn_user",
+    "publishedAt": "2026-06-18T10:00:00.000Z",
+    "rawExcerpt": "示例数据 discussion about AI coding, agentic coding, developer workflow reliability, review burden, and automation boundaries.",
+    "summary": "HN 风格示例讨论，聚焦 AI coding agent 在真实开发流程中的效率、可靠性和代码审查压力。",
+    "engagementMetrics": { "points": 156, "commentsCount": 88 },
+    "comments": [
+      {
+        "author": "mock_commenter_1",
+        "summary": "一类观点认为 agentic coding 提升原型速度，但仍需要明确测试和人工 review。",
+        "signalType": "technical"
+      },
+      {
+        "author": "mock_commenter_2",
+        "summary": "反方担心隐藏错误和上下文漂移会把维护成本推迟到后期。",
+        "signalType": "opposing"
+      }
+    ],
+    "tags": ["AI coding", "agentic coding", "developer workflow"],
+    "isMockData": true,
+    "dataLabel": "示例数据"
+  },
+  {
+    "id": "mock-hn-high-relevance-low-engagement-ai-review",
+    "platform": "hacker_news",
+    "contentType": "discussion",
+    "title": "示例数据：Show HN: A small agentic coding review checklist",
+    "url": "mock://hacker-news/high-relevance-low-engagement-ai-review",
+    "author": "mock_small_builder",
+    "publishedAt": "2026-06-19T01:00:00.000Z",
+    "rawExcerpt": "示例数据 small launch about AI coding, Codex style agent review, test gates, and developer trust.",
+    "summary": "低互动但高度相关的 HN 示例，讨论如何给 AI coding agent 产物增加 review checklist 和测试门槛。",
+    "engagementMetrics": { "points": 18, "commentsCount": 6 },
+    "comments": [
+      {
+        "author": "mock_reviewer",
+        "summary": "评论指出 checklist 的价值在于把 agentic coding 变成可审查流程，而不是一次性生成代码。",
+        "signalType": "technical"
+      }
+    ],
+    "tags": ["AI coding", "agentic coding", "Codex", "review"],
+    "isMockData": true,
+    "dataLabel": "示例数据"
+  },
+  {
+    "id": "mock-hn-low-relevance-high-engagement-keyboards",
+    "platform": "hacker_news",
+    "contentType": "discussion",
+    "title": "示例数据：Ask HN: Which mechanical keyboard layout are you using?",
+    "url": "mock://hacker-news/low-relevance-high-engagement-keyboards",
+    "author": "mock_keyboard_fan",
+    "publishedAt": "2026-06-18T12:00:00.000Z",
+    "rawExcerpt": "示例数据 unrelated discussion with high engagement but no AI coding or investment signal.",
+    "summary": "高互动但低相关的 HN 示例，用于验证 scoring 不会只按热度排序。",
+    "engagementMetrics": { "points": 420, "commentsCount": 310 },
+    "comments": [
+      {
+        "author": "mock_typist",
+        "summary": "评论主要围绕键盘手感和布局偏好，与目标 query 无关。",
+        "signalType": "neutral"
+      }
+    ],
+    "tags": ["keyboards", "hardware"],
+    "isMockData": true,
+    "dataLabel": "示例数据"
+  },
+  {
+    "id": "mock-hn-nvda-earnings-sentiment",
+    "platform": "hacker_news",
+    "contentType": "discussion",
+    "title": "示例数据：Developers discuss Nvidia earnings and AI infrastructure demand",
+    "url": "mock://hacker-news/nvda-earnings-sentiment",
+    "author": "mock_market_observer",
+    "publishedAt": "2026-06-17T15:00:00.000Z",
+    "rawExcerpt": "示例数据 discussion about Nvidia, NVDA, earnings, AI infrastructure, stock market sentiment, valuation risk, 美股, 股票, and market sentiment.",
+    "summary": "投资研究示例，展示技术社区如何讨论 Nvidia earnings、AI 基础设施需求、美股市场情绪和估值风险。",
+    "engagementMetrics": { "points": 97, "commentsCount": 64 },
+    "comments": [
+      {
+        "author": "mock_bullish_view",
+        "summary": "支持方认为 AI infrastructure demand 仍强，但强调这只是社区情绪观察。",
+        "signalType": "market"
+      },
+      {
+        "author": "mock_risk_view",
+        "summary": "谨慎方担心 earnings 预期过高和供应链节奏变化。",
+        "signalType": "opposing"
+      }
+    ],
+    "tags": ["Nvidia", "NVDA", "earnings", "market sentiment", "stock market", "stocks", "美股", "股票", "市场情绪"],
+    "isMockData": true,
+    "dataLabel": "示例数据"
+  }
+]

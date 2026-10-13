@@ -1,0 +1,31 @@
+{
+  "name": "community-signal-analyst",
+  "version": "1.15.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "community-signal": "./dist/src/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "demo": "npm run build && node dist/src/cli.js --demo \"帮我找最近 AI coding 工具比较火的内容\"",
+    "live": "npm run build && node dist/src/cli.js",
+    "whop:auth": "npm run build && node dist/src/whopAuthCli.js",
+    "whop:digest": "npm run build && node dist/src/whopDigestCli.js",
+    "whop:bind": "npm run build && node dist/src/whopScopeCli.js",
+    "profile": "node dist/src/profileCli.js",
+    "doctor": "node dist/src/doctorCli.js",
+    "preferences:preview": "node dist/src/preferencesPreviewCli.js",
+    "package": "python3 scripts/package_skill.py"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

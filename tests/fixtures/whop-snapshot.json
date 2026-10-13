@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 1,
+  "retrievalMethod": "browser_visible",
+  "fetchedAt": "2026-01-02T00:00:00Z",
+  "fixtureProvenance": "synthetic_only_not_live_evidence",
+  "sources": [
+    {
+      "url": "https://whop.com/fixture-a/exp_FixtureA/app/",
+      "experienceId": "exp_FixtureA",
+      "communityName": "Synthetic community A",
+      "channelName": "Synthetic test channel",
+      "access": {
+        "status": "ok"
+      },
+      "posts": [
+        {
+          "id": "post_FixtureA0",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update A0"
+        },
+        {
+          "id": "post_FixtureA1",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": true,
+          "body": "Synthetic fixture context A1: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA2",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A2: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA3",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update A3"
+        },
+        {
+          "id": "post_FixtureA4",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A4: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA5",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A5: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA6",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update A6"
+        },
+        {
+          "id": "post_FixtureA7",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A7: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA8",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A8: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA9",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update A9"
+        },
+        {
+          "id": "post_FixtureA10",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A10: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA11",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A11: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA12",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update A12"
+        },
+        {
+          "id": "post_FixtureA13",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A13: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA14",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A14: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA15",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update A15"
+        },
+        {
+          "id": "post_FixtureA16",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A16: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA17",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A17: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA18",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update A18"
+        },
+        {
+          "id": "post_FixtureA19",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A19: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA20",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A20: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA21",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update A21"
+        },
+        {
+          "id": "post_FixtureA22",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A22: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA23",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context A23: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureA24",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update A24"
+        }
+      ]
+    },
+    {
+      "url": "https://whop.com/fixture-b/exp_FixtureB/app/",
+      "experienceId": "exp_FixtureB",
+      "communityName": "Synthetic community B",
+      "channelName": "Synthetic test channel",
+      "access": {
+        "status": "ok"
+      },
+      "posts": [
+        {
+          "id": "post_FixtureB0",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update B0"
+        },
+        {
+          "id": "post_FixtureB1",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": true,
+          "body": "Synthetic fixture context B1: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB2",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context B2: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB3",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update B3"
+        },
+        {
+          "id": "post_FixtureB4",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context B4: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB5",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context B5: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB6",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update B6"
+        },
+        {
+          "id": "post_FixtureB7",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context B7: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB8",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context B8: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB9",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update B9"
+        },
+        {
+          "id": "post_FixtureB10",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context B10: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB11",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context B11: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB12",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update B12"
+        },
+        {
+          "id": "post_FixtureB13",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context B13: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB14",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context B14: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB15",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update B15"
+        },
+        {
+          "id": "post_FixtureB16",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context B16: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB17",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context B17: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB18",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update B18"
+        },
+        {
+          "id": "post_FixtureB19",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context B19: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB20",
+          "author": "Fixture Alice",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic fixture context B20: Codex review workflow compares captured author statements and checks source attribution. This is invented test data, not a real community post."
+        },
+        {
+          "id": "post_FixtureB21",
+          "author": "Fixture Bob",
+          "publishedLabel": "Jan 1, 2026",
+          "pinned": false,
+          "body": "Synthetic short update B21"
+        }
+      ]
+    }
+  ]
+}

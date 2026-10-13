@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 1,
+  "skill": "community-signal-analyst",
+  "version": "1.15.0",
+  "userLocalDate": "2026-10-13",
+  "repository": "https://github.com/qife422/community-signal-analyst",
+  "visibility": "private",
+  "purpose": "Source and compiled-distribution recovery after loss of the computer; one-time snapshot, not automatic backup",
+  "payload": [
+    {
+      "path": ".gitignore",
+      "bytes": 131,
+      "sha256": "d0cc4a260c8547ffc025c31ea0209c89f9a35487b38c150fc262b968deed4c41"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 2112,
+      "sha256": "22ded4dd10f725ec641456a18b82c39ec9161d11f3da74eaec1d23139f8704e0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6252,
+      "sha256": "fa56d9b9803fef384101057a7c79bf7c967400192420ba8b8cf6bbb419f47fe4"
+    },
+    {
+      "path": "RESTORE.md",
+      "bytes": 3664,
+      "sha256": "a2d4c3b5006b81636a78cb875609e35e3150cc21f739953d9925c5ec4e90151f"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 18125,
+      "sha256": "92d3e5d2882b2cf11b1c664b3bb4951c1044c45ce0c555b2fb065a64dd52cf6b"
+    },
+    {
+      "path": "SPEC.md",
+      "bytes": 28484,
+      "sha256": "e46c03357b6ad14ead7446bcd8720d4028ab795b1714cdf6be809f5bc3f430e9"
+    },
+    {
+      "path": "TEST_PLAN.md",
+      "bytes": 18703,
+      "sha256": "9e3befe1770896cff0f76096d704d94c431be6b6d5de98825f2bf1e85385023b"
+    },
+    {
+      "path": "agents/openai.yaml",
+      "bytes": 240,
+      "sha256": "059ece03612102681a6953f7dee9c49f42e95638e950b7fcbbb1a848a3fb456e"
+    },
+    {
+      "path": "distribution/community-signal-analyst.zip",
+      "bytes": 237268,
+      "sha256": "3ad141a7adc095fb48dcc1c090d29ad5f8cda7ec6def2a6afe4ed513d8e1627a"
+    },
+    {
+      "path": "mock-data/devto.mock.json",
+      "bytes": 5220,
+      "sha256": "6043d0dd7111798369f72dc6070ae9ab0babcee29fb2c928f4ff3e834759a150"
+    },
+    {
+      "path": "mock-data/github.mock.json",
+      "bytes": 4261,
+      "sha256": "fd4651ff7204360a9b5e165229494ebc2a645193cbdd01e65c5bf1b195f50401"
+    },
+    {
+      "path": "mock-data/hacker-news.mock.json",
+      "bytes": 4584,
+      "sha256": "f7f411c8fedee26df73818308c39ddb7594ec108428a6300c200db67771a9991"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 52343,
+      "sha256": "5876a6382b871da050cae754f5f5f4f02cf1f5f60a9417c6821660679b031a58"
+    },
+    {
+      "path": "package.json",
+      "bytes": 990,
+      "sha256": "f28616e76296259d506d13bd616975983cb49f80fbf9c0a491c62ac5a22b2a10"
+    },
+    {
+      "path": "references/api-contract.md",
+      "bytes": 2594,
+      "sha256": "74c390b72a1af931e5df7cf9d75ba2f79eefc3048d52aec0e70963a522e35a27"
+    },
+    {
+      "path": "references/claim-verification.md",
+      "bytes": 5612,
+      "sha256": "217e6554b164d510bd28e36c04e9db96ed232551e65b88f18f3588c0d3f45aee"
+    },
+    {
+      "path": "references/delivery-status.json",
+      "bytes": 16638,
+      "sha256": "ae65eebccb4950a40bd5c2a53d3b8002d357d3d99be9e718bdbc69bc94800c07"
+    },
+    {
+      "path": "references/discord-access.md",
+      "bytes": 6000,
+      "sha256": "c92ccec9e0b918ecbfaa845f9807c6c6aba2dc20cb44ff71dc0e56766eb89b37"
+    },
+    {
+      "path": "references/distribution-entry.md",
+      "bytes": 2725,
+      "sha256": "bcd3461f681c0fa7564b3ec48ec077dea776d997f13d7ec213cb49257302b258"
+    },
+    {
+      "path": "references/final-delivery.md",
+      "bytes": 4167,
+      "sha256": "68d11b0fbfe557e97f81bf38898df627326331b3599aa5d96b5499ebbe8eda83"
+    },
+    {
+      "path": "references/member-access.md",
+      "bytes": 5765,
+      "sha256": "1a13cea713c3a885b6f64e66ea43ec5576efd8214479bdf5d6bff748b880e5cc"
+    },
+    {
+      "path": "references/onboarding.md",
+      "bytes": 6013,
+      "sha256": "85230375d40d6eabf9f6ca1cab23153c7cc5bff04d8b12c75e418cbef9ab9972"
+    },
+    {
+      "path": "references/platform-fields.md",
+      "bytes": 7436,
+      "sha256": "0c19a933f1f4a90ab81d0ee5daad724cce78beee5ea2d84efde63f2bfa23f024"
+    },
+    {
+      "path": "references/report-template.md",
+      "bytes": 2012,
+      "sha256": "a3baa900b14db37bb64ddfe621ec2bfc0464964f254a60857f5feaae6b3ef77f"
+    },
+    {
+      "path": "references/scoring-and-prompts.md",
+      "bytes": 4760,
+      "sha256": "916f8e55260dae999439637f2decf48ae64e5ace4c2db35a1241934ce70a25fb"
+    },
+    {
+      "path": "references/validation-checks.md",
+      "bytes": 6672,
+      "sha256": "90ec1e884df19df2a349510190cec77b94cc8657c4313c4c60b2c0c4f18dae32"
+    },
+    {
+      "path": "references/whop-access.md",
+      "bytes": 14445,
+      "sha256": "af51f868baa901dcfc2e47ccb9df68940565765b145875c410e3e9aaf66857f7"
+    },
+    {
+      "path": "references/whop-binding.md",
+      "bytes": 4167,
+      "sha256": "27a31e2e210fe77a65cd61749e0e5e09987f74f8a77c8e6b1fde22ddd3df04fd"
+    },
+    {
+      "path": "references/whop-daily.md",
+      "bytes": 8735,
+      "sha256": "e981373684cb61ec5c5335177329bad2d95f3a7717399783d9c7358d32182baa"
+    },
+    {
+      "path": "scripts/package_skill.py",
+      "bytes": 5570,
+      "sha256": "518ba65cc1422b452a17908c73a30db9efc36596c909a017dd55f59dbd4bed80"
+    },
+    {
+      "path": "scripts/verify_distribution.py",
+      "bytes": 6792,
+      "sha256": "ff9ca5ab55318f12fc125f32244ca51b0d65a670bb25c970be7d72332dbf992a"
+    },
+    {
+      "path": "src/adapters/authorized.ts",
+      "bytes": 10433,
+      "sha256": "ed650ccc0d4af3ecff9ae58cfc1c5d57418d3b19a4a1971324c8d6ead0dcff01"
+    },
+    {
+      "path": "src/adapters/discord.ts",
+      "bytes": 11985,
+      "sha256": "4b9c7775d51ba1451f5aaff80de6fee1500da3a3fd60ca5e9dbf6e76183c7ebf"
+    },
+    {
+      "path": "src/adapters/live.ts",
+      "bytes": 17950,
+      "sha256": "c9c5b7d0aac2c9c74b8762ef21f09e3ba4c2d0c99ea1cb4e5b6bd85efcb2f1ff"
+    },
+    {
+      "path": "src/adapters/mockDevToAdapter.ts",
+      "bytes": 436,
+      "sha256": "26a5de458f66c8f0d4545874596cd5a359661a0a20b9a5385c1e91f7a49f0898"
+    },
+    {
+      "path": "src/adapters/mockGitHubAdapter.ts",
+      "bytes": 438,
+      "sha256": "a4576bef4877a509f13fb5f4dcad42d7e573b5a5efdbd41d738574e0ce733b17"
+    },
+    {
+      "path": "src/adapters/mockHackerNewsAdapter.ts",
+      "bytes": 447,
+      "sha256": "cf8801dd56460d668239cf8aafa3b2b942ac3bb05bfd9ba5228d0dc2d24b086e"
+    },
+    {
+      "path": "src/adapters/types.ts",
+      "bytes": 595,
+      "sha256": "8fd047b21e845b6eab53f3e18785489ad8dfbd6b6058357b65bc15d3c16c6fb9"
+    },
+    {
+      "path": "src/adapters/whop.ts",
+      "bytes": 11566,
+      "sha256": "862da12b792b7d405d7a805ff66319402c04299725e44ed56ef90fca17d0a89c"
+    },
+    {
+      "path": "src/adapters/x.ts",
+      "bytes": 12568,
+      "sha256": "388d245f7dfd4605042e942a5b622014c16d1a3d08e6a075f2256a66131e438b"
+    },
+    {
+      "path": "src/adapters/xReplies.ts",
+      "bytes": 7148,
+      "sha256": "7a14f38f0eb5950271ce6e9deb7ef94605ebb7b992ddb7c951a94d98d6a36ce0"
+    },
+    {
+      "path": "src/cli.ts",
+      "bytes": 2642,
+      "sha256": "2d2eb253987cb2fd00d9d50776495eea3b5ec54b949df8e930d50a853a76e0a6"
+    },
+    {
+      "path": "src/cliArgs.ts",
+      "bytes": 2186,
+      "sha256": "268ff45073a9f5ea228e7f10db993e5c10891ac58ece7daecb01dc85176b55a2"
+    },
+    {
+      "path": "src/comments/groupThemes.ts",
+      "bytes": 1529,
+      "sha256": "4547b21d73faa81546ccc80d52d45230b65bab0bedc3c4591f9948b9a2bf60a0"
+    },
+    {
+      "path": "src/corroboration/matchSources.ts",
+      "bytes": 3178,
+      "sha256": "ff35d7ade9d3c7d4e6b40cb00ef585e741bafd6e39b8a00016e3cd3823536e06"
+    },
+    {
+      "path": "src/doctorCli.ts",
+      "bytes": 337,
+      "sha256": "16bba8830b1b0f8c2e737bb31c3a3ad6e71da670aeb713295ad0bd93255b65e7"
+    },
+    {
+      "path": "src/history.ts",
+      "bytes": 5203,
+      "sha256": "b74d9e6e32cfea97c3e574ec2cd22ec53dcd90e7318641e55f7070369c603c6a"
+    },
+    {
+      "path": "src/index.ts",
+      "bytes": 8170,
+      "sha256": "cc01edc49ee9e7d0a5351715212c4bc295e71ce37556e9cdfeb79e65041ca22e"
+    },
+    {
+      "path": "src/normalizer/normalizeItems.ts",
+      "bytes": 1215,
+      "sha256": "89a2d27ba0987173a3c1c8353e78dc97bfc6562a4e1939b74514d210c8a24a08"
+    },
+    {
+      "path": "src/preferences.ts",
+      "bytes": 7437,
+      "sha256": "7f02ee64d485f79c10ea5898009c45a6ec04632b75c66204f79529b1a3761a0b"
+    },
+    {
+      "path": "src/preferencesPreviewCli.ts",
+      "bytes": 5243,
+      "sha256": "fdd0dafb591cc23fbbbcca58b7db77ba11c9b60ca316185601b12ce3bbbdef4c"
+    },
+    {
+      "path": "src/profile/doctor.ts",
+      "bytes": 2419,
+      "sha256": "c8d7b44b688279e853da2693bfafbc9690406dda124d699fc892b71f34304275"
+    },
+    {
+      "path": "src/profile/output.ts",
+      "bytes": 1156,
+      "sha256": "a46fa7e7d24eadc79c525b11efdcaeed948e76446bfa28df9b47001040a61dcb"
+    },
+    {
+      "path": "src/profile/schema.ts",
+      "bytes": 4466,
+      "sha256": "590ba300a173b485a2a7baa2b648bd3ca85c5f3f51a3e7b38a2cd2df6e215846"
+    },
+    {
+      "path": "src/profile/store.ts",
+      "bytes": 4324,
+      "sha256": "6a7c4b2777b8a8bb3b6c9300017b17f2f2ae61518159752256a24e17ec289c37"
+    },
+    {
+      "path": "src/profileCli.ts",
+      "bytes": 1207,
+      "sha256": "e523dc0dd224b6614f81dd8a3db519ae4cfe8f87bdcdf0752398f74b6e6db69a"
+    },
+    {
+      "path": "src/query-parser/keywordConcepts.ts",
+      "bytes": 460,
+      "sha256": "f1dfa9862a5c524e79f73c6b077c938e770c0aaddcbb55afbbb9738e11adf369"
+    },
+    {
+      "path": "src/query-parser/parseQuery.ts",
+      "bytes": 5891,
+      "sha256": "da4951c4f41aa797e50557e7feb0c6908fd9809e45f9351496b04723f8ba1c44"
+    },
+    {
+      "path": "src/query-parser/platformSelector.ts",
+      "bytes": 2446,
+      "sha256": "a7a88195a85f0ae4d49b508c82717b95b73c89dd943d0d8fb823f339d34d9843"
+    },
+    {
+      "path": "src/report/generateBrief.ts",
+      "bytes": 16735,
+      "sha256": "44770dd2996f88663291240db50e364069a70fe914d3cb091b3636b587882c47"
+    },
+    {
+      "path": "src/report/generateLiveBrief.ts",
+      "bytes": 24761,
+      "sha256": "590f2fc51c36ae8fd4eaf66fde6a7ebf6e019a7a6844f8e82fbc57f8708c5de6"
+    },
+    {
+      "path": "src/scoring/scoreItem.ts",
+      "bytes": 6314,
+      "sha256": "e3ca5102e9580713bfc53446270191f80e9352d65cf5a0e69ea68eb46739fcf4"
+    },
+    {
+      "path": "src/scoring/selectTopItems.ts",
+      "bytes": 1132,
+      "sha256": "014b0abce7d9863798a031704bd16130538eec21cde9c7e4ed98f2d140c732da"
+    },
+    {
+      "path": "src/types/communitySignal.ts",
+      "bytes": 5213,
+      "sha256": "9cbb437d9d79601da2f9536acb29d9c25791e8b7bd2b7dc87d16dd60479f267a"
+    },
+    {
+      "path": "src/verification.ts",
+      "bytes": 11403,
+      "sha256": "54dfef7f05a91732e918290de89efd6bd7b872c41c3273091634ff087a6bf7b5"
+    },
+    {
+      "path": "src/whop/bindings.ts",
+      "bytes": 5511,
+      "sha256": "400a705182ef3711feb30fb392b29bc4d6be3046f942093bc8d1cd4abe6792da"
+    },
+    {
+      "path": "src/whop/browserDigest.ts",
+      "bytes": 13719,
+      "sha256": "7d5478ec3653f62c4f35692cff595a1d002b1b0632a9038c4c0254f65525227a"
+    },
+    {
+      "path": "src/whop/http.ts",
+      "bytes": 1439,
+      "sha256": "f7cf41478e2d5acb43fc2c11d84197aea8028d675e23acfb76b6e49e93397715"
+    },
+    {
+      "path": "src/whop/oauth.ts",
+      "bytes": 5895,
+      "sha256": "b7ca648a5512c69ea990451e7e6f383651dbd2cebcdc0705cbb61684d33ee490"
+    },
+    {
+      "path": "src/whop/preferences.ts",
+      "bytes": 4271,
+      "sha256": "06d61c3c37c46fd220ff701e9747660b8098d8a60e6a0a5bfd506f24d59dce38"
+    },
+    {
+      "path": "src/whopAuthCli.ts",
+      "bytes": 3644,
+      "sha256": "8478f7026832456ee15ad95bfc96434a4a31c2b682fffe4266ce5d6c18ad6d9d"
+    },
+    {
+      "path": "src/whopDigestCli.ts",
+      "bytes": 5091,
+      "sha256": "f9d67ce11fea4ca2045e5e83e4a8eeec5bc53cabd9d837c965cb85391ad49ee7"
+    },
+    {
+      "path": "src/whopScopeCli.ts",
+      "bytes": 492,
+      "sha256": "6c761cc69e33c268a1449602be77200c55283e9688557f5f53e36bfe380bb8b2"
+    },
+    {
+      "path": "tests/authorized.test.ts",
+      "bytes": 5551,
+      "sha256": "08e89042022fdb1659a5f680f0258d25b9b8352392a56ab1fac9425e45ab145f"
+    },
+    {
+      "path": "tests/cli-args.test.ts",
+      "bytes": 2320,
+      "sha256": "5f2349d307af84496685a1f1f60d279408ee88713d6cf889c2c022627af2523e"
+    },
+    {
+      "path": "tests/corroboration.test.ts",
+      "bytes": 2940,
+      "sha256": "cbe31ce9c5c727c313fdab132e3c56cb1e084e0107a1a7ab795e7c528bc18ca8"
+    },
+    {
+      "path": "tests/discord.test.ts",
+      "bytes": 9617,
+      "sha256": "f775a5bf91831530e3c6a70544b4b68b8fd0504e5038fe55c51f4716f164ced5"
+    },
+    {
+      "path": "tests/fixtures/README.md",
+      "bytes": 748,
+      "sha256": "c8af2a5e9c10fb3c1cfc8c0e96a45b4d0e428c3aea94d3dadaf1e58990b0129f"
+    },
+    {
+      "path": "tests/fixtures/public-brief.json",
+      "bytes": 2892,
+      "sha256": "32b75af0f7e1fa78d317f4190509000451957aa2efca848234f1b29298277d05"
+    },
+    {
+      "path": "tests/fixtures/whop-scope.json",
+      "bytes": 377,
+      "sha256": "ec0168c1d80c0ecdc4d261b2d9aad204e38aec46fc89085e66e79e59a963d8f2"
+    },
+    {
+      "path": "tests/fixtures/whop-snapshot.json",
+      "bytes": 14966,
+      "sha256": "02524c5afafc7776d360b4e0a50c191e614683d7176402c8bdb15b34f7acf194"
+    },
+    {
+      "path": "tests/fixtures/xQualityCases.ts",
+      "bytes": 6915,
+      "sha256": "bc38cf6fdda71c1f008d8574d97acd2e0e8c8146cc16b0eb1a21e1df19837f0b"
+    },
+    {
+      "path": "tests/history.test.ts",
+      "bytes": 2399,
+      "sha256": "0a1124eb5e8a09f316281af5f9faf2197d0e19c5d34d6637da8e85af0b2e2f7f"
+    },
+    {
+      "path": "tests/investment-compliance.test.ts",
+      "bytes": 1142,
+      "sha256": "224927c08cccbf18996689558517ec1265727d4de01afe1e31392abe15cc319e"
+    },
+    {
+      "path": "tests/live.test.ts",
+      "bytes": 11033,
+      "sha256": "baadac2aea79facb03a6ea0e16fceb18c2835571f291565106426c96e2e79796"
+    },
+    {
+      "path": "tests/no-data.test.ts",
+      "bytes": 654,
+      "sha256": "6e4dff6a8ff01898942daf9e6cdc3542f2d1a4d8e08503ccd6b0c7f02ee7ba55"
+    },
+    {
+      "path": "tests/no-fabrication.test.ts",
+      "bytes": 963,
+      "sha256": "ad5c0cfb41cb0caf5f56a5cf76b8a6793ccb83720682f0247211e44fa681fdbc"
+    },
+    {
+      "path": "tests/normalizer.test.ts",
+      "bytes": 1290,
+      "sha256": "6074a26b4ba204c218a566c74d8951941b6c08074995eb088abf03ad62a24d68"
+    },
+    {
+      "path": "tests/platforms.test.ts",
+      "bytes": 8931,
+      "sha256": "094c11949fa0d3ceaf356a2475835d651ab49d1bb9e622d17379722eee6099bd"
+    },
+    {
+      "path": "tests/preferences.test.ts",
+      "bytes": 5701,
+      "sha256": "0451f4a18dbcf8c6699edd905d96ca5761277455c9aac553e9625376e52c63c2"
+    },
+    {
+      "path": "tests/profile-whop.test.ts",
+      "bytes": 6532,
+      "sha256": "896a950a1f58357bd94f8fefd18364c32867f18a5562f9e864341879bab02c21"
+    },
+    {
+      "path": "tests/profile.test.ts",
+      "bytes": 4976,
+      "sha256": "d406ff62e2cb6502277c28e147e4565e1eb6131b293a968677edf7c0ca4c427d"
+    },
+    {
+      "path": "tests/quality-gates.test.ts",
+      "bytes": 2948,
+      "sha256": "ea8c31587eacd3f05aa11f565a1d0b9a077ab4de20b212a612dbec142fbc105b"
+    },
+    {
+      "path": "tests/query-parser.test.ts",
+      "bytes": 7370,
+      "sha256": "733cf0b74438fb7cdbc49f294aa5b581bffd279262f672295cb553ba68ad040b"
+    },
+    {
+      "path": "tests/report-quality.test.ts",
+      "bytes": 6484,
+      "sha256": "f09f2b3a6ba7c6017e7bebf23cfa3be37dda77722604abaa9803f4436dd9e88e"
+    },
+    {
+      "path": "tests/report.test.ts",
+      "bytes": 1457,
+      "sha256": "878ea275decd453d5356dd85ed6af8399278edeaee8c2be6bbce17b456f11d7f"
+    },
+    {
+      "path": "tests/scoring.test.ts",
+      "bytes": 2381,
+      "sha256": "718240d06e1b30e5886547a1f33c65e02fb216a6166a4bff2446d07ed50c1b00"
+    },
+    {
+      "path": "tests/verification.test.ts",
+      "bytes": 7751,
+      "sha256": "d68fa732660aef916cba35e44a8a893f9cccfd8cfc19ff76f138c2663ce41a73"
+    },
+    {
+      "path": "tests/whop-bindings.test.ts",
+      "bytes": 5110,
+      "sha256": "0f80df0b16775c7c19d1e76ea2ff97c632c522f2571937ba138740921fba798b"
+    },
+    {
+      "path": "tests/whop-browser-digest.test.ts",
+      "bytes": 9163,
+      "sha256": "4f873785aa9d5f5fa6622288a0164fd4aeb6285d8b5027f68c4a1e3dcb29839c"
+    },
+    {
+      "path": "tests/whop-oauth.test.ts",
+      "bytes": 4547,
+      "sha256": "838740a9d03ec2806c31ebcce5b56079827c19f6bd2e8e701a061a677194473f"
+    },
+    {
+      "path": "tests/whop.test.ts",
+      "bytes": 10565,
+      "sha256": "230b07762f36f8dfc9a6aa24997e321a8eb0097fa7fb5105721c1d2d6267b495"
+    },
+    {
+      "path": "tests/x-quality-eval.test.ts",
+      "bytes": 1213,
+      "sha256": "259c0a9c166cf8c29f23150cf2d0ea63b111f1d692f4e49e8f433661f66e0486"
+    },
+    {
+      "path": "tests/x-replies.test.ts",
+      "bytes": 9727,
+      "sha256": "e2701681a90651c410618080c4be531409d94ef834d3603cdf5db7cc5a9308fe"
+    },
+    {
+      "path": "tests/x.test.ts",
+      "bytes": 13338,
+      "sha256": "5f5e65219b12b91b9459fecc903d9d81b277a8c8248af1840347351dbae02cd7"
+    },
+    {
+      "path": "tsconfig.json",
+      "bytes": 421,
+      "sha256": "a68bebceb9ff60ba79f23ccbdb4dbd115a2e300c59a4aa1a03765326ef58c222"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 125,
+      "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
+    }
+  ],
+  "payloadBytes": 903722,
+  "validation": {
+    "typecheck": "passed",
+    "build": "passed",
+    "tests": 211,
+    "testFiles": 27,
+    "integrationSamples": "explicit synthetic fixtures, no historical member bodies",
+    "compiledZipAcceptance": "passed; no network or node_modules",
+    "zipSha256": "3ad141a7adc095fb48dcc1c090d29ad5f8cda7ec6def2a6afe4ed513d8e1627a"
+  },
+  "excluded": [
+    "state",
+    "runs",
+    "artifacts",
+    ".history",
+    "node_modules",
+    "dist",
+    "output",
+    "profiles",
+    "credentials",
+    "environment files"
+  ],
+  "preservedLocalOnly": {
+    "protectedFilesUnchanged": 136,
+    "compatibilityLinksUnchanged": 2
+  },
+  "evidencePolicy": "Historical references to local artifacts and original paths are unavailable after clone. This snapshot does not preserve private data, credentials or historical evidence; original files remain unchanged locally.",
+  "capacityLimits": {
+    "backupPayloadBytes": 5000000,
+    "backupPayloadFiles": 200,
+    "sourceAmplification": 10,
+    "gitMetadataBytes": 5000000,
+    "gitMetadataFiles": 500
+  },
+  "manifestPolicy": "Manifest itself and .git metadata excluded from payload fingerprints; final remote commit verified separately after upload",
+  "skillsUsed": [
+    "skill-creator"
+  ],
+  "createdAtUtc": "2026-10-13T18:28:54Z"
+}

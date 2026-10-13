@@ -1,0 +1,98 @@
+{
+  "fixtureProvenance": "synthetic_only_not_live_evidence",
+  "parsedQuery": {
+    "originalQuery": "AI coding discussions",
+    "topic": "AI coding tools",
+    "keywords": [
+      "AI coding"
+    ],
+    "platforms": [
+      "hacker_news"
+    ],
+    "timeRange": "recent_7d",
+    "maxItems": 3,
+    "analysisMode": "dev_tool_research",
+    "strictMode": true,
+    "language": "zh"
+  },
+  "selectedItems": [
+    {
+      "id": "fixture-1",
+      "platform": "hacker_news",
+      "contentType": "discussion",
+      "title": "Synthetic Codex integration experience",
+      "url": "https://example.com/community-fixture/1",
+      "author": "Fixture author 1",
+      "publishedAt": "2026-01-01T00:00:00Z",
+      "fetchedAt": "2026-01-02T00:00:00Z",
+      "rawExcerpt": "Synthetic Codex workflow with explicit source attribution and review notes. Invented regression fixture.",
+      "summary": "Synthetic Codex experience; not an actual platform response.",
+      "tags": [
+        "coding"
+      ],
+      "engagementMetrics": {
+        "points": 30,
+        "commentsCount": 0
+      },
+      "comments": [],
+      "isMockData": false,
+      "sourceStatus": "verified_api",
+      "scores": {
+        "relevance": 80,
+        "engagement": 70,
+        "freshness": 90,
+        "sourceQuality": 80,
+        "discussionQuality": 60,
+        "novelty": 70,
+        "total": 75
+      },
+      "scoreRationale": [
+        "Synthetic metadata emulates the saved live-brief shape only."
+      ]
+    },
+    {
+      "id": "fixture-2",
+      "platform": "hacker_news",
+      "contentType": "discussion",
+      "title": "Synthetic Cursor integration experience",
+      "url": "https://example.com/community-fixture/2",
+      "author": "Fixture author 2",
+      "publishedAt": "2026-01-01T00:00:00Z",
+      "fetchedAt": "2026-01-02T00:00:00Z",
+      "rawExcerpt": "Synthetic Cursor workflow with explicit source attribution and review notes. Invented regression fixture.",
+      "summary": "Synthetic Cursor experience; not an actual platform response.",
+      "tags": [
+        "coding"
+      ],
+      "engagementMetrics": {
+        "points": 30,
+        "commentsCount": 0
+      },
+      "comments": [],
+      "isMockData": false,
+      "sourceStatus": "verified_api",
+      "scores": {
+        "relevance": 80,
+        "engagement": 70,
+        "freshness": 90,
+        "sourceQuality": 80,
+        "discussionQuality": 60,
+        "novelty": 70,
+        "total": 75
+      },
+      "scoreRationale": [
+        "Synthetic metadata emulates the saved live-brief shape only."
+      ]
+    }
+  ],
+  "queriedPlatforms": [
+    "hacker_news"
+  ],
+  "quickTakeaways": [],
+  "crossPlatformTrends": [],
+  "nextSteps": [],
+  "dataLimitations": [
+    "Synthetic regression fixture; no real platform request or live evidence."
+  ],
+  "markdown": "# Synthetic fixture\nInvented input for saved-brief regression only.\n"
+}

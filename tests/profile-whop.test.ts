@@ -1,0 +1,80 @@
+import { afterEach, describe, expect, it } from "vitest";
+import { mkdtempSync, writeFileSync, readFileSync, rmSync, existsSync } from "node:fs";
+import { join } from "node:path";
+import { execFileSync, spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
+import { initProfile, setProfile } from "../src/profile/store.js";
+import { digestBrowserSnapshot, parseBrowserSnapshot, parseBrowserScope } from "../src/whop/browserDigest.js";
+import { personalizeDigest } from "../src/whop/preferences.js";
+const dirs:string[]=[];
+afterEach(()=>{for(const d of dirs.splice(0))rmSync(d,{recursive:true,force:true});});
+function fixture(){
+  const dir=mkdtempSync("/private/tmp/profile-whop ");dirs.push(dir);
+  const file=join(dir,"profile.json"),p=initProfile(file);
+  const snapshot=parseBrowserSnapshot(JSON.parse(readFileSync("tests/fixtures/whop-snapshot.json","utf8")));
+  const scope=parseBrowserScope(JSON.parse(readFileSync("tests/fixtures/whop-scope.json","utf8")));
+  p.defaults.platforms=["whop"];p.defaults.maxItems=10;
+  p.rules=[{id:"person",enabled:true,sources:["whop"],authors:[{kind:"captured_author",value:snapshot.sources[0].posts[0].author}],includeAny:[]}];
+  setProfile(file,p);writeFileSync(join(dir,"scope.json"),JSON.stringify({schemaVersion:1,channels:scope}));
+  writeFileSync(join(dir,"sample.json"),JSON.stringify(snapshot));
+  const guard=join(dir,"guard.mjs");writeFileSync(guard,'globalThis.fetch=()=>{throw new Error("network forbidden")};');
+  const run=(cli:string,args:string[])=>execFileSync(process.execPath,["--import",guard,join(process.cwd(),"dist/src",cli),...args],{cwd:dir,encoding:"utf8",timeout:10000});
+  return {dir,file,p,snapshot,scope,run,guard};
+}
+const sha=(p:string)=>createHash("sha256").update(readFileSync(p)).digest("hex");
+describe("profile Whop integration",()=>{
+  it("filters display while keeping all 47 dedup records and repeat unchanged",()=>{
+    const f=fixture(),full=digestBrowserSnapshot(f.snapshot,undefined,f.scope);
+    expect(full.records).toHaveLength(47);
+    const personal=personalizeDigest(full,f.p,f.scope);
+    expect(personal.fullRecordCount).toBe(47);expect(personal.selected.every(r=>r.author===f.p.rules[0].authors[0].value)).toBe(true);
+    expect(personal.markdown).toContain("关注作者短更新");expect(personal.markdown).toContain("未按 profile 时间范围过滤");
+    expect(personal.markdown).not.toContain(f.file);
+    f.run("whopDigestCli.js",["--profile",f.file,"--snapshot",join(f.dir,"sample.json"),"--out",join(f.dir,"reports/first.json"),"--json"]);
+    const state=join(f.dir,"whop-state.json"),delta=join(f.dir,"reports/first.json.delta.json");
+    expect(JSON.parse(readFileSync(state,"utf8")).entries).toHaveLength(47);
+    expect(JSON.parse(readFileSync(delta,"utf8")).records).toHaveLength(47);
+    f.p.rules[0].authors[0].value="No such author";setProfile(f.file,f.p);
+    f.run("whopDigestCli.js",["--profile",f.file,"--snapshot",join(f.dir,"sample.json"),"--out",join(f.dir,"reports/repeat.json"),"--json"]);
+    const repeat=JSON.parse(readFileSync(join(f.dir,"reports/repeat.json"),"utf8"));
+    expect(repeat).toMatchObject({fullRecordCount:0,unchanged:47,selected:[]});
+    const before=sha(state),inputBefore=sha(delta);
+    f.run("preferencesPreviewCli.js",["--profile",f.file,"--input",delta,"--out",join(f.dir,"reports/replay.json"),"--json"]);
+    expect(sha(state)).toBe(before);expect(sha(delta)).toBe(inputBefore);
+    const replay=JSON.parse(readFileSync(join(f.dir,"reports/replay.json"),"utf8"));
+    expect(replay).toMatchObject({replay:true,selected:[]});expect(replay.markdown).toContain("已有样本重筛");
+    f.p.rules=[];setProfile(f.file,f.p);
+    f.run("preferencesPreviewCli.js",["--profile",f.file,"--input",join(f.dir,"sample.json"),"--out",join(f.dir,"reports/snapshot.md")]);
+    expect(sha(state)).toBe(before);expect(readFileSync(join(f.dir,"reports/snapshot.md"),"utf8")).toContain("匹配 47 条");
+  });
+  it("rejects conflicting explicit state and revoked scope without modifying inputs",()=>{
+    const f=fixture(),before=sha(f.file),sample=sha(join(f.dir,"sample.json"));
+    const result=spawnSync(process.execPath,["--import",f.guard,"dist/src/whopDigestCli.js","--profile",f.file,"--snapshot",join(f.dir,"sample.json"),"--state",join(f.dir,"other.json"),"--out",join(f.dir,"reports/no.md")],{encoding:"utf8"});
+    expect(result.status).toBe(1);expect(sha(f.file)).toBe(before);
+    writeFileSync(join(f.dir,"scope.json"),JSON.stringify({schemaVersion:1,channels:[]}));
+    expect(()=>f.run("preferencesPreviewCli.js",["--profile",f.file,"--input",join(f.dir,"sample.json"),"--out",join(f.dir,"reports/no.md")])).toThrow();
+    expect(sha(join(f.dir,"sample.json"))).toBe(sample);
+  });
+  it("rebuilds a saved public brief rather than retaining excluded Markdown",()=>{
+    const f=fixture();
+    const original=JSON.parse(readFileSync("tests/fixtures/public-brief.json","utf8"));
+    const input=join(f.dir,"public.json");writeFileSync(input,JSON.stringify(original));
+    f.p.defaults.platforms=["hacker_news","github","devto","product_hunt","x"];f.p.defaults.language="en";f.p.rules=[];
+    f.p.excludeAny=[original.selectedItems[0].title.slice(0,50)];setProfile(f.file,f.p);
+    const before=sha(input),out=join(f.dir,"reports/public-replay.json");
+    f.run("preferencesPreviewCli.js",["--profile",f.file,"--input",input,"--out",out,"--json"]);
+    const report=JSON.parse(readFileSync(out,"utf8"));
+    expect(report.selectedItems.some((i:{id:string})=>i.id===original.selectedItems[0].id)).toBe(false);
+    expect(report.markdown).not.toContain(original.selectedItems[0].title);
+    expect(report.markdown).toContain("Personal attention filters");expect(report.markdown).toContain("Replay of saved samples");
+    expect(report.attention.counts.excluded).toBeGreaterThan(0);expect(sha(input)).toBe(before);
+  });
+  it("rejects report/state collisions and reserves capacity for both report and delta",()=>{
+    const f=fixture(),state=join(f.dir,"whop-state.json");
+    expect(()=>f.run("cli.js",["--demo","--profile",f.file,"--out",state])).toThrow();
+    expect(existsSync(state)).toBe(false);
+    for(let i=0;i<99;i++)writeFileSync(join(f.dir,"reports",`existing-${i}.md`),"keep");
+    expect(()=>f.run("whopDigestCli.js",["--profile",f.file,"--snapshot",join(f.dir,"sample.json"),"--out",join(f.dir,"reports/cap.md")])).toThrow();
+    expect(existsSync(state)).toBe(false);expect(existsSync(join(f.dir,"reports/cap.md"))).toBe(false);
+  });
+});

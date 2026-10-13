@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "channels": [
+    {
+      "experienceId": "exp_FixtureA",
+      "communityName": "Synthetic community A",
+      "channelUrl": "https://whop.com/fixture-a/exp_FixtureA/app/"
+    },
+    {
+      "experienceId": "exp_FixtureB",
+      "communityName": "Synthetic community B",
+      "channelUrl": "https://whop.com/fixture-b/exp_FixtureB/app/"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+[
+  {
+    "id": "mock-devto-ai-coding-practices",
+    "platform": "devto",
+    "contentType": "article",
+    "title": "示例数据：Practical patterns for AI coding assistants",
+    "url": "mock://devto/practical-ai-coding-patterns",
+    "author": "mock_devto_author",
+    "publishedAt": "2026-06-16T08:00:00.000Z",
+    "rawExcerpt": "示例数据 article about AI coding assistants, promptable workflows, test-first usage, code review, and reliability tradeoffs.",
+    "summary": "dev.to 文章示例，聚焦开发者如何把 AI coding assistant 放进测试、review 和重构流程。",
+    "engagementMetrics": { "reactions": 92, "commentsCount": 21 },
+    "comments": [
+      {
+        "author": "mock_reader",
+        "summary": "读者认为最有价值的实践是先写验收测试，再让工具补实现。",
+        "signalType": "supporting"
+      },
+      {
+        "author": "mock_reader_2",
+        "summary": "另一类反馈指出成本、隐私和团队规范会影响采用节奏。",
+        "signalType": "pain_point"
+      }
+    ],
+    "tags": ["AI coding", "testing", "developer tools"],
+    "isMockData": true,
+    "dataLabel": "示例数据"
+  },
+  {
+    "id": "mock-devto-product-pain-ai-tools",
+    "platform": "devto",
+    "contentType": "article",
+    "title": "示例数据：What users complain about in new developer tools",
+    "url": "mock://devto/product-pain-ai-tools",
+    "author": "mock_product_writer",
+    "publishedAt": "2026-06-18T06:45:00.000Z",
+    "rawExcerpt": "示例数据 article about 产品, 用户痛点, 竞品, 替代方案, developer tools onboarding, pricing, and workflow friction.",
+    "summary": "产品研究示例，汇总新工具用户痛点、竞品替代方案、价格和上手阻力。",
+    "engagementMetrics": { "reactions": 58, "commentsCount": 17 },
+    "comments": [
+      {
+        "author": "mock_pm_reader",
+        "summary": "读者反馈核心用户痛点是集成成本、迁移成本和替代方案太多。",
+        "signalType": "pain_point"
+      }
+    ],
+    "tags": ["用户痛点", "竞品", "替代方案", "新工具"],
+    "isMockData": true,
+    "dataLabel": "示例数据"
+  },
+  {
+    "id": "mock-devto-no-comments-ai-coding-note",
+    "platform": "devto",
+    "contentType": "article",
+    "title": "示例数据：A short note on Codex prompts",
+    "url": "mock://devto/no-comments-ai-coding-note",
+    "author": "mock_quiet_author",
+    "publishedAt": "2026-06-19T03:00:00.000Z",
+    "rawExcerpt": "示例数据 highly relevant short article about Codex, AI coding, prompts, and agentic coding but with no comments.",
+    "summary": "无评论但高相关的 dev.to 示例，用于验证讨论质量低时仍可保留但不应过度解读。",
+    "engagementMetrics": { "reactions": 11, "commentsCount": 0 },
+    "comments": [],
+    "tags": ["Codex", "AI coding", "agentic coding"],
+    "isMockData": true,
+    "dataLabel": "示例数据"
+  },
+  {
+    "id": "mock-devto-outdated-ai-coding-history",
+    "platform": "devto",
+    "contentType": "article",
+    "title": "示例数据：An older overview of AI coding assistants",
+    "url": "mock://devto/outdated-ai-coding-history",
+    "author": "mock_archive_author",
+    "publishedAt": "2026-05-01T10:00:00.000Z",
+    "rawExcerpt": "示例数据 outdated article about AI coding assistants, early Copilot workflows, and older developer tool adoption.",
+    "summary": "过时但相关的 dev.to 示例，用于验证 freshness 会影响最终排序。",
+    "engagementMetrics": { "reactions": 130, "commentsCount": 32 },
+    "comments": [
+      {
+        "author": "mock_archive_reader",
+        "summary": "评论指出这类旧经验可能无法代表当前 agentic coding 工作流。",
+        "signalType": "neutral"
+      }
+    ],
+    "tags": ["AI coding", "Copilot", "developer tools"],
+    "isMockData": true,
+    "dataLabel": "示例数据"
+  },
+  {
+    "id": "mock-devto-nvda-earnings-risk-narrative",
+    "platform": "devto",
+    "contentType": "article",
+    "title": "示例数据：Reading NVDA earnings sentiment without trading signals",
+    "url": "mock://devto/nvda-earnings-risk-narrative",
+    "author": "mock_market_writer",
+    "publishedAt": "2026-06-18T13:00:00.000Z",
+    "rawExcerpt": "示例数据 article about Nvidia, NVDA, earnings, market sentiment, AI infrastructure expectations, risk narrative, 美股, 股票, and no trading advice.",
+    "summary": "投资研究示例，讨论英伟达财报后的社区情绪、AI 基础设施预期、风险叙事和过度乐观担忧。",
+    "engagementMetrics": { "reactions": 44, "commentsCount": 9 },
+    "comments": [
+      {
+        "author": "mock_reader_market",
+        "summary": "读者认为财报后叙事变化比单一互动热度更值得继续观察。",
+        "signalType": "market"
+      },
+      {
+        "author": "mock_reader_risk",
+        "summary": "谨慎观点关注预期差、估值消化和 AI 基础设施需求能否持续。",
+        "signalType": "opposing"
+      }
+    ],
+    "tags": ["Nvidia", "NVDA", "earnings", "market sentiment", "stock market", "美股", "股票", "市场情绪"],
+    "isMockData": true,
+    "dataLabel": "示例数据"
+  }
+]

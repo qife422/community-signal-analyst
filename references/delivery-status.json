@@ -1,0 +1,323 @@
+{
+  "schemaVersion": 1,
+  "skill": "community-signal-analyst",
+  "version": "1.15.0",
+  "deliveryStatus": "verified_onboarding_and_preferences_retained_on_demand_scope",
+  "activePlatforms": [
+    "hacker_news",
+    "github",
+    "devto",
+    "product_hunt",
+    "x",
+    "whop"
+  ],
+  "excludedFromCurrentDelivery": [
+    "discord",
+    "reddit"
+  ],
+  "scopeSource": "User requested completing Discord and treating all platforms except Reddit as the final delivery scope; Reddit work is deferred. User subsequently clarified that Discord/Whop must extract highlights across communities they join as an ordinary member; the existing Bot-only implementation does not satisfy this requirement. User requested retaining the existing Discord successes and prioritizing Whop next. User now explicitly deferred both Discord and Reddit while requesting the remaining work be completed. Whop automation stays paused; no instruction to re-enable it. User later explicitly delegated selection and free joining of a Whop community, confirmed its action-time terms, and AI for PROs native chat was observed unlocked; scoped browser acceptance completed. User now stops new free-community discovery and accepts retaining current Whop capability, requesting users bind their own desired communities/channels. Local binding management implemented and verified; no new memberships or automation. User now stopped real-time work and requested moving/merging the skill into the current folder and final closeout.",
+  "allPlatformQueryForCurrentDelivery": "找最近全平台（不含 Discord 和 Reddit）以及 Whop 的 AI coding 讨论",
+  "backwardCompatibility": "Explicit seven-platform and legacy six-platform requests remain compatible. Current delivery uses an explicit exclusion of Discord and Reddit and explicitly names Whop; browser-mode Whop sources use scoped snapshot/digest workflow, not unverified API access.",
+  "sourceRoot": "/Users/ffq/Documents/aicoding项目/Community Signal Analyst",
+  "sourceSelection": "User explicitly authorized consolidation into the current project. Installed 1.14.0 is the active capability baseline; workspace 0.1.0 fully preserved at .history/community-signal-analyst. Both prior paths are compatibility symlinks to this root.",
+  "platformStatus": {
+    "hacker_news": {
+      "status": "complete_with_recorded_sample_limits",
+      "evidence": "artifacts/online/manifest.json"
+    },
+    "github": {
+      "status": "complete_with_recorded_sample_limits",
+      "evidence": "artifacts/online/manifest.json"
+    },
+    "devto": {
+      "status": "complete_with_recorded_sample_limits",
+      "evidence": "artifacts/online/manifest.json"
+    },
+    "product_hunt": {
+      "status": "complete_with_recorded_sample_limits",
+      "evidence": "artifacts/online/manifest.json"
+    },
+    "x": {
+      "status": "complete_with_recorded_sample_limits",
+      "evidence": "artifacts/x/manifest.json"
+    },
+    "discord": {
+      "status": "deferred_by_user_existing_bot_success_preserved",
+      "codeAndOfflineReplies": "passed",
+      "authorizedReadAndOrdinaryMessageContent": "passed_on_marked_test_fixture",
+      "realDiscussionSelected": "not_yet_verified",
+      "differentHumanAuthorDirectReply": "not_yet_verified",
+      "evidence": "artifacts/discord/manifest.json",
+      "memberCommunityWorkflow": "not_implemented_or_live_verified",
+      "currentWork": "deferred_by_user_no_new_live_requests"
+    },
+    "reddit": {
+      "status": "deferred_by_user_outside_current_delivery",
+      "newRequests": 0
+    },
+    "whop": {
+      "status": "user_selected_bindings_supported_two_original_member_pages_live_verified_with_limits",
+      "codeImplemented": true,
+      "offlineValidation": {
+        "testFiles": 24,
+        "tests": 196,
+        "evidence": "artifacts/whop-bind/manifest.json"
+      },
+      "liveVerified": false,
+      "scheduledOrIncrementalCollectionImplemented": true,
+      "evidence": "artifacts/whop-member/manifest.json",
+      "browserReadVerified": true,
+      "browserEvidence": "artifacts/whop-source/manifest.json",
+      "selectedSource": {
+        "url": "https://whop.com/stock-and-option/exp_JG1I58S5zTHbxs/app/",
+        "experienceId": "exp_JG1I58S5zTHbxs",
+        "communityName": "stock and option",
+        "channelName": "历史股票期权记录区",
+        "apiResourceId": null,
+        "apiResourceType": "unverified",
+        "visiblePosts": 7,
+        "apiLookupMode": "experience_id_supported_by_official_docs_but_not_yet_live_verified"
+      },
+      "previousCodeEvidence": "artifacts/whop/manifest.json",
+      "browserSnapshotProcessing": {
+        "implemented": true,
+        "realCapturedPosts": 47,
+        "sameSnapshotRepeatNewRecords": 0,
+        "sameSnapshotUnchangedRecords": 47,
+        "operationalState": "state/whop.json",
+        "operationalScope": "state/whop-scope.json",
+        "backgroundCaptureImplemented": true,
+        "separateLivePollVerified": true,
+        "crossCommunityAccessVerified": true,
+        "semanticHighlights": "Two historical discussion highlights, primary source unchanged, migration context, and explicit source/date/sample limits; not fresh-news claims",
+        "separateLivePollNewRecords": 0,
+        "separateLivePollUnchangedRecords": 7,
+        "backgroundCaptureMethod": "native Codex thread heartbeat uses cua_repl existing member browser, not a standalone service",
+        "scheduledExecutionVerified": false,
+        "recoverableDeltaImplemented": true,
+        "operationalHealth": "state/whop-health.json",
+        "lastIndependentLivePollAt": "2026-10-01T00:58:04.382Z",
+        "explicitMultiSourceScopeRequired": true,
+        "partialSourceFailureStatusImplemented": true,
+        "crossSourceExactBodyGroupingImplemented": true,
+        "perSourceSuccessfulPollWatermarkImplemented": true,
+        "legacyStateMigrationVerified": true,
+        "combinedSemanticBriefVerified": true,
+        "selectedCommunityCount": 2,
+        "selectedCaptureCounts": [
+          7,
+          40
+        ],
+        "latestMultiCommunityCaptureAt": "2026-10-01T05:47:43.375Z",
+        "latestMultiCommunityEvidence": "artifacts/whop-member/manifest.json",
+        "lastValidationType": "fresh browser captures followed by compiled CLI; repeated same-input local replay is not another live poll"
+      },
+      "apiLiveVerified": false,
+      "liveVerifiedAppliesTo": "OAuth API collector; remains false. Browser live polls verified separately.",
+      "previousBrowserDigestEvidence": "artifacts/whop-digest/manifest.json",
+      "automation": {
+        "schemaVersion": 1,
+        "automationId": "whop",
+        "name": "Whop 精华",
+        "kind": "heartbeat",
+        "status": "PAUSED",
+        "cadence": "daily",
+        "localTime": "09:00",
+        "intendedTimezone": "America/Los_Angeles",
+        "hostTimezoneObserved": "PDT -0700",
+        "timezoneFieldPersisted": false,
+        "timezoneBasis": "local recurrence interpreted by desktop host; host zone matches user environment",
+        "targetThreadId": "01a0eab8-79ac-7df2-9be6-3bedb322a1a1",
+        "nativeCreate": "tool confirmed ACTIVE",
+        "nativeReadback": "pause tool confirmed PAUSED, view displayed card, saved automation.toml status verified",
+        "futureFiringVerified": false,
+        "scope": [
+          "https://whop.com/stock-and-option/exp_JG1I58S5zTHbxs/app/"
+        ],
+        "dependencies": [
+          "computer on and Codex app running",
+          "Chrome extension connection",
+          "valid Whop member browser login"
+        ],
+        "notificationPolicy": "meaningful changes or actionable failure only; unchanged stays quiet",
+        "pausedAt": "2026-10-01T00:49:59.970292+00:00",
+        "pauseReason": "User explicitly requested turning off automation"
+      },
+      "previousDailyEvidence": "artifacts/whop-daily/manifest.json",
+      "selectedSources": [
+        {
+          "experienceId": "exp_JG1I58S5zTHbxs",
+          "communityName": "stock and option",
+          "channelUrl": "https://whop.com/stock-and-option/exp_JG1I58S5zTHbxs/app/",
+          "visiblePosts": 7,
+          "channelName": "历史股票期权记录区"
+        },
+        {
+          "experienceId": "exp_sEw1wojWTWWS5C",
+          "communityName": "AI for PROs",
+          "channelUrl": "https://whop.com/vision-reimagine/exp_sEw1wojWTWWS5C/app/",
+          "visiblePosts": 40,
+          "channelName": "AI SaaS Building Chat"
+        }
+      ],
+      "membershipTrial": {
+        "product": "AI SaaS Building Chat",
+        "community": "AI for PROs",
+        "priceLabel": "免费",
+        "joinSuccessObserved": true,
+        "agentSubmittedCheckoutThisTurn": false,
+        "observation": "Page already returned checkout_status=success on resume; sidebar unlocked native chat. Did not resubmit join.",
+        "userAuthorization": "User delegated finding/joining a free community; action-time terms confirmation received as 可以 继续吧",
+        "scopeException": "This named free community only; future read runs cannot join other communities"
+      },
+      "contentQuality": {
+        "community": "AI for PROs",
+        "latestVisibleMessageLabel": "Jul 24, 2026 7:34 PM",
+        "migrationAnnouncement": "Jan 06, 2026 6:00 AM; PublicAI/Skool; external destination not read",
+        "assessment": "historical discussion sample; not a verified active daily source"
+      },
+      "previousMultiSourceEvidence": "artifacts/whop-multi/manifest.json",
+      "bindingManagement": {
+        "implemented": true,
+        "operations": [
+          "add",
+          "list",
+          "remove"
+        ],
+        "scopeFileCallerSelected": true,
+        "defaultNewUserSources": 0,
+        "maxBoundChannels": 3,
+        "emptyScopeSupported": true,
+        "allDigestCliReadsRequireScope": true,
+        "configurationDoesNotGrantAccess": true,
+        "historicalStatePreservedOnRemove": true,
+        "zeroNetworkRequests": true,
+        "compiledCliChecks": 12,
+        "evidence": "artifacts/whop-bind/manifest.json",
+        "newArbitraryCommunityLiveAcceptance": false
+      },
+      "latestCandidateScreening": {
+        "evidence": "artifacts/whop-active/manifest.json",
+        "result": "no_candidate_passed_all_criteria_in_bounded_screening",
+        "newMemberships": 0,
+        "continuation": "stopped_by_user"
+      },
+      "realTimeReceipt": {
+        "status": "stopped_by_user_not_implemented",
+        "liveEventReceived": false,
+        "webhookRegistered": false,
+        "businessRegistrationSubmitted": false,
+        "creatorInstallRequiredForDocumentedAppRoute": true,
+        "evidence": "artifacts/whop-push/manifest.json"
+      }
+    }
+  },
+  "discordCompletionCriteria": [
+    "User-authorized exact server/channel scope and read-only Bot permissions.",
+    "An actual human-authored substantive discussion, excluding synthetic test fixtures from research acceptance.",
+    "At least one substantive direct reply by a different real human author with an exact same-channel parent reference.",
+    "Compiled live analysis selects the root and preserves body, author, dates, links, scope and reply provenance without invented metrics.",
+    "Chinese/English report, evidence manifest and conservative claim labels verified; important claims reviewed when applicable.",
+    "Record request counts, time/content limits, permission-required links, source fingerprints and any remaining limitations."
+  ],
+  "evidenceRoot": "/Users/ffq/Documents/aicoding项目/Community Signal Analyst",
+  "latestDeliveryRecord": "artifacts/final/readiness.md",
+  "userOutcome": {
+    "description": "Users bind their own selected Whop native member community channels and request scoped high-value summaries on demand; current browser capability retained.",
+    "accessPerspective": "ordinary_member_not_only_server_owner_or_bot_installer",
+    "requestedPlatforms": [
+      "whop"
+    ],
+    "status": "finalized_retained_on_demand_scope",
+    "nextRequiredInput": null,
+    "acceptanceCriteria": [
+      "A supported access method works for the user as an ordinary member in the specified community; Bot access alone does not establish this.",
+      "At least two explicitly selected communities contribute real messages; retain source, author, time, links and discussion context.",
+      "New messages are processed with a bounded collection budget and durable deduplication/cursor behavior; no duplicate highlights across repeated runs.",
+      "High-value highlights are produced across communities with original-source links and clear sample/access limits; high message volume alone is not value.",
+      "Missing, revoked or expired access is visible; do not treat access failure as an empty or inactive community."
+    ],
+    "automation": "Whop heartbeat PAUSED by explicit user request; no recurring run re-enabled",
+    "feasibilityReference": "references/member-access.md",
+    "configuredWhopScopeComplete": true,
+    "multiCommunityVerified": true,
+    "deferredPlatforms": [
+      "discord",
+      "reddit"
+    ],
+    "selectedCommunityCount": 2,
+    "userFinalAcceptance": "not_yet_recorded",
+    "currentLimitations": [
+      "Up to three user-bound exact native Whop pages per configuration/run; each requires that user’s actual member browser access",
+      "AI for PROs free chat is readable but historical and migration announcement reduces daily-source value",
+      "Whop OAuth/API and future unattended scheduling unverified; automation remains paused",
+      "Bounded initial DOM capture, excluded messages and full-day/history completeness limits recorded",
+      "Real-time receipt and author-triggered actions not implemented; investigation stopped by user"
+    ],
+    "acceptedScopeNote": "User requested finalizing retained scope after stopping real-time work; this does not approve API/push/unattended acceptance or resume automation."
+  },
+  "discordCompletionCriteriaAppliesTo": "Existing Bot adapter acceptance only; these criteria no longer suffice for the clarified user outcome.",
+  "latestDeliveryRecordAppliesTo": "1.14.1 consolidation and final retained scope; historical live platform evidence remains bounded and unchanged.",
+  "currentFocus": "onboarding_preferences_verified_user_acceptance_pending",
+  "trialPlatforms": [
+    "whop"
+  ],
+  "latestWhopDeliveryRecord": "artifacts/whop-bind/readiness.md",
+  "currentCompletionSummary": {
+    "completedPublicPlatforms": [
+      "hacker_news",
+      "github",
+      "devto",
+      "product_hunt",
+      "x"
+    ],
+    "whopSelectedBrowserWorkflow": "live_verified_and_usable_on_demand",
+    "whopMultiSourceImplementation": "scope/failure/dedup/watermark/recovery tests passed",
+    "whopMultiSourceLiveAcceptance": "two real member communities captured; combined semantic brief and repeated-input dedup passed",
+    "automation": "paused_by_user",
+    "excludedFromCurrentDelivery": [
+      "discord",
+      "reddit"
+    ],
+    "remaining": [],
+    "optionalUnverified": [
+      "Whop OAuth/API",
+      "unattended schedule, not in current scope after pause",
+      "Real-time receipt / author-triggered actions; stopped by user"
+    ],
+    "userFinalAcceptance": "not_yet_recorded",
+    "whopBindingManagement": "add/list/remove and empty/unbound/missing scope gates verified with tests and compiled CLI"
+  },
+  "canonicalLayout": {
+    "root": "/Users/ffq/Documents/aicoding项目/Community Signal Analyst",
+    "installedDiscoveryLink": "/Users/ffq/.codex/skills/community-signal-analyst",
+    "workspaceCompatibilityLink": "/Users/ffq/Documents/aicoding项目/skills/community-signal-analyst",
+    "legacyArchive": ".history/community-signal-analyst",
+    "legacyArchiveActive": false,
+    "evidence": "artifacts/final/manifest.json"
+  },
+  "profileDelivery": {
+    "spec": "SPEC.md",
+    "specVersion": "0.1.0",
+    "contractStatus": "approved",
+    "deliveryState": "verified",
+    "finalAcceptance": "pending",
+    "evidence": "artifacts/onboarding-preferences/manifest.json",
+    "testFiles": 27,
+    "tests": 211,
+    "newFeatures": [
+      "independent_zero_bound_profile",
+      "local_zero_request_doctor",
+      "captured_author_literal_keyword_exclusion_rules",
+      "public_filter_before_top_n_after_quality_gate",
+      "whop_display_filters_full_delta_dedup",
+      "offline_snapshot_delta_saved_brief_preview",
+      "portable_whitelist_compiled_zip"
+    ],
+    "package": "output/distribution/community-signal-analyst.zip",
+    "runtimePrerequisite": "Node.js >=22",
+    "externalCodexInstall": "not_tested",
+    "newLiveRequests": 0,
+    "automation": "PAUSED"
+  }
+}

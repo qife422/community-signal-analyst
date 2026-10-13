@@ -1,0 +1,4 @@
+interface:
+  display_name: "Community Signal Analyst"
+  short_description: "Analyze high-signal community trends"
+  default_prompt: "Use $community-signal-analyst to find 2-3 recent high-signal community discussions about AI coding tools."
