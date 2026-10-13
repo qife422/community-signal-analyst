@@ -4,8 +4,8 @@
   "version": "1.15.0",
   "userLocalDate": "2026-10-13",
   "repository": "https://github.com/qife422/community-signal-analyst",
-  "visibility": "private",
-  "purpose": "Source and compiled-distribution recovery after loss of the computer; one-time snapshot, not automatic backup",
+  "visibility": "public",
+  "purpose": "Public capability showcase and source/compiled-distribution recovery; updates recorded in CHANGELOG.md",
   "payload": [
     {
       "path": ".gitignore",
@@ -18,14 +18,19 @@
       "sha256": "22ded4dd10f725ec641456a18b82c39ec9161d11f3da74eaec1d23139f8704e0"
     },
     {
+      "path": "CHANGELOG.md",
+      "bytes": 2747,
+      "sha256": "fda16da287fcbdf23134a9b1ef15b64f21a723d739d76e28c96c00efc100d8e6"
+    },
+    {
       "path": "README.md",
-      "bytes": 6252,
-      "sha256": "fa56d9b9803fef384101057a7c79bf7c967400192420ba8b8cf6bbb419f47fe4"
+      "bytes": 6762,
+      "sha256": "e6561730bf42817fe726458af537e8088f028b4043a79684d23d87115a834881"
     },
     {
       "path": "RESTORE.md",
-      "bytes": 3664,
-      "sha256": "a2d4c3b5006b81636a78cb875609e35e3150cc21f739953d9925c5ec4e90151f"
+      "bytes": 3763,
+      "sha256": "8618ba6148260a2860e34ee9192c05275263a8ca612b0ddb27342addae704aa3"
     },
     {
       "path": "SKILL.md",
@@ -543,7 +548,7 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 903722,
+  "payloadBytes": 907078,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
@@ -581,5 +586,12 @@
   "skillsUsed": [
     "skill-creator"
   ],
-  "createdAtUtc": "2026-10-13T18:28:54Z"
+  "createdAtUtc": "2026-10-13T18:28:54Z",
+  "publication": {
+    "authorizedBy": "User explicitly requested public visibility and ongoing update records on 2026-10-13",
+    "functionalVersionUnchanged": "1.15.0",
+    "updates": "CHANGELOG.md",
+    "prePublicationCheck": "Current one-commit Git history and tracked ZIP inspected; no runtime directories or known credential markers detected; not a full security audit",
+    "validationScope": "Documentation/visibility change; runtime code and compiled ZIP unchanged. Existing build/211 tests/remote restore results are from the preceding backup task."
+  }
 }

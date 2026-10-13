@@ -1,14 +1,13 @@
 # 从 GitHub 恢复 Community Signal Analyst
 
-账号 `qife422`，私有仓库 `community-signal-analyst`，源码主分支 `main`。这是工具源码和编译分发包的备份；个人配置、历史报告、平台凭据和频道正文不在仓库中。
+账号 `qife422`，公开仓库 `community-signal-analyst`，源码主分支 `main`。这是工具源码和编译分发包的备份；个人配置、历史报告、平台凭据和频道正文不在仓库中。
 
 ## 1. 重新取得仓库
 
-在新机器登录自己的 GitHub 账号；可用 GitHub 网页下载仓库ZIP，或使用 Git/GitHub CLI：
+可直接从 GitHub 网页下载仓库ZIP，或使用 Git 克隆；读取公开仓库无需登录：
 
 ```bash
-gh auth login
-gh repo clone qife422/community-signal-analyst
+git clone https://github.com/qife422/community-signal-analyst.git
 cd community-signal-analyst
 ```
 
@@ -51,7 +50,7 @@ npm run doctor -- --profile /absolute/private/profile.json
 
 ## 5. 后续更新
 
-修改完成并验证后，仅提交工具代码与文档。先看 `git status` 和暂存差异，确认不含个人配置/凭据/正文，再提交、推送：
+修改完成并验证后，仅提交工具代码与文档，并在 CHANGELOG.md 记录实际变化、验证和限制。推送仍需自己的 GitHub 写入权限。先看 `git status` 和暂存差异，确认不含个人配置/凭据/正文，再提交、推送：
 
 ```bash
 git status --short
