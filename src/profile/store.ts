@@ -1,5 +1,5 @@
 import { closeSync, existsSync, lstatSync, mkdirSync, openSync, readFileSync, realpathSync, renameSync, rmdirSync, unlinkSync, writeFileSync } from "node:fs";
-import { dirname, isAbsolute, join, resolve, relative, sep } from "node:path";
+import { basename, dirname, isAbsolute, join, resolve, relative, sep } from "node:path";
 import { randomUUID } from "node:crypto";
 import { parseBrowserScope } from "../whop/browserDigest.js";
 import { defaultProfile, parseProfile, type Profile } from "./schema.js";
@@ -11,7 +11,7 @@ export function assertRegular(path: string, max = 65_536): void {
 export function readJson(path: string, max = 65_536): unknown { assertRegular(path, max); return JSON.parse(readFileSync(path, "utf8")); }
 export function profileLocation(file: string): string {
   if (!isAbsolute(file)) throw new Error("请提供 profile 的绝对路径");
-  const location = join(realpathSync(dirname(file)), file.slice(file.lastIndexOf(sep) + 1));
+  const location = join(realpathSync(dirname(file)), basename(file));
   if (existsSync(location) || (() => { try { lstatSync(location); return true; } catch { return false; } })()) assertRegular(location);
   return location;
 }

@@ -1,19 +1,20 @@
+import { tmpdir } from "node:os";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, statSync, symlinkSync, writeFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, readFileSync, realpathSync, rmSync, statSync, symlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { defaultProfile, parseProfile } from "../src/profile/schema.js";
 import { childPath, initProfile, loadProfile, setProfile } from "../src/profile/store.js";
 import { doctor } from "../src/profile/doctor.js";
 import { runBindingCommand } from "../src/whop/bindings.js";
 const dirs: string[] = [];
-function home() { const d = mkdtempSync("/private/tmp/community-profile-"); dirs.push(d); return d; }
+function home() { const d = mkdtempSync(join(tmpdir(), "community-profile-")); dirs.push(d); return realpathSync(d); }
 afterEach(() => { for (const d of dirs.splice(0)) rmSync(d, { recursive: true }); vi.restoreAllMocks(); });
 
 describe("independent profiles and local doctor", () => {
   it("starts two users empty and changes only the selected scope", () => {
     const a = home(), b = home(), af = join(a, "profile.json"), bf = join(b, "profile.json");
     initProfile(af); initProfile(bf);
-    expect(statSync(af).mode & 0o777).toBe(0o600); expect(statSync(join(a, "reports")).mode & 0o777).toBe(0o700);
+    if (process.platform !== "win32") { expect(statSync(af).mode & 0o777).toBe(0o600); expect(statSync(join(a, "reports")).mode & 0o777).toBe(0o700); }
     runBindingCommand(["add", "--scope", join(a, "scope.json"), "--url", "https://whop.com/example/exp_One/app/", "--name", "My own source"]);
     expect(JSON.parse(readFileSync(join(b, "scope.json"), "utf8")).channels).toEqual([]);
     expect(doctor(bf, {}, "22.0.0")).toMatchObject({ status: "ready", networkRequests: 0, filesModified: 0, liveAccessVerified: false });
@@ -43,10 +44,10 @@ describe("independent profiles and local doctor", () => {
   });
   it("resolves within profile rather than cwd and rejects symlinks and duplicate targets", () => {
     const base = home(), f = join(base, "profile.json"); initProfile(f);
-    expect(loadProfile(f).paths.scope).toBe(join(base, "scope.json"));
+    expect(loadProfile(f.split("\\").join("/")).paths.scope).toBe(join(base, "scope.json"));
     expect(() => childPath(f, "../outside")).toThrow();
     const link = join(base, "linked.json"); symlinkSync(f, link); expect(() => loadProfile(link)).toThrow();
-    mkdirSync(join(base, "elsewhere")); symlinkSync(join(base, "elsewhere"), join(base, "linkdir"));
+    mkdirSync(join(base, "elsewhere")); symlinkSync(join(base, "elsewhere"), join(base, "linkdir"), process.platform === "win32" ? "junction" : "dir");
     expect(() => childPath(f, "linkdir/state.json")).toThrow();
     expect(() => setProfile(f, { ...defaultProfile(), whop: { scopeFile: "profile.json", stateFile: "state.json" } })).toThrow();
   });

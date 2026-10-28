@@ -43,7 +43,7 @@ describe("user-selected Whop bindings",()=>{
   const path=scopePath(),history=join(path,"..","whop.json");writeFileSync(history,'{"preserved":true}\n');
   expect(runBindingCommand(["list","--scope",path]).channels).toEqual([]);
   const add=runBindingCommand(["add","--scope",path,"--url",url(),"--name","Example"]);
-  expect(add.changed).toBe(true);expect(add.networkRequests).toBe(0);expect(statSync(path).mode&0o777).toBe(0o600);
+  expect(add.changed).toBe(true);expect(add.networkRequests).toBe(0);if(process.platform!=="win32")expect(statSync(path).mode&0o777).toBe(0o600);
   expect(runBindingCommand(["list","--scope",path]).channels).toEqual(initial());
   expect(runBindingCommand(["remove","--scope",path,"--id","exp_alpha"]).channels).toEqual([]);
   expect(JSON.parse(readFileSync(path,"utf8")).channels).toEqual([]);

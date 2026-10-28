@@ -1,5 +1,6 @@
 import importlib.util
 import os
+import subprocess
 from pathlib import Path
 import tempfile
 import unittest
@@ -37,7 +38,10 @@ class InstallationInventoryTests(unittest.TestCase):
             root = Path(work); modules = root / "source/node_modules/example"
             modules.mkdir(parents=True); (modules / "runtime.js").write_text("dependency")
             (root / "source/main.ts").write_text("source")
-            (root / "registered").symlink_to(root / "source", target_is_directory=True)
+            if os.name == "nt":
+                subprocess.run(["cmd", "/c", "mklink", "/J", str(root / "registered"), str(root / "source")], check=True, capture_output=True)
+            else:
+                (root / "registered").symlink_to(root / "source", target_is_directory=True)
             counts = check.inventory(root)
             self.assertEqual(counts["dependencies"]["files"], 1)
             self.assertEqual(counts["work"]["files"], 2)  # source plus link metadata

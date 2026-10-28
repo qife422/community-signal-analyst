@@ -17,6 +17,8 @@ import stat
 import subprocess
 import tempfile
 import time
+import sys
+import platform
 import urllib.request
 import zipfile
 
@@ -37,7 +39,7 @@ def inventory(root):
     groups = {name: {"files": 0, "bytes": 0, "examples": []} for name in LIMITS}
     for directory, dirs, files in os.walk(root, followlinks=False):
         # Directory links are metadata, never another source/dependency tree.
-        links = [name for name in dirs if (Path(directory) / name).is_symlink()]
+        links = [name for name in dirs if is_link(Path(directory) / name)]
         dirs[:] = [name for name in dirs if name not in links]
         for name in files + links:
             path = Path(directory) / name
@@ -47,7 +49,7 @@ def inventory(root):
                     "node_compile_cache" if "node-compile-cache" in parts and "tmp" in parts else
                     "git_metadata" if ".git" in parts else "work")
             info = path.lstat()
-            if not (stat.S_ISREG(info.st_mode) or stat.S_ISLNK(info.st_mode)):
+            if not (stat.S_ISREG(info.st_mode) or stat.S_ISLNK(info.st_mode) or is_link(path)):
                 raise ValueError("Unexpected non-file input")
             group = groups[kind]
             group["files"] += 1
@@ -64,21 +66,53 @@ def check_limits(groups, source_bytes):
             raise ValueError("Capacity reached for " + name + ": " + json.dumps(group))
 
 
+def is_link(path):
+    info = path.lstat()
+    return stat.S_ISLNK(info.st_mode) or bool(getattr(info, "st_file_attributes", 0) & getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400))
+
+
 def clean_env(home):
     home = Path(home)
-    for name in ("tmp", ".codex"):
-        (home / name).mkdir(mode=0o700, exist_ok=True)
-    for name in ("user.npmrc", "global.npmrc"):
-        (home / name).write_text("")
-    return {
-        "PATH": "/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
-        "HOME": str(home), "CODEX_HOME": str(home / ".codex"),
-        "TMPDIR": str(home / "tmp"), "LANG": "en_US.UTF-8",
-        "GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": "/dev/null", "GIT_TERMINAL_PROMPT": "0",
+    for name in ("tmp", ".codex", "AppData/Roaming", "AppData/Local"):
+        (home / name).mkdir(mode=0o700, parents=True, exist_ok=True)
+    for name in ("user.npmrc", "global.npmrc", "empty.gitconfig"):
+        (home / name).write_text("", encoding="utf-8")
+    tool_dirs = [str(Path(sys.executable).parent)]
+    for name in ("node", "npm", "git", "bash", "pwsh", "powershell", "python3", "python", "py"):
+        found = shutil.which(name)
+        if found:
+            tool_dirs.append(str(Path(found).parent))
+    if os.name != "nt":
+        tool_dirs.extend(["/usr/local/bin", "/opt/homebrew/bin", "/usr/bin", "/bin", "/usr/sbin", "/sbin"])
+    else:
+        tool_dirs.extend([str(Path(os.environ["SystemRoot"]) / "System32"), os.environ["SystemRoot"]])
+    env = {
+        "PATH": os.pathsep.join(dict.fromkeys(tool_dirs)),
+        "HOME": str(home), "USERPROFILE": str(home), "CODEX_HOME": str(home / ".codex"),
+        "APPDATA": str(home / "AppData/Roaming"), "LOCALAPPDATA": str(home / "AppData/Local"),
+        "TMPDIR": str(home / "tmp"), "TEMP": str(home / "tmp"), "TMP": str(home / "tmp"),
+        "LANG": "en_US.UTF-8", "PYTHONUTF8": "1",
+        "GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": str(home / "empty.gitconfig"), "GIT_TERMINAL_PROMPT": "0",
         "npm_config_cache": str(home / ".npm"),
         "npm_config_userconfig": str(home / "user.npmrc"),
         "npm_config_globalconfig": str(home / "global.npmrc"),
     }
+    if os.name == "nt":
+        for key in ("SystemRoot", "WINDIR", "COMSPEC", "PATHEXT", "OS"):
+            if key in os.environ:
+                env[key] = os.environ[key]
+    return env
+
+
+def executable(command):
+    # npm.cmd cannot reliably be launched with shell=False on Windows.
+    if os.name == "nt" and command[0] == "npm":
+        npm = shutil.which("npm")
+        cli = Path(npm).parent / "node_modules/npm/bin/npm-cli.js" if npm else Path("")
+        if not cli.is_file():
+            raise ValueError("Cannot locate npm-cli.js beside the Node.js installation")
+        return [shutil.which("node"), str(cli), *command[1:]]
+    return command
 
 
 def get(url):
@@ -107,12 +141,12 @@ def execute(args):
     if not out.parent.is_dir() or out.exists() or out.is_symlink():
         raise ValueError("Choose a new report path in an existing directory")
     result = {"schemaVersion": 1, "status": "running", "steps": [], "limits": LIMITS,
-              "notVerified": ["authenticated Codex model execution", "Whop member/browser capture", "paid sources", "other operating systems"]}
+              "notVerified": ["authenticated Codex model execution", "Whop member/browser capture", "paid sources", "other operating systems"], "platform": {"system": platform.system(), "release": platform.release(), "python": platform.python_version()}}
     def save():
         data = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
         if len(data.encode()) > 500_000:
             raise ValueError("Report too large")
-        out.write_text(data)
+        out.write_text(data, encoding="utf-8")
     try:
         with tempfile.TemporaryDirectory(prefix="community-installation-", dir="/private/tmp" if Path("/private/tmp").is_dir() else None) as work:
             base = Path(work)
@@ -123,13 +157,13 @@ def execute(args):
             source_bytes = 238_695
             def run(name, command, cwd, env, expected=0, timeout=150):
                 before = time.monotonic()
-                process = subprocess.Popen(command, cwd=cwd, env=env, stdout=subprocess.PIPE,
-                                           stderr=subprocess.PIPE, text=True, start_new_session=True)
+                process = subprocess.Popen(executable(command), cwd=cwd, env=env, stdout=subprocess.PIPE,
+                                           stderr=subprocess.PIPE, text=True, encoding="utf-8", errors="replace", start_new_session=os.name != "nt")
                 try:
                     stdout, stderr = process.communicate(timeout=timeout)
                 except subprocess.TimeoutExpired:
                     if process.poll() is None:
-                        os.killpg(process.pid, signal.SIGTERM)
+                        process.kill() if os.name == "nt" else os.killpg(process.pid, signal.SIGTERM)
                     process.communicate()
                     raise RuntimeError(name + " timed out")
                 redacted = lambda value: value.replace(str(base), "<isolated-root>")
@@ -157,12 +191,14 @@ def execute(args):
             source_bytes = sum(p.stat().st_size for p in (source / "src").rglob("*.ts"))
             result["sourceBytes"] = source_bytes
             result["lockSha256"] = hashlib.sha256((source / "package-lock.json").read_bytes()).hexdigest()
-            result["version"] = json.loads((source / "package.json").read_text())["version"]
-            readme = (source / "README.md").read_text()
-            blocks = re.findall(r"```bash\n(.*?)```", readme, re.S)
+            result["version"] = json.loads((source / "package.json").read_text(encoding="utf-8"))["version"]
+            readme = (source / "README.md").read_text(encoding="utf-8")
+            language = "powershell" if os.name == "nt" else "bash"
+            blocks = re.findall(r"```" + language + r"\n(.*?)```", readme, re.S)
+            shell = [shutil.which("pwsh") or shutil.which("powershell"), "-NoProfile", "-NonInteractive", "-Command"] if os.name == "nt" else ["/bin/bash", "-c"]
             def block(text):
                 return next(b for b in blocks if text in b)
-            for snippet in blocks:
+            for snippet in ([] if os.name == "nt" else blocks):
                 syntax = subprocess.run(["/bin/bash", "-n"], input=snippet, capture_output=True, text=True)
                 if syntax.returncode:
                     raise ValueError("README shell syntax failed")
@@ -189,17 +225,17 @@ def execute(args):
             compiled = skills / "community-signal-analyst"
             if (compiled / "node_modules").exists():
                 raise ValueError("Compiled bundle unexpectedly has dependencies")
-            if json.loads((compiled / "package.json").read_text())["version"] != result["version"]:
+            if json.loads((compiled / "package.json").read_text(encoding="utf-8"))["version"] != result["version"]:
                 raise ValueError("Source and bundle versions differ")
             for name, snippet in [("compiled_init_doctor", block("profile -- init")),
                                   ("compiled_show", block("profile -- show")),
-                                  ("compiled_demo", next(b for b in blocks if b.strip() == "npm run demo")),
+                                  ("compiled_demo", next(b for b in blocks if b.strip().startswith("npm.cmd run demo" if os.name == "nt" else "npm run demo"))),
                                   ("compiled_empty_bindings", block("whop:bind -- list"))]:
-                run(name, ["/bin/bash", "-c", snippet], compiled, compiled_env)
+                run(name, [*shell, snippet], compiled, compiled_env)
             if args.public_read:
-                run("compiled_public_research", ["/bin/bash", "-c", block("npm run live")], compiled, compiled_env)
+                run("compiled_public_research", [*shell, block("npm.cmd run live" if os.name == "nt" else "npm run live")], compiled, compiled_env)
                 report = compiled_home / ".community-signal-analyst/reports/first-research.json"
-                brief = json.loads(report.read_text())
+                brief = json.loads(report.read_text(encoding="utf-8"))
                 result["publicResearch"] = {"selected": len(brief["selectedItems"]), "queriedPlatforms": brief.get("queriedPlatforms")}
             else:
                 result["publicResearch"] = "not rerun; runtime/source fields unchanged and no new live gate required"
@@ -211,11 +247,13 @@ def execute(args):
             if result["audit"]["total"] != 0:
                 raise ValueError("Dependency advisories remain")
             for name, command in [("source_build", ["npm", "run", "build"]),
-                                  ("source_registration", ["/bin/bash", "-c", block("ln -s")]),
-                                  ("source_init_doctor", ["/bin/bash", "-c", block("profile -- init")]),
+                                  ("source_registration", [*shell, block("New-Item -ItemType Junction" if os.name == "nt" else "ln -s")]),
+                                  ("source_init_doctor", [*shell, block("profile -- init")]),
                                   ("source_typecheck", ["npm", "run", "typecheck"]),
                                   ("source_tests", ["npm", "test"]),
-                                  ("inventory_unit_tests", ["npm", "run", "test:installation-unit"])]:
+                                  ("inventory_unit_tests", ["npm", "run", "test:installation-unit"]),
+                                  ("source_packaging", ["npm", "run", "package", "--", "--out", str(source_home / "candidate.zip")]),
+                                  ("source_bundle_acceptance", ["node", "scripts/run-python.mjs", "scripts/verify_distribution.py", "--zip", str(source_home / "candidate.zip")])]:
                 run(name, command, source, source_env)
             if (source_home / ".agents/skills/community-signal-analyst").resolve() != source:
                 raise ValueError("Source registration points elsewhere")

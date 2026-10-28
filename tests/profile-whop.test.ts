@@ -1,3 +1,5 @@
+import { pathToFileURL } from "node:url";
+import { tmpdir } from "node:os";
 import { afterEach, describe, expect, it } from "vitest";
 import { mkdtempSync, writeFileSync, readFileSync, rmSync, existsSync } from "node:fs";
 import { join } from "node:path";
@@ -9,7 +11,7 @@ import { personalizeDigest } from "../src/whop/preferences.js";
 const dirs:string[]=[];
 afterEach(()=>{for(const d of dirs.splice(0))rmSync(d,{recursive:true,force:true});});
 function fixture(){
-  const dir=mkdtempSync("/private/tmp/profile-whop ");dirs.push(dir);
+  const dir=mkdtempSync(join(tmpdir(), "profile-whop "));dirs.push(dir);
   const file=join(dir,"profile.json"),p=initProfile(file);
   const snapshot=parseBrowserSnapshot(JSON.parse(readFileSync("tests/fixtures/whop-snapshot.json","utf8")));
   const scope=parseBrowserScope(JSON.parse(readFileSync("tests/fixtures/whop-scope.json","utf8")));
@@ -18,7 +20,7 @@ function fixture(){
   setProfile(file,p);writeFileSync(join(dir,"scope.json"),JSON.stringify({schemaVersion:1,channels:scope}));
   writeFileSync(join(dir,"sample.json"),JSON.stringify(snapshot));
   const guard=join(dir,"guard.mjs");writeFileSync(guard,'globalThis.fetch=()=>{throw new Error("network forbidden")};');
-  const run=(cli:string,args:string[])=>execFileSync(process.execPath,["--import",guard,join(process.cwd(),"dist/src",cli),...args],{cwd:dir,encoding:"utf8",timeout:10000});
+  const run=(cli:string,args:string[])=>execFileSync(process.execPath,["--import",pathToFileURL(guard).href,join(process.cwd(),"dist/src",cli),...args],{cwd:dir,encoding:"utf8",timeout:10000});
   return {dir,file,p,snapshot,scope,run,guard};
 }
 const sha=(p:string)=>createHash("sha256").update(readFileSync(p)).digest("hex");
@@ -49,7 +51,7 @@ describe("profile Whop integration",()=>{
   });
   it("rejects conflicting explicit state and revoked scope without modifying inputs",()=>{
     const f=fixture(),before=sha(f.file),sample=sha(join(f.dir,"sample.json"));
-    const result=spawnSync(process.execPath,["--import",f.guard,"dist/src/whopDigestCli.js","--profile",f.file,"--snapshot",join(f.dir,"sample.json"),"--state",join(f.dir,"other.json"),"--out",join(f.dir,"reports/no.md")],{encoding:"utf8"});
+    const result=spawnSync(process.execPath,["--import",pathToFileURL(f.guard).href,"dist/src/whopDigestCli.js","--profile",f.file,"--snapshot",join(f.dir,"sample.json"),"--state",join(f.dir,"other.json"),"--out",join(f.dir,"reports/no.md")],{encoding:"utf8"});
     expect(result.status).toBe(1);expect(sha(f.file)).toBe(before);
     writeFileSync(join(f.dir,"scope.json"),JSON.stringify({schemaVersion:1,channels:[]}));
     expect(()=>f.run("preferencesPreviewCli.js",["--profile",f.file,"--input",join(f.dir,"sample.json"),"--out",join(f.dir,"reports/no.md")])).toThrow();

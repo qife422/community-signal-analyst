@@ -51,7 +51,7 @@ def payload():
     add("agents/openai.yaml")
     add("tsconfig.json")
     add("package-lock.json")
-    package = json.loads((ROOT/"package.json").read_text())
+    package = json.loads((ROOT/"package.json").read_text(encoding="utf-8"))
     package["engines"] = {"node": ">=22"}
     package["scripts"] = {
         "build":"tsc", "typecheck":"tsc --noEmit",
@@ -61,8 +61,8 @@ def payload():
         "doctor":"node dist/src/doctorCli.js", "preferences:preview":"node dist/src/preferencesPreviewCli.js"
     }
     add("package.json", (json.dumps(package,ensure_ascii=False,indent=2)+"\n").encode())
-    skill = (ROOT/"SKILL.md").read_text().split("---",2)[1]
-    add("SKILL.md", ("---"+skill+"---\n\n"+(ROOT/"references/distribution-entry.md").read_text()).encode())
+    skill = (ROOT/"SKILL.md").read_text(encoding="utf-8").split("---",2)[1]
+    add("SKILL.md", ("---"+skill+"---\n\n"+(ROOT/"references/distribution-entry.md").read_text(encoding="utf-8")).encode())
     add("README.md", ("# Community Signal Analyst\n\n版本 "+package["version"]+"。需要 Node.js22+；已编译本地命令无需安装依赖。自然语言需 Codex，Whop 捕获需自己的授权浏览器/会员访问。\n\n从 [首次配置说明](references/onboarding.md) 开始，创建包外独立 profile，零绑定。doctor 不验证在线权限；个人文件不属于分发内容。\n\nmanifest.json 保存全部负载文件字节数与 SHA-256，不含清单自身。源码开发/测试在Node22系列需要22.12+，或Vitest支持的Node24/26系列；开发者重建需 npm ci，再 npm run build。\n").encode())
     forbidden = [str(ROOT).encode(), b"/Users/ffq", b"exp_JG1I58S5zTHbxs", b"exp_sEw1wojWTWWS5C", b"stock-and-option", b"vision-reimagine", b"AI for PROs"]
     for name, data in files.items():

@@ -54,9 +54,11 @@ export async function refreshWhopTokens(previous: WhopTokens): Promise<WhopToken
   return next;
 }
 export function writeWhopTokens(path: string, value: WhopTokens): void {
+  assertCredentialFilePlatform();
   writeFileSync(path,JSON.stringify(value,null,2)+"\n",{mode:0o600,flag:"wx"});
 }
 export function readWhopTokens(path: string): WhopTokens {
+  assertCredentialFilePlatform();
   const info = statSync(path);
   if (!info.isFile() || info.size > 50_000 || (info.mode & 0o077)) throw new Error("Whop credential file must be private (0600) and at most 50 KB");
   const value: unknown = JSON.parse(readFileSync(path,"utf8"));
@@ -66,4 +68,9 @@ export function readWhopTokens(path: string): WhopTokens {
     || (value.refreshToken !== undefined && !token(value.refreshToken))
     || (value.returnedScope !== undefined && (typeof value.returnedScope !== "string" || !value.returnedScope.split(/\s+/).includes("chat:read")))) throw new Error("Whop credentials are invalid or expired; reauthorize before collection");
   return value as unknown as WhopTokens;
+}
+
+// The experimental token-file route has no Windows ACL verification yet.
+function assertCredentialFilePlatform(): void {
+  if (process.platform === "win32") throw new Error("Experimental Whop OAuth credential files are unsupported on Windows; use the authorized browser workflow");
 }

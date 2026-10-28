@@ -1,6 +1,6 @@
 import {afterEach,beforeEach,expect,it,vi} from "vitest";
 import {createHash} from "node:crypto";
-import {mkdtempSync,rmSync,statSync,chmodSync,readFileSync} from "node:fs";
+import {mkdtempSync,rmSync,statSync,chmodSync,readFileSync,existsSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {join} from "node:path";
 import {beginWhopOAuth,finishWhopOAuth,refreshWhopTokens,writeWhopTokens,readWhopTokens} from "../src/whop/oauth.js";
@@ -24,6 +24,7 @@ it("exchanges a valid callback using PKCE without logging or returning the autho
 });
 it("saves private credentials once and refuses insecure or expired files",async()=>{
  const s=beginWhopOAuth("app_test");setup();const result=await finishWhopOAuth(s,`${s.redirectUri}?code=synthetic-code&state=${s.state}`),path=join(dir,"oauth.json");
+ if(process.platform==="win32") { expect(()=>writeWhopTokens(path,result)).toThrow(/unsupported on Windows/);expect(()=>readWhopTokens(path)).toThrow(/unsupported on Windows/);expect(existsSync(path)).toBe(false);return; }
  writeWhopTokens(path,result);expect(statSync(path).mode & 0o777).toBe(0o600);expect(readWhopTokens(path)).toEqual(result);expect(()=>writeWhopTokens(path,result)).toThrow();expect(readFileSync(path,"utf8")).toContain("synthetic-access");
  chmodSync(path,0o644);expect(()=>readWhopTokens(path)).toThrow();chmodSync(path,0o600);vi.advanceTimersByTime(3_600_001);expect(()=>readWhopTokens(path)).toThrow();
 });

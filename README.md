@@ -50,7 +50,7 @@ Discord/Reddit 暂缓；Whop OAuth/API 保留实验代码，成员 API 读取未
 - **Codex**：自然语言调用前，先启动Codex并完成自己的登录/模型访问配置；执行命令和访问所选来源时，还需给予相应本地/网络权限。只运行本项目CLI不需要Codex账号。
 - **浏览器能力（仅Whop采集）**：需要Codex环境中可用且获准的浏览器工具，以及使用者自己能访问频道的Whop账号。Skill不附带浏览器连接器或会员权限。
 
-下面命令使用macOS/Linux的shell语法。已有运行验收在macOS完成；Windows及其他系统尚未完成全流程验收。
+下文 Bash 命令用于 macOS/Linux；Windows 使用后面的 PowerShell 对照步骤。编译包只需 Node.js/npm；源码打包与完整安装验收另外需要 Python 3。Windows 使用 `npm.cmd`，无需改变 PowerShell 执行策略。
 
 ## 第一步：选择一种安装方式
 
@@ -84,7 +84,7 @@ Discord/Reddit 暂缓；Whop OAuth/API 保留实验代码，成员 API 读取未
 
 **此方式无需 `npm ci` 或 `npm run build`**，包内运行命令直接使用已编译文件。源码、参考资料和编译文件须保持相对布局。
 
-编译包版本1.15.1，SHA-256：`473fcd8f3da21d21ce728bf43e3d27d03e023361cdb31a5401066f58f59b3cbf`。macOS可用 `shasum -a 256 /实际下载路径/community-signal-analyst.zip` 核对下载内容。
+编译包版本1.15.2，SHA-256：`ab29ecfc67ce00124ca95614419b6e71c3b9428b9225553f5589e79e0ff322df`。macOS可用 `shasum -a 256 /实际下载路径/community-signal-analyst.zip` 核对下载内容。
 
 ### B. 开发者：克隆源码并构建
 
@@ -229,6 +229,95 @@ npm run whop:bind -- add   --scope "$HOME/.community-signal-analyst/scope.json" 
 
 最多3个明确频道。绑定只保存本地范围，不加入/购买社区、不授予权限。`whop:digest` 只处理本地snapshot，**不会自动启动浏览器或持续接收消息**；具体capture/digest/preview步骤见 [onboarding](references/onboarding.md)。Skill不操作频道输入框或发送内容；Discord/Reddit、实时与交易功能保持上文边界。
 
+## Windows PowerShell 安装与使用
+
+先安装 Node.js 22+（源码测试需22.12+）并重新打开 PowerShell；源码方式还需要 Git，打包/完整验收需要 Python 3。运行 `node --version`、`npm.cmd --version`，开发者再确认 `git --version`、`python --version` 或 `py -3 --version`。
+
+**编译包方式：** 下载上文完整 ZIP 并解压。在资源管理器中把整个 `community-signal-analyst` 文件夹放入下列目录，已有同名目录先核对、不要覆盖：
+
+```powershell
+New-Item -ItemType Directory -Force -Path (Join-Path $HOME ".agents/skills") | Out-Null
+```
+
+确认 `$HOME/.agents/skills/community-signal-analyst/SKILL.md` 直接存在，随后进入目录：
+
+```powershell
+Set-Location (Join-Path $HOME ".agents/skills/community-signal-analyst")
+```
+
+**源码方式：** 在自己选择的项目父目录运行；同名目标已存在时先核对：
+
+```powershell
+git clone https://github.com/qife422/community-signal-analyst.git
+if ($LASTEXITCODE -ne 0) { throw "git clone failed" }
+Set-Location community-signal-analyst
+npm.cmd ci
+if ($LASTEXITCODE -ne 0) { throw "npm ci failed" }
+npm.cmd run build
+if ($LASTEXITCODE -ne 0) { throw "build failed" }
+```
+
+在源码根目录注册一个目录联接（junction），保留唯一源码；Windows 入口使用本机目录，不需要创建管理员符号链接：
+
+```powershell
+$skills = Join-Path $HOME ".agents/skills"
+New-Item -ItemType Directory -Force -Path $skills | Out-Null
+$entry = Join-Path $skills "community-signal-analyst"
+if (Get-Item -LiteralPath $entry -Force -ErrorAction SilentlyContinue) {
+  Write-Output "安装入口已存在，请先核对；未修改。"
+} else {
+  New-Item -ItemType Junction -Path $entry -Target (Get-Location).Path -ErrorAction Stop | Out-Null
+}
+```
+
+以下命令在所选安装目录执行，编译包无需安装依赖或构建。Windows 文件权限继承当前用户目录的 NTFS ACL，请使用自己的非共享用户目录；不能用 POSIX 的0600/0700表示 Windows 隐私权限。实验性 Whop OAuth 凭据文件读写在 Windows 明确拒绝，因为尚未实现 ACL 验证；当前按需浏览器流程不依赖该接口。
+
+```powershell
+$profileFile = Join-Path $HOME ".community-signal-analyst/profile.json"
+New-Item -ItemType Directory -Force -Path (Split-Path $profileFile) | Out-Null
+npm.cmd run profile -- init --file $profileFile
+if ($LASTEXITCODE -ne 0) { throw "profile init failed; check existing files" }
+npm.cmd run doctor -- --profile $profileFile
+if ($LASTEXITCODE -ne 0) { throw "doctor failed" }
+```
+
+已有 profile 时跳过 init，查看配置：
+
+```powershell
+npm.cmd run profile -- show --file (Join-Path $HOME ".community-signal-analyst/profile.json")
+if ($LASTEXITCODE -ne 0) { throw "profile show failed" }
+```
+
+离线演示：
+
+```powershell
+npm.cmd run demo
+if ($LASTEXITCODE -ne 0) { throw "demo failed" }
+```
+
+读取公开社区（会发起真实网络请求）：
+
+```powershell
+npm.cmd run live -- --profile (Join-Path $HOME ".community-signal-analyst/profile.json") "找近7天 Hacker News 的 AI coding 高质量讨论" --json --out (Join-Path $HOME ".community-signal-analyst/reports/first-research.json")
+if ($LASTEXITCODE -ne 0) { throw "public research failed" }
+```
+
+查看 Whop 绑定（只读本地配置）：
+
+```powershell
+npm.cmd run whop:bind -- list --scope (Join-Path $HOME ".community-signal-analyst/scope.json")
+if ($LASTEXITCODE -ne 0) { throw "binding list failed" }
+```
+
+其他上文 Bash 示例可把 `npm` 换成 `npm.cmd`、`$HOME/...` 路径换成 `Join-Path $HOME "..."`；PowerShell 不使用 Bash 的反斜杠续行。首次绑定、启用来源和会员权限要求与上文相同。源码完整安装验收：
+
+```powershell
+npm.cmd run test:installation -- --out (Join-Path $HOME ".community-signal-analyst/reports/install-check.json")
+if ($LASTEXITCODE -ne 0) { throw "installation check failed" }
+```
+
+输出必须是新文件；脚本会自动选择 Python 3，不依赖 `python3` 在 Windows 上是否存在。ZIP 校验可用 `Get-FileHash -Algorithm SHA256 -LiteralPath "实际下载路径/community-signal-analyst.zip"`。
+
 ## 常见问题
 
 | 情况 | 处理 |
@@ -243,7 +332,7 @@ npm run whop:bind -- add   --scope "$HOME/.community-signal-analyst/scope.json" 
 | Whop绑定后仍未读取 | 确认profile允许whop、浏览器可用、自己有成员访问；CLI digest还需要真实捕获的snapshot |
 | 筛选后零条 | 核对来源交集、作者精确字段、关键词和排除词；零命中不代表社区没有内容 |
 
-开发者需要运行回归时，在源码目录执行 `npm run typecheck`、`npm run build`、`npm test`。编译包不包含开发测试套件；当前只在macOS做过干净解压验收，不把它扩展为所有系统或其他人的账号均已验证。
+开发者需要运行回归时，在源码目录执行 `npm run typecheck`、`npm run build`、`npm test`。编译包不包含开发测试套件；原生 Windows/Linux 验收结果见 [跨平台安装验证](references/cross-platform-validation.md)，会员与模型登录仍需使用者自行配置。
 
 开发者可从源码根目录重放完整安装检查（需要Python3，输出必须是一个尚不存在的新文件）：
 

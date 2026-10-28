@@ -1,8 +1,8 @@
 import { lstatSync, readdirSync, realpathSync, writeFileSync } from "node:fs";
-import { dirname, resolve, join } from "node:path";
+import { basename, dirname, resolve, join } from "node:path";
 /** Bounded new private reports. Never replace an existing file, including a dangling symlink. */
 export function checkReport(path: string, content?: string, reservedBytes = 0, reservedEntries = 0): string {
-  const out = join(realpathSync(dirname(resolve(path))), resolve(path).split("/").at(-1)!);
+  const out = join(realpathSync(dirname(resolve(path))), basename(resolve(path)));
   try { lstatSync(out); throw new Error("报告目标已存在"); } catch (e) { if ((e as NodeJS.ErrnoException).code !== "ENOENT") throw e; }
   const entries = readdirSync(dirname(out));
   let bytes = 0;

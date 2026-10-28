@@ -1,6 +1,6 @@
 {
   "name": "community-signal-analyst",
-  "version": "1.15.1",
+  "version": "1.15.2",
   "private": true,
   "type": "module",
   "bin": {
@@ -18,9 +18,9 @@
     "profile": "node dist/src/profileCli.js",
     "doctor": "node dist/src/doctorCli.js",
     "preferences:preview": "node dist/src/preferencesPreviewCli.js",
-    "package": "python3 scripts/package_skill.py",
-    "test:installation": "python3 scripts/check_installation.py",
-    "test:installation-unit": "python3 -B -m unittest discover -s tests -p test_installation_check.py"
+    "package": "node scripts/run-python.mjs scripts/package_skill.py",
+    "test:installation": "node scripts/run-python.mjs scripts/check_installation.py",
+    "test:installation-unit": "node scripts/run-python.mjs -B -m unittest discover -s tests -p test_installation_check.py"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

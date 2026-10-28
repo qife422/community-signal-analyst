@@ -14,7 +14,7 @@ import { checkReport, writeReport } from "./profile/output.js";
 const { query, demo, json, profilePath, outputPath, historyPath, verificationPath, savedBriefPath, replyBriefPath } = parseCliArgs(process.argv.slice(2));
 const configured = profilePath ? loadProfile(profilePath) : undefined;
 const profile = configured?.profile;
-if(configured && outputPath && Object.values(configured.paths).includes(resolve(outputPath)))throw new Error("报告不能占用 profile/scope/state 路径");
+if(configured && outputPath && Object.values(configured.paths).includes(checkReport(outputPath)))throw new Error("报告不能占用 profile/scope/state 路径");
 if (profile && outputPath && existsSync(resolve(outputPath))) throw new Error("输出目标已存在；profile 研究不覆盖旧报告");
 if(profile && outputPath)checkReport(outputPath);
 // Validate before making any potentially billable collection request.
