@@ -19,13 +19,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 2747,
-      "sha256": "fda16da287fcbdf23134a9b1ef15b64f21a723d739d76e28c96c00efc100d8e6"
+      "bytes": 3731,
+      "sha256": "157d3d892ea9c38c3587820c164c35e31da821dc28bf08be9efbac719e8f89be"
     },
     {
       "path": "README.md",
-      "bytes": 6762,
-      "sha256": "e6561730bf42817fe726458af537e8088f028b4043a79684d23d87115a834881"
+      "bytes": 15162,
+      "sha256": "fe30777ac753e482aaccb87d0f096d895dfb47411fc712d7805c785d4d6af68f"
     },
     {
       "path": "RESTORE.md",
@@ -548,7 +548,7 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 907078,
+  "payloadBytes": 916462,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
@@ -593,5 +593,29 @@
     "updates": "CHANGELOG.md",
     "prePublicationCheck": "Current one-commit Git history and tracked ZIP inspected; no runtime directories or known credential markers detected; not a full security audit",
     "validationScope": "Documentation/visibility change; runtime code and compiled ZIP unchanged. Existing build/211 tests/remote restore results are from the preceding backup task."
+  },
+  "lastUpdatedLocalDate": "2026-10-28",
+  "documentationUpdate": {
+    "date": "2026-10-28",
+    "scope": [
+      "README installation/configuration guide",
+      "CHANGELOG update",
+      "payload fingerprints"
+    ],
+    "functionalVersion": "1.15.0",
+    "runtimeAndZipUnchanged": true,
+    "officialReference": "https://learn.chatgpt.com/docs/build-skills#where-to-save-skills",
+    "verification": {
+      "shellBlocksSyntaxPassed": 10,
+      "localLinks": "passed",
+      "compiledInitDoctorShowDemoAndBindingList": "passed in temporary home, fetch blocked and node_modules absent",
+      "existingProfileNotOverwritten": true,
+      "sourceRegistrationNewAndExistingTargets": "passed in temporary home",
+      "temporaryFiles": 112,
+      "temporaryBytes": 604499,
+      "temporaryDisposition": "context-owned tree removed",
+      "newPlatformRequests": 0,
+      "fullSuiteRerun": false
+    }
   }
 }

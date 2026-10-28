@@ -44,37 +44,204 @@ Whop 是**使用者自己绑定页面 + 按需授权浏览器读取**，需要�
 
 Discord/Reddit 暂缓；Whop OAuth/API 保留实验代码，成员 API 读取未验证。实时接收、作者发言触发外部操作、自动交易未实现。现有自动化仍暂停，克隆仓库不会启用定时。报告是研究线索，不是交易指令。
 
-## 快速开始：源码方式
+## 安装前准备
+
+- **Node.js 22或更新版本（含npm）**：终端运行 `node --version`、`npm --version` 确认。使用已编译包也需要Node。
+- **Codex**：自然语言调用需要可用的Codex环境；只运行CLI不需要Codex。
+- **浏览器能力（仅Whop采集）**：需要Codex环境中可用且获准的浏览器工具，以及使用者自己能访问频道的Whop账号。Skill不附带浏览器连接器或会员权限。
+
+下面命令使用macOS/Linux的shell语法。已有运行验收在macOS完成；Windows及其他系统尚未完成全流程验收。
+
+## 第一步：选择一种安装方式
+
+### A. 普通使用者：下载已编译包（推荐）
+
+1. [直接下载 community-signal-analyst.zip](https://raw.githubusercontent.com/qife422/community-signal-analyst/main/distribution/community-signal-analyst.zip)。这是仓库 `distribution/` 中的编译包；GitHub的 **Code → Download ZIP** 下载的是整个源码仓库，采用下方方式B。
+2. 解压后得到 `community-signal-analyst` 文件夹。**保留整个文件夹，不要只复制SKILL.md**。
+3. 创建用户Skill目录：
+
+   ```bash
+   mkdir -p "$HOME/.agents/skills"
+   ```
+
+4. 用文件管理器把解压后的文件夹放入该目录。最终结构应为：
+
+   ```text
+   ~/.agents/skills/community-signal-analyst/
+   ├── SKILL.md
+   ├── package.json
+   ├── dist/
+   ├── references/
+   └── agents/
+   ```
+
+   确认 `SKILL.md` 直接位于上述目录中，没有多嵌套一层。已有同名目录时先核对，勿覆盖自己的版本或配置。
+5. 进入安装目录：
+
+   ```bash
+   cd "$HOME/.agents/skills/community-signal-analyst"
+   ```
+
+**此方式无需 `npm ci` 或 `npm run build`**，包内运行命令直接使用已编译文件。源码、参考资料和编译文件须保持相对布局。
+
+编译包版本1.15.0，SHA-256：`3ad141a7adc095fb48dcc1c090d29ad5f8cda7ec6def2a6afe4ed513d8e1627a`。macOS可用 `shasum -a 256 /实际下载路径/community-signal-analyst.zip` 核对下载内容。
+
+### B. 开发者：克隆源码并构建
+
+在自己选择的项目目录执行；同名目标已存在时先核对，不覆盖：
 
 ```bash
 git clone https://github.com/qife422/community-signal-analyst.git
 cd community-signal-analyst
 npm ci
 npm run build
-npm run typecheck
-npm test
 ```
 
-仓库公开，可直接浏览、下载或克隆。自然语言使用另需 Codex 加载本目录的 [SKILL.md](SKILL.md)；Whop 页面读取另需获准浏览器和自己的成员访问。
-
-选择包外一个已存在的私有目录，将下面的 `/absolute/private` 换成自己的真实绝对路径：
+为让Codex在其他项目中也发现它，在**源码根目录**执行下面的软链接注册；链接指向唯一源码，不维护第二份：
 
 ```bash
-npm run profile -- init --file /absolute/private/profile.json
-npm run doctor -- --profile /absolute/private/profile.json
-npm run profile -- show --file /absolute/private/profile.json
-npm run live -- --profile /absolute/private/profile.json "找近7天 Hacker News AI coding讨论" --json --out /absolute/private/reports/research.json
+mkdir -p "$HOME/.agents/skills"
+if [ -e "$HOME/.agents/skills/community-signal-analyst" ] || [ -L "$HOME/.agents/skills/community-signal-analyst" ]; then
+  printf '%s\n' '安装入口已存在，请先核对；未修改。'
+else
+  ln -s "$PWD" "$HOME/.agents/skills/community-signal-analyst"
+fi
 ```
 
-profile 默认零绑定，不复制本机现用状态。配置字段、规则示例、Whop binding/digest/preview 命令见 [首次配置与规则](references/onboarding.md)。`npm run demo` 只使用固定模拟材料，不能当作真实社区结果。
+上述检查遇到同名目录/链接时保留原入口；不要加覆盖参数。注册后仍在源码根目录运行后续命令。若通过GitHub **Code → Download ZIP** 下载源码，先解压、进入含package.json的根目录，再执行 `npm ci`、`npm run build` 和同样的注册步骤。
 
-## 快速恢复：直接使用编译包
+Codex用户级发现目录为 `~/.agents/skills`，支持符号链接；未出现时重启Codex。安装位置与发现行为见 [OpenAI官方说明](https://learn.chatgpt.com/docs/build-skills#where-to-save-skills)。
 
-[distribution/community-signal-analyst.zip](distribution/community-signal-analyst.zip) 是已验证的1.15.0编译分发包。下载并解压，在其目录运行 profile/doctor/digest/preview；需要 Node.js22+，这些本地命令无需 npm ci。它不会自动连接 Whop 或获得平台授权。
+## 第二步：初始化自己的配置
 
-包 SHA-256：`3ad141a7adc095fb48dcc1c090d29ad5f8cda7ec6def2a6afe4ed513d8e1627a`。
+在上面选定的Skill目录执行。配置保存在安装目录之外，不会跟着分享包分发：
 
-完整恢复、认证、重新绑定和后续推送步骤见 [RESTORE.md](RESTORE.md)。
+```bash
+mkdir -p -m 700 "$HOME/.community-signal-analyst"
+
+npm run profile -- init \
+  --file "$HOME/.community-signal-analyst/profile.json"
+
+npm run doctor -- \
+  --profile "$HOME/.community-signal-analyst/profile.json"
+```
+
+这是**首次初始化**步骤。已有profile时不要重复init，先用show或doctor查看；初始化不会覆盖旧文件。
+
+生成内容：
+
+```text
+~/.community-signal-analyst/
+├── profile.json       # 自己的默认查询与关注规则
+├── scope.json         # 初始零Whop绑定
+└── reports/           # 私有报告目录
+```
+
+Whop去重state在第一次实际digest时才创建。默认来源 **HN/GitHub/DEV**，中文、近7天、最多3条、AI coding主题、零关注规则和零Whop绑定。
+
+查看当前配置：
+
+```bash
+npm run profile -- show \
+  --file "$HOME/.community-signal-analyst/profile.json"
+```
+
+### 如何理解doctor
+
+| 状态 | 含义与下一步 |
+|---|---|
+| `ready` | 本地配置有效，可尝试所选来源；没有做在线权限验证 |
+| `needs_configuration` | 所选来源缺凭据/开关或Whop尚未绑定，按来源提示补充 |
+| `unverified_access` | 已有本地配置/绑定，但平台访问尚未验证 |
+| `invalid_config` | 先修正Node版本、schema、路径或文件状态；不自动重置原配置 |
+
+有效本地配置退出码0，无效配置退出码2。doctor零网络、零配置修改，不读取浏览器登录信息，不打印凭据值。
+
+## 第三步：完成第一次使用
+
+### 先做离线演示（不访问真实平台）
+
+```bash
+npm run demo
+```
+
+演示内容是固定模拟数据，只证明基本运行入口，不是当前真实社区结果。
+
+### 读取公开社区并保存报告
+
+```bash
+npm run live -- \
+  --profile "$HOME/.community-signal-analyst/profile.json" \
+  "找近7天 Hacker News 的 AI coding 高质量讨论" \
+  --json \
+  --out "$HOME/.community-signal-analyst/reports/first-research.json"
+```
+
+此命令会请求真实公开来源。输出保留实际取得的链接、作者、时间和限制；结果不足时不会补造。目标报告已存在时选择新文件名，不覆盖。去掉 `--json` 可保存Markdown报告。
+
+### 在Codex中设置关注规则并使用
+
+确保Codex能发现本Skill，然后说：
+
+> 使用 community-signal-analyst，采用我家目录下 .community-signal-analyst/profile.json 的配置，重点关注Codex和Cursor，排除招聘，并保存规则。
+
+再说：
+
+> 使用同一profile，找近7天 Hacker News 和 GitHub 关于AI coding的高质量讨论，保存报告并说明筛选依据。
+
+CLI/IDE可用 `$community-signal-analyst` 显式提及；没有出现在列表时先检查目录层级、SKILL.md和软链接目标，再重启Codex。完整对象schema、作者规则、关键词包含/排除、set和离线重筛见 [首次配置与规则](references/onboarding.md)。
+
+## 第四步：按需启用其他来源
+
+| 来源 | 使用者需要提供 |
+|---|---|
+| HN、GitHub、DEV | 默认可先尝试；受网络及API额度限制，GitHub Token可选 |
+| Whop | 自己的成员访问、精确原生频道URL、Codex可用的授权浏览器工具，并在profile允许来源中启用whop |
+| Product Hunt | 自己的 `PRODUCT_HUNT_TOKEN`，在profile允许来源中加入product_hunt |
+| X | 自己的 `X_BEARER_TOKEN`，明确授权付费读取后设置 `X_API_ENABLED=true`，并在profile允许来源中加入x |
+
+平台凭据通过使用者自己的环境/安全存储提供，不能写入profile、报告或Git。仅设置环境变量不会自动扩展profile允许来源。X的可选回复还有单独的付费读取门禁，见SKILL说明。
+
+### Whop首次绑定与整理
+
+1. 在Codex获准操作的浏览器中登录自己的Whop，确认能打开目标频道。
+2. 提供形如 `https://whop.com/<社区>/exp_<ID>/app/` 的**完整原生频道URL**，不要只给社区首页。
+3. 对Codex说：“采用我的profile，把Whop加入允许来源，绑定这个我有权访问的频道：完整链接。” 不要只添加过滤规则而忘记启用来源。
+4. 让Codex按需只读捕获已绑定页面，生成本地snapshot，再交给digest整理。浏览器工具不可用或需要登录时先处理该具体缺项，不能仅凭绑定成功声称已经读取。
+
+查看自己的绑定：
+
+```bash
+npm run whop:bind -- list   --scope "$HOME/.community-signal-analyst/scope.json"
+```
+
+需要自己操作CLI绑定时，先将profile的允许来源增加whop，再将下面URL与名称占位值替换为自己的真实来源：
+
+```bash
+npm run whop:bind -- add   --scope "$HOME/.community-signal-analyst/scope.json" \
+  --url "https://whop.com/REPLACE/exp_REPLACE/app/" \
+  --name "替换为自己的社区名"
+```
+
+最多3个明确频道。绑定只保存本地范围，不加入/购买社区、不授予权限。`whop:digest` 只处理本地snapshot，**不会自动启动浏览器或持续接收消息**；具体capture/digest/preview步骤见 [onboarding](references/onboarding.md)。Skill不操作频道输入框或发送内容；Discord/Reddit、实时与交易功能保持上文边界。
+
+## 常见问题
+
+| 情况 | 处理 |
+|---|---|
+| `node` / `npm` 找不到 | 安装Node.js22+并重新打开终端 |
+| 找不到package.json | 先cd到含SKILL.md与package.json的Skill根目录 |
+| 找不到dist文件，或源码命令找不到tsc | 确认下载方式：源码需先npm ci、npm run build；编译包重新完整解压，勿只复制SKILL.md |
+| Codex不识别Skill | 检查 `~/.agents/skills/community-signal-analyst/SKILL.md` 或软链接目标，避免双层目录，必要时重启 |
+| init提示目标已存在 | 不删除原文件；用show/doctor核对已有配置，或显式选择另一个独立目录 |
+| 报告目标已存在 | 换新输出文件名，不重复初始化profile或清空去重state |
+| doctor ready但平台读取失败 | ready只说明本地有效，按实际网络/凭据/会员/浏览器提示处理 |
+| Whop绑定后仍未读取 | 确认profile允许whop、浏览器可用、自己有成员访问；CLI digest还需要真实捕获的snapshot |
+| 筛选后零条 | 核对来源交集、作者精确字段、关键词和排除词；零命中不代表社区没有内容 |
+
+开发者需要运行回归时，在源码目录执行 `npm run typecheck`、`npm run build`、`npm test`。编译包不包含开发测试套件；当前只在macOS做过干净解压验收，不把它扩展为所有系统或其他人的账号均已验证。
+
+更多恢复、重新绑定和后续推送步骤见 [RESTORE.md](RESTORE.md)。
 
 ## 验证与证据
 
