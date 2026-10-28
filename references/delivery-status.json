@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "skill": "community-signal-analyst",
-  "version": "1.15.0",
+  "version": "1.15.1",
   "deliveryStatus": "verified_onboarding_and_preferences_retained_on_demand_scope",
   "activePlatforms": [
     "hacker_news",
@@ -319,5 +319,21 @@
     "externalCodexInstall": "not_tested",
     "newLiveRequests": 0,
     "automation": "PAUSED"
+  },
+  "maintenanceDelivery": {
+    "version": "1.15.1",
+    "date": "2026-10-28",
+    "status": "verified_local_candidate",
+    "evidence": "artifacts/dependency-fix/manifest.json",
+    "publicReport": "references/install-validation.md",
+    "auditVulnerabilities": 0,
+    "applicationTests": 211,
+    "inventoryRegressionTests": 4,
+    "installationHarness": "passed",
+    "runtimeNode": ">=22",
+    "sourceDevelopmentNode": "^22.12.0 || ^24.0.0 || >=26.0.0",
+    "distribution": "distribution/community-signal-analyst.zip",
+    "distributionSha256": "473fcd8f3da21d21ce728bf43e3d27d03e023361cdb31a5401066f58f59b3cbf",
+    "liveScopeUnchanged": true
   }
 }

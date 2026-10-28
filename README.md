@@ -2,7 +2,7 @@
 
 社区信号分析器：把公开社区讨论、项目和评论，以及自己有权访问的 Whop 频道，整理成带出处、筛选依据和限制说明的研究报告。
 
-**版本：1.15.0 · Node.js 22+ · 公开展示与源码备份**
+**版本：1.15.1 · Node.js 22+ · 公开展示与源码备份**
 
 当前版本可用于社区研究、个人关注规则与 Whop 按需整理。后续功能继续迭代，实际改动与验证结果见 [更新记录](CHANGELOG.md)。
 
@@ -84,9 +84,11 @@ Discord/Reddit 暂缓；Whop OAuth/API 保留实验代码，成员 API 读取未
 
 **此方式无需 `npm ci` 或 `npm run build`**，包内运行命令直接使用已编译文件。源码、参考资料和编译文件须保持相对布局。
 
-编译包版本1.15.0，SHA-256：`3ad141a7adc095fb48dcc1c090d29ad5f8cda7ec6def2a6afe4ed513d8e1627a`。macOS可用 `shasum -a 256 /实际下载路径/community-signal-analyst.zip` 核对下载内容。
+编译包版本1.15.1，SHA-256：`473fcd8f3da21d21ce728bf43e3d27d03e023361cdb31a5401066f58f59b3cbf`。macOS可用 `shasum -a 256 /实际下载路径/community-signal-analyst.zip` 核对下载内容。
 
 ### B. 开发者：克隆源码并构建
+
+源码开发/测试需要Node.js22.12+（22系列）或Vitest支持的24/26系列；推荐先用 `node --version` 检查。编译包的本地运行仍支持Node.js22+。
 
 在自己选择的项目目录执行；同名目标已存在时先核对，不覆盖：
 
@@ -97,7 +99,7 @@ npm ci
 npm run build
 ```
 
-**源码安装实测提示（2026-10-28）：** 当前锁文件的 `npm ci` 可以完成，但npm报告8项开发/测试依赖告警（含2项critical）。完整修复建议涉及Vitest跨大版本升级，尚未实施；不要把安装成功等同于依赖告警已解决，也不要直接执行 `npm audit fix --force`。推荐的编译包不安装这套开发依赖。详情及验收范围见 [新用户安装实测](references/install-validation.md)。
+**1.15.1修复已验证（2026-10-28）：** Vitest5.0.5与Vite6.4.5工具链在干净安装后 `npm audit` 为0项告警，211项测试和4项脚本回归通过。编译包运行仍为Node.js22+；源码测试在Node22系列需要22.12+。旧1.15.0告警与修复记录见 [安装实测](references/install-validation.md)。
 
 为让Codex在其他项目中也发现它，在**源码根目录**执行下面的软链接注册；链接指向唯一源码，不维护第二份：
 
@@ -243,11 +245,19 @@ npm run whop:bind -- add   --scope "$HOME/.community-signal-analyst/scope.json" 
 
 开发者需要运行回归时，在源码目录执行 `npm run typecheck`、`npm run build`、`npm test`。编译包不包含开发测试套件；当前只在macOS做过干净解压验收，不把它扩展为所有系统或其他人的账号均已验证。
 
+开发者可从源码根目录重放完整安装检查（需要Python3，输出必须是一个尚不存在的新文件）：
+
+```bash
+npm run test:installation -- --out "$HOME/.community-signal-analyst/reports/install-check.json"
+```
+
+默认从公开GitHub下载当前main并使用独立临时HOME/依赖/缓存，运行编译入口、干净npm ci/audit/build、应用测试和脚本回归。默认不重复访问真实社区；只有显式追加 `--public-read` 才执行README的有界公开HN查询，不涉及付费来源。`npm run test:installation-unit` 单独运行4项计数/隔离回归。
+
 更多恢复、重新绑定和后续推送步骤见 [RESTORE.md](RESTORE.md)。
 
 ## 验证与证据
 
-2026-10-28已从公开GitHub重新下载，使用全新HOME和npm缓存实测：编译包初始化/doctor/demo成功，一次真实HN查询返回3条结果；源码干净npm ci/build及211测试通过。空CODEX_HOME下，本机Codex通过本地skills/list识别到已安装的Skill。自然语言模型执行、新Whop会员登录和浏览器采集未在该空账号中验证；源码依赖告警仍未解决。逐项结果见 [新用户安装实测](references/install-validation.md)。
+1.15.1已验证：干净npm ci、npm audit零告警、类型检查、构建、211项应用测试、4项安装脚本回归以及编译包/空HOME安装验收通过。工作树与Node编译缓存分开计量，原500文件工作树门槛不变。此前1.15.0的真实HN查询和Codex本地发现结果保留历史来源；本轮未追加付费或会员平台请求。详情见 [安装实测](references/install-validation.md)。
 
 本轮备份前验证结果记录在 [backup-manifest.json](backup-manifest.json)。源码包含211项回归测试；恢复验收会核对实际 GitHub 提交与文件内容。集成回归使用明确标注的 [合成夹具](tests/fixtures/README.md)，没有真实频道正文或授权数据；测试不是线上全覆盖证明。
 

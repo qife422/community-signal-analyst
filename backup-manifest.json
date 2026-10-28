@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "skill": "community-signal-analyst",
-  "version": "1.15.0",
+  "version": "1.15.1",
   "userLocalDate": "2026-10-13",
   "repository": "https://github.com/qife422/community-signal-analyst",
   "visibility": "public",
@@ -19,13 +19,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 4485,
-      "sha256": "83f6774561280957c2a539ebeb57125eeb722ec4260b2ebbdc41bbd6860092e4"
+      "bytes": 5435,
+      "sha256": "299bce510b98a85198e7d0d97ca716dafb2823668d35954bee5c297d67d61423"
     },
     {
       "path": "README.md",
-      "bytes": 16242,
-      "sha256": "236b0e22f46f02e69e96decd5e4faef0110ad7f9c5af5664aa899ba5bb8ad977"
+      "bytes": 16820,
+      "sha256": "c69d4420ed0886d67dff4cc76d9f6eaecbee9f70b1bb491bece49ae0e8458949"
     },
     {
       "path": "RESTORE.md",
@@ -35,7 +35,7 @@
     {
       "path": "SKILL.md",
       "bytes": 18125,
-      "sha256": "92d3e5d2882b2cf11b1c664b3bb4951c1044c45ce0c555b2fb065a64dd52cf6b"
+      "sha256": "101b86bd5514504b0c2bdaad7a66ff47e79addcc3ba1bd64d97718f92de99a13"
     },
     {
       "path": "SPEC.md",
@@ -54,8 +54,8 @@
     },
     {
       "path": "distribution/community-signal-analyst.zip",
-      "bytes": 237268,
-      "sha256": "3ad141a7adc095fb48dcc1c090d29ad5f8cda7ec6def2a6afe4ed513d8e1627a"
+      "bytes": 235803,
+      "sha256": "473fcd8f3da21d21ce728bf43e3d27d03e023361cdb31a5401066f58f59b3cbf"
     },
     {
       "path": "mock-data/devto.mock.json",
@@ -74,13 +74,13 @@
     },
     {
       "path": "package-lock.json",
-      "bytes": 52343,
-      "sha256": "5876a6382b871da050cae754f5f5f4f02cf1f5f60a9417c6821660679b031a58"
+      "bytes": 45835,
+      "sha256": "c0a3dfae8642ad2ee664407de15dffaae11816b324139d753f3cda1956dce425"
     },
     {
       "path": "package.json",
-      "bytes": 990,
-      "sha256": "f28616e76296259d506d13bd616975983cb49f80fbf9c0a491c62ac5a22b2a10"
+      "bytes": 1182,
+      "sha256": "57db4708bb88953f2c862f3b08272cf85dc88ec1474133a0a6fae41c3c496fac"
     },
     {
       "path": "references/api-contract.md",
@@ -94,8 +94,8 @@
     },
     {
       "path": "references/delivery-status.json",
-      "bytes": 16638,
-      "sha256": "ae65eebccb4950a40bd5c2a53d3b8002d357d3d99be9e718bdbc69bc94800c07"
+      "bytes": 17290,
+      "sha256": "526d4b0e3f1ba0d886a4437040a994c3e4ca960720a1cbfaa06f0ed409a58be4"
     },
     {
       "path": "references/discord-access.md",
@@ -105,17 +105,17 @@
     {
       "path": "references/distribution-entry.md",
       "bytes": 2725,
-      "sha256": "bcd3461f681c0fa7564b3ec48ec077dea776d997f13d7ec213cb49257302b258"
+      "sha256": "616ed6c1140b55418d56d92c645fb2d762a5ace892a06576861207332a5864b6"
     },
     {
       "path": "references/final-delivery.md",
-      "bytes": 4167,
-      "sha256": "68d11b0fbfe557e97f81bf38898df627326331b3599aa5d96b5499ebbe8eda83"
+      "bytes": 4596,
+      "sha256": "ba38e9bc5b68573df3f2510aa8277e6dd4c88fe1d382bc09df7978a448769914"
     },
     {
       "path": "references/install-validation.md",
-      "bytes": 4322,
-      "sha256": "3f251c47e2aacde8ca3be4520eaddc2047b5f33026540efad9f77cc2355ce79a"
+      "bytes": 6836,
+      "sha256": "34d5d7e624955fde418962b495a0bd97d796686fb8091c62e08883b3f25e6237"
     },
     {
       "path": "references/member-access.md",
@@ -124,8 +124,8 @@
     },
     {
       "path": "references/onboarding.md",
-      "bytes": 6013,
-      "sha256": "85230375d40d6eabf9f6ca1cab23153c7cc5bff04d8b12c75e418cbef9ab9972"
+      "bytes": 6111,
+      "sha256": "14808620592064cf7730ca5be90f1485b9db0f684524fef67c1e9a5ed387cdb7"
     },
     {
       "path": "references/platform-fields.md",
@@ -163,9 +163,14 @@
       "sha256": "e981373684cb61ec5c5335177329bad2d95f3a7717399783d9c7358d32182baa"
     },
     {
+      "path": "scripts/check_installation.py",
+      "bytes": 13430,
+      "sha256": "58c2ee584c900a94b9b23fe98cf265537fffb580f199e393e9d6bba1cc9989ab"
+    },
+    {
       "path": "scripts/package_skill.py",
-      "bytes": 5570,
-      "sha256": "518ba65cc1422b452a17908c73a30db9efc36596c909a017dd55f59dbd4bed80"
+      "bytes": 5655,
+      "sha256": "4fdee133dfd96ae3126731751196230468341bb42db7d927986f9304a5b244c8"
     },
     {
       "path": "scripts/verify_distribution.py",
@@ -503,6 +508,11 @@
       "sha256": "718240d06e1b30e5886547a1f33c65e02fb216a6166a4bff2446d07ed50c1b00"
     },
     {
+      "path": "tests/test_installation_check.py",
+      "bytes": 2746,
+      "sha256": "b82138b5b676d30b79f39f9fbad9c0e651be9cc8157bdc5bfee503f3531a66ee"
+    },
+    {
       "path": "tests/verification.test.ts",
       "bytes": 7751,
       "sha256": "d68fa732660aef916cba35e44a8a893f9cccfd8cfc19ff76f138c2663ce41a73"
@@ -553,15 +563,18 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 922618,
+  "payloadBytes": 936319,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
     "tests": 211,
     "testFiles": 27,
     "integrationSamples": "explicit synthetic fixtures, no historical member bodies",
-    "compiledZipAcceptance": "passed; no network or node_modules",
-    "zipSha256": "3ad141a7adc095fb48dcc1c090d29ad5f8cda7ec6def2a6afe4ed513d8e1627a"
+    "compiledZipAcceptance": "passed; 1.15.1",
+    "zipSha256": "473fcd8f3da21d21ce728bf43e3d27d03e023361cdb31a5401066f58f59b3cbf",
+    "inventoryTests": 4,
+    "npmAuditVulnerabilities": 0,
+    "officialSkillValidator": "passed"
   },
   "excluded": [
     "state",
@@ -623,7 +636,7 @@
       "fullSuiteRerun": false
     }
   },
-  "newUserAcceptance": {
+  "historicalNewUserAcceptance_1_15_0": {
     "date": "2026-10-28",
     "downloadedCommit": "7b852c4017a3213ca5d0bc402f4ba82763f96f77",
     "report": "references/install-validation.md",
@@ -644,5 +657,76 @@
     },
     "naturalLanguageAndWhopAccountWorkflow": "not verified",
     "runtimeAndZipUnchanged": true
+  },
+  "newUserAcceptance": {
+    "version": "1.15.1",
+    "status": "passed_local_candidate",
+    "auditVulnerabilities": 0,
+    "applicationTests": 211,
+    "inventoryRegressionTests": 4,
+    "installationSteps": 12,
+    "inventory": {
+      "work": {
+        "files": 298,
+        "bytes": 2641748,
+        "examples": [
+          "compiled-user/global.npmrc",
+          "compiled-user/user.npmrc",
+          "compiled-user/.community-signal-analyst/scope.json",
+          "compiled-user/.community-signal-analyst/profile.json"
+        ]
+      },
+      "dependencies": {
+        "files": 874,
+        "bytes": 60155546,
+        "examples": [
+          "source-user/community-signal-analyst/node_modules/.package-lock.json",
+          "source-user/community-signal-analyst/node_modules/tinyglobby/LICENSE",
+          "source-user/community-signal-analyst/node_modules/tinyglobby/README.md",
+          "source-user/community-signal-analyst/node_modules/tinyglobby/package.json"
+        ]
+      },
+      "npm_cache": {
+        "files": 87,
+        "bytes": 12505410,
+        "examples": [
+          "compiled-user/.npm/_update-notifier-last-checked",
+          "compiled-user/.npm/_logs/2026-10-28T21_52_03_438Z-debug-0.log",
+          "compiled-user/.npm/_logs/2026-10-28T21_52_03_926Z-debug-0.log",
+          "compiled-user/.npm/_logs/2026-10-28T21_52_03_801Z-debug-0.log"
+        ]
+      },
+      "node_compile_cache": {
+        "files": 1067,
+        "bytes": 3986268,
+        "examples": [
+          "compiled-user/tmp/node-compile-cache/v22.17.1-arm64-9e3ad1fa-501/ed609cf7",
+          "compiled-user/tmp/node-compile-cache/v22.17.1-arm64-9e3ad1fa-501/cef19533",
+          "compiled-user/tmp/node-compile-cache/v22.17.1-arm64-9e3ad1fa-501/4a909031",
+          "compiled-user/tmp/node-compile-cache/v22.17.1-arm64-9e3ad1fa-501/b1dd5065"
+        ]
+      },
+      "git_metadata": {
+        "files": 0,
+        "bytes": 0,
+        "examples": []
+      }
+    },
+    "lockSha256": "c0a3dfae8642ad2ee664407de15dffaae11816b324139d753f3cda1956dce425",
+    "zipSha256": "473fcd8f3da21d21ce728bf43e3d27d03e023361cdb31a5401066f58f59b3cbf",
+    "publicReport": "references/install-validation.md",
+    "runtimeSourcesUnchanged": true
+  },
+  "maintenance": {
+    "version": "1.15.1",
+    "vitest": "5.0.5",
+    "vite": "6.4.5",
+    "nodeRuntime": ">=22",
+    "nodeSourceDevelopment": "^22.12.0 || ^24.0.0 || >=26.0.0",
+    "fixes": [
+      "all 8 dependency advisories",
+      "Node compile cache misclassified as worktree files"
+    ],
+    "runtimeScopeUnchanged": true
   }
 }
