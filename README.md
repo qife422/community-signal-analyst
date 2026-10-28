@@ -47,7 +47,7 @@ Discord/Reddit 暂缓；Whop OAuth/API 保留实验代码，成员 API 读取未
 ## 安装前准备
 
 - **Node.js 22或更新版本（含npm）**：终端运行 `node --version`、`npm --version` 确认。使用已编译包也需要Node。
-- **Codex**：自然语言调用需要可用的Codex环境；只运行CLI不需要Codex。
+- **Codex**：自然语言调用前，先启动Codex并完成自己的登录/模型访问配置；执行命令和访问所选来源时，还需给予相应本地/网络权限。只运行本项目CLI不需要Codex账号。
 - **浏览器能力（仅Whop采集）**：需要Codex环境中可用且获准的浏览器工具，以及使用者自己能访问频道的Whop账号。Skill不附带浏览器连接器或会员权限。
 
 下面命令使用macOS/Linux的shell语法。已有运行验收在macOS完成；Windows及其他系统尚未完成全流程验收。
@@ -96,6 +96,8 @@ cd community-signal-analyst
 npm ci
 npm run build
 ```
+
+**源码安装实测提示（2026-10-28）：** 当前锁文件的 `npm ci` 可以完成，但npm报告8项开发/测试依赖告警（含2项critical）。完整修复建议涉及Vitest跨大版本升级，尚未实施；不要把安装成功等同于依赖告警已解决，也不要直接执行 `npm audit fix --force`。推荐的编译包不安装这套开发依赖。详情及验收范围见 [新用户安装实测](references/install-validation.md)。
 
 为让Codex在其他项目中也发现它，在**源码根目录**执行下面的软链接注册；链接指向唯一源码，不维护第二份：
 
@@ -244,6 +246,8 @@ npm run whop:bind -- add   --scope "$HOME/.community-signal-analyst/scope.json" 
 更多恢复、重新绑定和后续推送步骤见 [RESTORE.md](RESTORE.md)。
 
 ## 验证与证据
+
+2026-10-28已从公开GitHub重新下载，使用全新HOME和npm缓存实测：编译包初始化/doctor/demo成功，一次真实HN查询返回3条结果；源码干净npm ci/build及211测试通过。空CODEX_HOME下，本机Codex通过本地skills/list识别到已安装的Skill。自然语言模型执行、新Whop会员登录和浏览器采集未在该空账号中验证；源码依赖告警仍未解决。逐项结果见 [新用户安装实测](references/install-validation.md)。
 
 本轮备份前验证结果记录在 [backup-manifest.json](backup-manifest.json)。源码包含211项回归测试；恢复验收会核对实际 GitHub 提交与文件内容。集成回归使用明确标注的 [合成夹具](tests/fixtures/README.md)，没有真实频道正文或授权数据；测试不是线上全覆盖证明。
 

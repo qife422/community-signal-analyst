@@ -19,13 +19,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 3731,
-      "sha256": "157d3d892ea9c38c3587820c164c35e31da821dc28bf08be9efbac719e8f89be"
+      "bytes": 4485,
+      "sha256": "83f6774561280957c2a539ebeb57125eeb722ec4260b2ebbdc41bbd6860092e4"
     },
     {
       "path": "README.md",
-      "bytes": 15162,
-      "sha256": "fe30777ac753e482aaccb87d0f096d895dfb47411fc712d7805c785d4d6af68f"
+      "bytes": 16242,
+      "sha256": "236b0e22f46f02e69e96decd5e4faef0110ad7f9c5af5664aa899ba5bb8ad977"
     },
     {
       "path": "RESTORE.md",
@@ -111,6 +111,11 @@
       "path": "references/final-delivery.md",
       "bytes": 4167,
       "sha256": "68d11b0fbfe557e97f81bf38898df627326331b3599aa5d96b5499ebbe8eda83"
+    },
+    {
+      "path": "references/install-validation.md",
+      "bytes": 4322,
+      "sha256": "3f251c47e2aacde8ca3be4520eaddc2047b5f33026540efad9f77cc2355ce79a"
     },
     {
       "path": "references/member-access.md",
@@ -548,7 +553,7 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 916462,
+  "payloadBytes": 922618,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
@@ -617,5 +622,27 @@
       "newPlatformRequests": 0,
       "fullSuiteRerun": false
     }
+  },
+  "newUserAcceptance": {
+    "date": "2026-10-28",
+    "downloadedCommit": "7b852c4017a3213ca5d0bc402f4ba82763f96f77",
+    "report": "references/install-validation.md",
+    "readmeCommandsPassed": 15,
+    "sourceTestsPassed": 211,
+    "freshDependencyInstall": true,
+    "freshNpmCache": true,
+    "publicHnSelected": 3,
+    "codexLocalDiscovery": "passed without login/model turn",
+    "overallHarness": "post-run worktree file-count guard failed; application commands passed",
+    "unresolvedDevelopmentAdvisories": {
+      "info": 0,
+      "low": 1,
+      "moderate": 1,
+      "high": 4,
+      "critical": 2,
+      "total": 8
+    },
+    "naturalLanguageAndWhopAccountWorkflow": "not verified",
+    "runtimeAndZipUnchanged": true
   }
 }
