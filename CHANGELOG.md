@@ -2,6 +2,15 @@
 
 按时间倒序记录实际交付。功能版本与 package.json 一致；纯文档/仓库设置更新不改变功能版本。后续每次更新记录新增/修复、实际验证和已知限制，并随对应提交推送。
 
+## 1.15.2 · 2026-10-28
+
+- 完成原生Ubuntu24.04与Windows Server2025/PowerShell7验收，另复验macOS；各自从公开GitHub重新克隆源码、下载ZIP并完成16步骤，全新npm ci/audit零告警、211项应用测试和4项脚本回归通过。
+- 修复Windows路径basename、大小写别名冲突、系统临时目录、Node ESM导入URL、Python启动/UTF-8/隔离环境和Windows npm调用；修复macOS路径别名的报告/状态冲突检查。
+- README和编译包onboarding补齐PowerShell安装、junction注册、初始化及验收说明。验证器按文件系统身份检查junction，修复首轮误报；失败记录与后续通过结果均保留。
+- Windows不把POSIX权限位当成ACL；实验性Whop OAuth凭据文件助手明确拒绝Windows，当前授权浏览器只读整理继续可用。
+- 新增固定官方Action版本的Ubuntu/Windows安装回归；源码重新打包及合成Whop47条/去重/离线重筛在原生系统通过；同步1.15.2编译包和新指纹。
+- [原生CI](https://github.com/qife422/community-signal-analyst/actions/runs/40778012503)、[完整安装验证](references/cross-platform-validation.md)。不扩大为所有Windows桌面/Linux发行版、模型账号或会员权限均已验证；自动化保持暂停。
+
 ## 1.15.1 · 2026-10-28
 
 - 修复8项开发依赖告警：Vitest5.0.5、Vite6.4.5与新锁文件；实际干净npm ci/audit结果0 vulnerabilities，未使用强制修复或legacy peer开关。

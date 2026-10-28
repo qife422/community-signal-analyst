@@ -321,20 +321,27 @@
     "automation": "PAUSED"
   },
   "maintenanceDelivery": {
-    "version": "1.15.1",
+    "version": "1.15.2",
     "date": "2026-10-28",
-    "status": "verified_from_public_github",
-    "evidence": "artifacts/dependency-fix/manifest.json",
-    "publicReport": "references/install-validation.md",
+    "status": "verified_public_github_native_windows_linux_and_macos",
+    "evidence": "artifacts/cross-platform/manifest.json",
+    "publicReport": "references/cross-platform-validation.md",
     "auditVulnerabilities": 0,
     "applicationTests": 211,
     "inventoryRegressionTests": 4,
-    "installationHarness": "passed",
+    "installationStepsPerPlatform": 16,
+    "nativeCi": "https://github.com/qife422/community-signal-analyst/actions/runs/40778012503",
+    "verifiedGithubCommit": "1e95012327aa03120b24a898db216043a64ec4a8",
+    "verifiedPlatforms": [
+      "Ubuntu 24.04 x64",
+      "Windows Server 2025 x64 / PowerShell 7",
+      "macOS arm64 / Darwin 25.5.0"
+    ],
     "runtimeNode": ">=22",
     "sourceDevelopmentNode": "^22.12.0 || ^24.0.0 || >=26.0.0",
     "distribution": "distribution/community-signal-analyst.zip",
-    "distributionSha256": "473fcd8f3da21d21ce728bf43e3d27d03e023361cdb31a5401066f58f59b3cbf",
+    "distributionSha256": "9b0b96277d9816047ce4ef0c881851658e22ff6b577783ca2d27881034e29d6d",
     "liveScopeUnchanged": true,
-    "verifiedGithubCommit": "ecd6aaf61bb859170b4b34f40cc41e7eaa6d5e17"
+    "automation": "PAUSED"
   }
 }

@@ -99,7 +99,7 @@ npm ci
 npm run build
 ```
 
-**1.15.1修复已验证（2026-10-28）：** Vitest5.0.5与Vite6.4.5工具链在干净安装后 `npm audit` 为0项告警，211项测试和4项脚本回归通过。编译包运行仍为Node.js22+；源码测试在Node22系列需要22.12+。旧1.15.0告警与修复记录见 [安装实测](references/install-validation.md)。
+**1.15.2跨平台已验证（2026-10-28）：** 原生Ubuntu24.04、Windows Server2025/PowerShell7以及本机macOS，均从公开GitHub完成16步骤安装验收；各211项应用测试、4项脚本回归通过，`npm audit` 为0项告警。具体环境、修复和边界见 [跨平台安装验证](references/cross-platform-validation.md)。旧依赖告警记录见 [安装实测](references/install-validation.md)。
 
 为让Codex在其他项目中也发现它，在**源码根目录**执行下面的软链接注册；链接指向唯一源码，不维护第二份：
 
@@ -346,7 +346,7 @@ npm run test:installation -- --out "$HOME/.community-signal-analyst/reports/inst
 
 ## 验证与证据
 
-1.15.1已验证：干净npm ci、npm audit零告警、类型检查、构建、211项应用测试、4项安装脚本回归以及编译包/空HOME安装验收通过。工作树与Node编译缓存分开计量，原500文件工作树门槛不变。此前1.15.0的真实HN查询和Codex本地发现结果保留历史来源；本轮未追加付费或会员平台请求。已从公开GitHub重新下载1.15.1并完成14步骤安装复验。详情见 [安装实测](references/install-validation.md)。
+1.15.2已在原生Windows/Linux运行器与本机macOS完成公开GitHub重新克隆、编译包下载和16步骤验收：干净npm ci/audit零告警、类型检查、构建、211项应用测试、4项安装脚本回归、源码重新打包和编译Whop/重筛通过。Windows使用PowerShell7与junction注册；完整环境、CI来源和初期失败修复见 [跨平台安装验证](references/cross-platform-validation.md)。此前真实HN查询与Codex本地发现结果保留于 [安装实测](references/install-validation.md)；本轮没有增加付费/会员请求。
 
 本轮备份前验证结果记录在 [backup-manifest.json](backup-manifest.json)。源码包含211项回归测试；恢复验收会核对实际 GitHub 提交与文件内容。集成回归使用明确标注的 [合成夹具](tests/fixtures/README.md)，没有真实频道正文或授权数据；测试不是线上全覆盖证明。
 

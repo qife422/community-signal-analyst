@@ -1,6 +1,8 @@
 # 新用户安装实测
 
-## 当前结果：1.15.1依赖与脚本修复（2026-10-28）
+当前跨平台结果见 [1.15.2 Windows/Linux安装验证](cross-platform-validation.md)。以下保留此前每轮实际结果。
+
+## 1.15.1依赖与脚本修复（2026-10-28）
 
 - Vitest升级至5.0.5，固定Vite6维护线（6.4.5），重新解析并锁定已修复的传递依赖；不采用force或legacy-peer-deps。
 - 实际npm ci、npm audit、typecheck、build成功，27文件/211应用测试和4项Python脚本回归通过；审计各级告警均为0。

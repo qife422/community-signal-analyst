@@ -1,12 +1,17 @@
 {
   "schemaVersion": 1,
   "skill": "community-signal-analyst",
-  "version": "1.15.1",
+  "version": "1.15.2",
   "userLocalDate": "2026-10-13",
   "repository": "https://github.com/qife422/community-signal-analyst",
   "visibility": "public",
   "purpose": "Public capability showcase and source/compiled-distribution recovery; updates recorded in CHANGELOG.md",
   "payload": [
+    {
+      "path": ".github/workflows/installation.yml",
+      "bytes": 1208,
+      "sha256": "016cf18bd73ec6d14846eb96e1dadfd890e20b8b3b6048c0a660772ae6500c6a"
+    },
     {
       "path": ".gitignore",
       "bytes": 131,
@@ -19,13 +24,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 5607,
-      "sha256": "599d0818309a09639027bbba96168a0a61399698c99c690e41b957ad31c68635"
+      "bytes": 6887,
+      "sha256": "02dde4ae1acccd825fca551c68f9c62c8767bd789bb6ba1a9f24b7f4074b7f90"
     },
     {
       "path": "README.md",
-      "bytes": 16888,
-      "sha256": "2b0214279c12e4ff4f9b54929b25ca777a4ba35933914cf60f6369f66ee62c09"
+      "bytes": 21371,
+      "sha256": "f421057f5a192596d94e20872e6fdb34e4fb44a8f80c2350bb73b9a5d17d7350"
     },
     {
       "path": "RESTORE.md",
@@ -35,7 +40,7 @@
     {
       "path": "SKILL.md",
       "bytes": 18125,
-      "sha256": "101b86bd5514504b0c2bdaad7a66ff47e79addcc3ba1bd64d97718f92de99a13"
+      "sha256": "b3882cddfd5a5ec167c25bb5a658d08ff6beda8a5474095d8748e07781351e3a"
     },
     {
       "path": "SPEC.md",
@@ -54,8 +59,8 @@
     },
     {
       "path": "distribution/community-signal-analyst.zip",
-      "bytes": 235803,
-      "sha256": "473fcd8f3da21d21ce728bf43e3d27d03e023361cdb31a5401066f58f59b3cbf"
+      "bytes": 236859,
+      "sha256": "9b0b96277d9816047ce4ef0c881851658e22ff6b577783ca2d27881034e29d6d"
     },
     {
       "path": "mock-data/devto.mock.json",
@@ -75,12 +80,12 @@
     {
       "path": "package-lock.json",
       "bytes": 45835,
-      "sha256": "c0a3dfae8642ad2ee664407de15dffaae11816b324139d753f3cda1956dce425"
+      "sha256": "28caee25e07c58799add8919a631c4a09718543e07bf3b86846b9841f42d0a6f"
     },
     {
       "path": "package.json",
-      "bytes": 1182,
-      "sha256": "57db4708bb88953f2c862f3b08272cf85dc88ec1474133a0a6fae41c3c496fac"
+      "bytes": 1242,
+      "sha256": "376b222ca6c02beb2531b36b535e759f00fb870308e18a32f00642a42cef171b"
     },
     {
       "path": "references/api-contract.md",
@@ -93,9 +98,14 @@
       "sha256": "217e6554b164d510bd28e36c04e9db96ed232551e65b88f18f3588c0d3f45aee"
     },
     {
+      "path": "references/cross-platform-validation.md",
+      "bytes": 4336,
+      "sha256": "22a9a13cbb62040270e153c4f7ca51e69237606083084b9e37357a2294f10f3d"
+    },
+    {
       "path": "references/delivery-status.json",
-      "bytes": 17365,
-      "sha256": "9d4f8b573736e3a4974279766929b5288691ba2b5f21dac41ca0503e9427b257"
+      "bytes": 17669,
+      "sha256": "17e03ceea58cdca9de29243b9ffd3dc3eaec73713ccd167326cada2b9a14aa4d"
     },
     {
       "path": "references/discord-access.md",
@@ -105,7 +115,7 @@
     {
       "path": "references/distribution-entry.md",
       "bytes": 2725,
-      "sha256": "616ed6c1140b55418d56d92c645fb2d762a5ace892a06576861207332a5864b6"
+      "sha256": "1d68eb7a3adfe2d5bcf7608590725aa9145c1224c7ef750e332c46347c87ed15"
     },
     {
       "path": "references/final-delivery.md",
@@ -114,8 +124,8 @@
     },
     {
       "path": "references/install-validation.md",
-      "bytes": 7168,
-      "sha256": "676ac9ef9a9c6f9026ac70ba83df693108bd40e9257a6b74aa1c9ad7ec92cb89"
+      "bytes": 7286,
+      "sha256": "84dea2d7b4b63dd4ab8d9d5d64ae22a54cfaab5cbcc519c7d0955e6b2d8d4b4f"
     },
     {
       "path": "references/member-access.md",
@@ -124,8 +134,8 @@
     },
     {
       "path": "references/onboarding.md",
-      "bytes": 6111,
-      "sha256": "14808620592064cf7730ca5be90f1485b9db0f684524fef67c1e9a5ed387cdb7"
+      "bytes": 7333,
+      "sha256": "79777dc77a8638e77e00c30bad105c73af862fe120f0e9291e7a27c807a622a7"
     },
     {
       "path": "references/platform-fields.md",
@@ -164,18 +174,28 @@
     },
     {
       "path": "scripts/check_installation.py",
-      "bytes": 13430,
-      "sha256": "58c2ee584c900a94b9b23fe98cf265537fffb580f199e393e9d6bba1cc9989ab"
+      "bytes": 16057,
+      "sha256": "0b10a570c18650ae4874895c13ecde0c0bcae8015571cd3f55bff0e29edbd681"
+    },
+    {
+      "path": "scripts/native-validation.mjs",
+      "bytes": 1533,
+      "sha256": "02003dfc179e633db3b42435cc0342fc4374f95fd7cc5236eaa6d8e4ec0f25c9"
     },
     {
       "path": "scripts/package_skill.py",
-      "bytes": 5655,
-      "sha256": "4fdee133dfd96ae3126731751196230468341bb42db7d927986f9304a5b244c8"
+      "bytes": 5703,
+      "sha256": "34447ea037983db56f03eedc16da7237b64f0f7ccf4da172e87d61071025add0"
+    },
+    {
+      "path": "scripts/run-python.mjs",
+      "bytes": 867,
+      "sha256": "79a63a1bcfe161a599901bd356cda5a004d29115084fc0becfc67a1fed514028"
     },
     {
       "path": "scripts/verify_distribution.py",
-      "bytes": 6792,
-      "sha256": "ff9ca5ab55318f12fc125f32244ca51b0d65a670bb25c970be7d72332dbf992a"
+      "bytes": 7004,
+      "sha256": "ffd1ab6538a491ec2b6205a76e3a5168ffb48e931e559e3521916b3b01d2eaa4"
     },
     {
       "path": "src/adapters/authorized.ts",
@@ -229,8 +249,8 @@
     },
     {
       "path": "src/cli.ts",
-      "bytes": 2642,
-      "sha256": "2d2eb253987cb2fd00d9d50776495eea3b5ec54b949df8e930d50a853a76e0a6"
+      "bytes": 2677,
+      "sha256": "db802cfc40b62d2ed52b98297d2f7bcfdd614222310908e0fa65fdf0b4f46b35"
     },
     {
       "path": "src/cliArgs.ts",
@@ -274,8 +294,8 @@
     },
     {
       "path": "src/preferencesPreviewCli.ts",
-      "bytes": 5243,
-      "sha256": "fdd0dafb591cc23fbbbcca58b7db77ba11c9b60ca316185601b12ce3bbbdef4c"
+      "bytes": 5274,
+      "sha256": "60a017edac669d23f4f5c18be4d4fcfd8e454396aa308265265da51ae42c033c"
     },
     {
       "path": "src/profile/doctor.ts",
@@ -284,8 +304,8 @@
     },
     {
       "path": "src/profile/output.ts",
-      "bytes": 1156,
-      "sha256": "a46fa7e7d24eadc79c525b11efdcaeed948e76446bfa28df9b47001040a61dcb"
+      "bytes": 1157,
+      "sha256": "a2b938fc9776af372c73a4b5ee03dbfbbce37caf3e2be8cc55c2b47638d2937c"
     },
     {
       "path": "src/profile/schema.ts",
@@ -294,8 +314,8 @@
     },
     {
       "path": "src/profile/store.ts",
-      "bytes": 4324,
-      "sha256": "6a7c4b2777b8a8bb3b6c9300017b17f2f2ae61518159752256a24e17ec289c37"
+      "bytes": 4494,
+      "sha256": "89d0e8f5eb7e3375e9cfacbc063e93697396445e9d656645af2887e195c7ca01"
     },
     {
       "path": "src/profileCli.ts",
@@ -364,8 +384,8 @@
     },
     {
       "path": "src/whop/oauth.ts",
-      "bytes": 5895,
-      "sha256": "b7ca648a5512c69ea990451e7e6f383651dbd2cebcdc0705cbb61684d33ee490"
+      "bytes": 6249,
+      "sha256": "bc71a16601f0cb34059d265deea69361a6a05484aa6ec5fde394db3de88ffc6d"
     },
     {
       "path": "src/whop/preferences.ts",
@@ -379,8 +399,8 @@
     },
     {
       "path": "src/whopDigestCli.ts",
-      "bytes": 5091,
-      "sha256": "f9d67ce11fea4ca2045e5e83e4a8eeec5bc53cabd9d837c965cb85391ad49ee7"
+      "bytes": 5137,
+      "sha256": "a1c0fafb9dbce5cd154db14fb663fc88978243ade985e7ec0e2cb13c88eb94c2"
     },
     {
       "path": "src/whopScopeCli.ts",
@@ -474,13 +494,13 @@
     },
     {
       "path": "tests/profile-whop.test.ts",
-      "bytes": 6532,
-      "sha256": "896a950a1f58357bd94f8fefd18364c32867f18a5562f9e864341879bab02c21"
+      "bytes": 7008,
+      "sha256": "5dfc72f6d66ec32697efff2438f95fb3db2044deb769decdc09ac47be375300f"
     },
     {
       "path": "tests/profile.test.ts",
-      "bytes": 4976,
-      "sha256": "d406ff62e2cb6502277c28e147e4565e1eb6131b293a968677edf7c0ca4c427d"
+      "bytes": 5306,
+      "sha256": "12aa6e240a751375513a43871d4962d74c36e1f64b7dc0b72fbe6480776449ee"
     },
     {
       "path": "tests/quality-gates.test.ts",
@@ -509,8 +529,8 @@
     },
     {
       "path": "tests/test_installation_check.py",
-      "bytes": 2746,
-      "sha256": "b82138b5b676d30b79f39f9fbad9c0e651be9cc8157bdc5bfee503f3531a66ee"
+      "bytes": 3045,
+      "sha256": "39830fb8bd028de6f5034281e319ee3183d011c40a70f4f8ace2eab2a0687b10"
     },
     {
       "path": "tests/verification.test.ts",
@@ -519,8 +539,8 @@
     },
     {
       "path": "tests/whop-bindings.test.ts",
-      "bytes": 5110,
-      "sha256": "0f80df0b16775c7c19d1e76ea2ff97c632c522f2571937ba138740921fba798b"
+      "bytes": 5140,
+      "sha256": "8b134da5b59a3545faa369830e57eb585b4cfb5f510c2c5e673e8212050b5dfe"
     },
     {
       "path": "tests/whop-browser-digest.test.ts",
@@ -529,8 +549,8 @@
     },
     {
       "path": "tests/whop-oauth.test.ts",
-      "bytes": 4547,
-      "sha256": "838740a9d03ec2806c31ebcce5b56079827c19f6bd2e8e701a061a677194473f"
+      "bytes": 4781,
+      "sha256": "24219035489420125addae21f0d2a0ab193ddac8b2f55fed151a57ac996f233c"
     },
     {
       "path": "tests/whop.test.ts",
@@ -563,15 +583,15 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 936966,
+  "payloadBytes": 958326,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
     "tests": 211,
     "testFiles": 27,
     "integrationSamples": "explicit synthetic fixtures, no historical member bodies",
-    "compiledZipAcceptance": "passed; 1.15.1",
-    "zipSha256": "473fcd8f3da21d21ce728bf43e3d27d03e023361cdb31a5401066f58f59b3cbf",
+    "compiledZipAcceptance": "passed; 1.15.2, native Windows/Linux and macOS",
+    "zipSha256": "9b0b96277d9816047ce4ef0c881851658e22ff6b577783ca2d27881034e29d6d",
     "inventoryTests": 4,
     "npmAuditVulnerabilities": 0,
     "officialSkillValidator": "passed"
@@ -605,37 +625,7 @@
     "skill-creator"
   ],
   "createdAtUtc": "2026-10-13T18:28:54Z",
-  "publication": {
-    "authorizedBy": "User explicitly requested public visibility and ongoing update records on 2026-10-13",
-    "functionalVersionUnchanged": "1.15.0",
-    "updates": "CHANGELOG.md",
-    "prePublicationCheck": "Current one-commit Git history and tracked ZIP inspected; no runtime directories or known credential markers detected; not a full security audit",
-    "validationScope": "Documentation/visibility change; runtime code and compiled ZIP unchanged. Existing build/211 tests/remote restore results are from the preceding backup task."
-  },
   "lastUpdatedLocalDate": "2026-10-28",
-  "documentationUpdate": {
-    "date": "2026-10-28",
-    "scope": [
-      "README installation/configuration guide",
-      "CHANGELOG update",
-      "payload fingerprints"
-    ],
-    "functionalVersion": "1.15.0",
-    "runtimeAndZipUnchanged": true,
-    "officialReference": "https://learn.chatgpt.com/docs/build-skills#where-to-save-skills",
-    "verification": {
-      "shellBlocksSyntaxPassed": 10,
-      "localLinks": "passed",
-      "compiledInitDoctorShowDemoAndBindingList": "passed in temporary home, fetch blocked and node_modules absent",
-      "existingProfileNotOverwritten": true,
-      "sourceRegistrationNewAndExistingTargets": "passed in temporary home",
-      "temporaryFiles": 112,
-      "temporaryBytes": 604499,
-      "temporaryDisposition": "context-owned tree removed",
-      "newPlatformRequests": 0,
-      "fullSuiteRerun": false
-    }
-  },
   "historicalNewUserAcceptance_1_15_0": {
     "date": "2026-10-28",
     "downloadedCommit": "7b852c4017a3213ca5d0bc402f4ba82763f96f77",
@@ -658,7 +648,7 @@
     "naturalLanguageAndWhopAccountWorkflow": "not verified",
     "runtimeAndZipUnchanged": true
   },
-  "newUserAcceptance": {
+  "historicalNewUserAcceptance_1_15_1": {
     "version": "1.15.1",
     "status": "passed_from_public_github",
     "auditVulnerabilities": 0,
@@ -771,7 +761,7 @@
       }
     }
   },
-  "maintenance": {
+  "historicalMaintenance_1_15_1": {
     "version": "1.15.1",
     "vitest": "5.0.5",
     "vite": "6.4.5",
@@ -782,5 +772,71 @@
       "Node compile cache misclassified as worktree files"
     ],
     "runtimeScopeUnchanged": true
+  },
+  "historicalDocumentationUpdate_1_15_0": {
+    "date": "2026-10-28",
+    "scope": [
+      "README installation/configuration guide",
+      "CHANGELOG update",
+      "payload fingerprints"
+    ],
+    "functionalVersion": "1.15.0",
+    "runtimeAndZipUnchanged": true,
+    "officialReference": "https://learn.chatgpt.com/docs/build-skills#where-to-save-skills",
+    "verification": {
+      "shellBlocksSyntaxPassed": 10,
+      "localLinks": "passed",
+      "compiledInitDoctorShowDemoAndBindingList": "passed in temporary home, fetch blocked and node_modules absent",
+      "existingProfileNotOverwritten": true,
+      "sourceRegistrationNewAndExistingTargets": "passed in temporary home",
+      "temporaryFiles": 112,
+      "temporaryBytes": 604499,
+      "temporaryDisposition": "context-owned tree removed",
+      "newPlatformRequests": 0,
+      "fullSuiteRerun": false
+    }
+  },
+  "historicalPublicPublication": {
+    "authorizedBy": "User explicitly requested public visibility and ongoing update records on 2026-10-13",
+    "functionalVersionUnchanged": "1.15.0",
+    "updates": "CHANGELOG.md",
+    "prePublicationCheck": "Current one-commit Git history and tracked ZIP inspected; no runtime directories or known credential markers detected; not a full security audit",
+    "validationScope": "Documentation/visibility change; runtime code and compiled ZIP unchanged. Existing build/211 tests/remote restore results are from the preceding backup task."
+  },
+  "publication": {
+    "authorizedBy": "User requested public GitHub publication, then Windows/Linux installation verification, fixes and documentation synchronization on 2026-10-28",
+    "functionalVersion": "1.15.2",
+    "updates": "CHANGELOG.md",
+    "scope": "Source portability, native installation CI, documentation and compiled ZIP; no product automation enabled"
+  },
+  "newUserAcceptance": {
+    "version": "1.15.2",
+    "status": "passed_public_github_native_windows_linux_and_macos",
+    "verifiedGithubCommit": "1e95012327aa03120b24a898db216043a64ec4a8",
+    "ci": "https://github.com/qife422/community-signal-analyst/actions/runs/40778012503",
+    "installationStepsPerPlatform": 16,
+    "applicationTestsPerPlatform": 211,
+    "inventoryRegressionTestsPerPlatform": 4,
+    "npmAuditVulnerabilities": 0,
+    "publicReport": "references/cross-platform-validation.md",
+    "platforms": [
+      "Ubuntu 24.04 x64",
+      "Windows Server 2025 x64 / PowerShell 7",
+      "macOS arm64 / Darwin 25.5.0"
+    ],
+    "liveScopeUnchanged": true,
+    "authenticatedModelAndNewMemberAccess": "not verified"
+  },
+  "maintenance": {
+    "version": "1.15.2",
+    "fixes": [
+      "platform-aware paths and report collisions",
+      "portable temporary directories and Node ESM file URLs",
+      "Windows PowerShell, npm and Python installation checks",
+      "junction identity and bounded inventory"
+    ],
+    "runtimeNode": ">=22",
+    "sourceNode": "^22.12.0 || ^24.0.0 || >=26.0.0",
+    "automation": "PAUSED"
   }
 }
