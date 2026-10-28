@@ -238,7 +238,7 @@ def execute(args):
                 brief = json.loads(report.read_text(encoding="utf-8"))
                 result["publicResearch"] = {"selected": len(brief["selectedItems"]), "queriedPlatforms": brief.get("queriedPlatforms")}
             else:
-                result["publicResearch"] = "not rerun; runtime/source fields unchanged and no new live gate required"
+                result["publicResearch"] = "not requested; no live platform acceptance added"
             if (source / "node_modules").exists() or (source_home / ".npm").exists():
                 raise ValueError("Source installation is not clean")
             run("source_npm_ci", ["npm", "ci"], source, source_env)

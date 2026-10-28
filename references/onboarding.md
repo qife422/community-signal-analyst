@@ -2,6 +2,24 @@
 
 版本1.15.2。本地命令需要 Node.js22+；分发包已编译，无需安装依赖。自然语言另需 Codex 加载 Skill，Whop 采集另需使用者自己的授权浏览器与成员访问。doctor 的本地 ready 不代表在线权限已验证。源码开发/测试采用Vitest5，Node22系列需22.12+，或使用其支持的Node24/26系列；开发重建另需 `npm ci` 与 `npm run build`。
 
+## Windows PowerShell 快速开始
+
+把完整文件夹放入 `$HOME/.agents/skills/community-signal-analyst`，确认 SKILL.md 没有多嵌套一层；已有同名目录时不要覆盖。在 PowerShell 中运行：
+
+```powershell
+Set-Location (Join-Path $HOME ".agents/skills/community-signal-analyst")
+$profileFile = Join-Path $HOME ".community-signal-analyst/profile.json"
+New-Item -ItemType Directory -Force -Path (Split-Path $profileFile) | Out-Null
+npm.cmd run profile -- init --file $profileFile
+if ($LASTEXITCODE -ne 0) { throw "init failed; check existing configuration" }
+npm.cmd run doctor -- --profile $profileFile
+if ($LASTEXITCODE -ne 0) { throw "doctor failed" }
+npm.cmd run demo
+if ($LASTEXITCODE -ne 0) { throw "demo failed" }
+```
+
+已有配置跳过 init。下面 Bash 示例在 Windows 使用 `npm.cmd` 和自己的绝对路径，不能照搬 `/absolute/private` 或反斜杠续行。Windows 文件继承用户目录 NTFS ACL；0600/0700只适用于 POSIX。实验性 OAuth 凭据文件助手在 Windows 拒绝运行，当前会员浏览器采集不受影响。源码注册、Git/Python 前提和完整 PowerShell 命令见 [仓库 README](https://github.com/qife422/community-signal-analyst#readme)。
+
 ## 自然语言路由
 
 | 用户要求 | 操作 |

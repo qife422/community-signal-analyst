@@ -13,7 +13,7 @@ function run(name, args) {
   console.log(name, result.stdout || "", result.stderr || "");
   if (result.status !== 0) process.exit(result.status || 1);
 }
-run("clean_readme_installation", ["scripts/run-python.mjs", "scripts/check_installation.py", "--source", process.cwd(), "--out", join(output, "installation.json")]);
+run("clean_readme_installation", ["scripts/run-python.mjs", "scripts/check_installation.py", "--ref", process.env.GITHUB_SHA || "main", "--out", join(output, "installation.json")]);
 run("compiled_offline_whop", ["scripts/run-python.mjs", "scripts/verify_distribution.py", "--zip", "distribution/community-signal-analyst.zip"]);
 report.status = "passed";
 writeFileSync(join(output, "native.json"), JSON.stringify(report, null, 2) + "\n");
