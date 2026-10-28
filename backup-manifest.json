@@ -19,13 +19,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 5435,
-      "sha256": "299bce510b98a85198e7d0d97ca716dafb2823668d35954bee5c297d67d61423"
+      "bytes": 5607,
+      "sha256": "599d0818309a09639027bbba96168a0a61399698c99c690e41b957ad31c68635"
     },
     {
       "path": "README.md",
-      "bytes": 16820,
-      "sha256": "c69d4420ed0886d67dff4cc76d9f6eaecbee9f70b1bb491bece49ae0e8458949"
+      "bytes": 16888,
+      "sha256": "2b0214279c12e4ff4f9b54929b25ca777a4ba35933914cf60f6369f66ee62c09"
     },
     {
       "path": "RESTORE.md",
@@ -94,8 +94,8 @@
     },
     {
       "path": "references/delivery-status.json",
-      "bytes": 17290,
-      "sha256": "526d4b0e3f1ba0d886a4437040a994c3e4ca960720a1cbfaa06f0ed409a58be4"
+      "bytes": 17365,
+      "sha256": "9d4f8b573736e3a4974279766929b5288691ba2b5f21dac41ca0503e9427b257"
     },
     {
       "path": "references/discord-access.md",
@@ -114,8 +114,8 @@
     },
     {
       "path": "references/install-validation.md",
-      "bytes": 6836,
-      "sha256": "34d5d7e624955fde418962b495a0bd97d796686fb8091c62e08883b3f25e6237"
+      "bytes": 7168,
+      "sha256": "676ac9ef9a9c6f9026ac70ba83df693108bd40e9257a6b74aa1c9ad7ec92cb89"
     },
     {
       "path": "references/member-access.md",
@@ -563,7 +563,7 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 936319,
+  "payloadBytes": 936966,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
@@ -660,7 +660,7 @@
   },
   "newUserAcceptance": {
     "version": "1.15.1",
-    "status": "passed_local_candidate",
+    "status": "passed_from_public_github",
     "auditVulnerabilities": 0,
     "applicationTests": 211,
     "inventoryRegressionTests": 4,
@@ -715,7 +715,61 @@
     "lockSha256": "c0a3dfae8642ad2ee664407de15dffaae11816b324139d753f3cda1956dce425",
     "zipSha256": "473fcd8f3da21d21ce728bf43e3d27d03e023361cdb31a5401066f58f59b3cbf",
     "publicReport": "references/install-validation.md",
-    "runtimeSourcesUnchanged": true
+    "runtimeSourcesUnchanged": true,
+    "verifiedGithubCommit": "ecd6aaf61bb859170b4b34f40cc41e7eaa6d5e17",
+    "githubInstallationSteps": 14,
+    "remoteInventory": {
+      "work": {
+        "files": 306,
+        "bytes": 2964499,
+        "examples": [
+          "compiled-user/global.npmrc",
+          "compiled-user/user.npmrc",
+          "compiled-user/.community-signal-analyst/scope.json",
+          "compiled-user/.community-signal-analyst/profile.json"
+        ]
+      },
+      "dependencies": {
+        "files": 874,
+        "bytes": 60155545,
+        "examples": [
+          "source-user/community-signal-analyst/node_modules/.package-lock.json",
+          "source-user/community-signal-analyst/node_modules/tinyglobby/LICENSE",
+          "source-user/community-signal-analyst/node_modules/tinyglobby/README.md",
+          "source-user/community-signal-analyst/node_modules/tinyglobby/package.json"
+        ]
+      },
+      "npm_cache": {
+        "files": 87,
+        "bytes": 12505414,
+        "examples": [
+          "compiled-user/.npm/_update-notifier-last-checked",
+          "compiled-user/.npm/_logs/2026-10-28T21_56_05_465Z-debug-0.log",
+          "compiled-user/.npm/_logs/2026-10-28T21_56_03_999Z-debug-0.log",
+          "compiled-user/.npm/_logs/2026-10-28T21_56_05_245Z-debug-0.log"
+        ]
+      },
+      "node_compile_cache": {
+        "files": 1067,
+        "bytes": 3986300,
+        "examples": [
+          "compiled-user/tmp/node-compile-cache/v22.17.1-arm64-9e3ad1fa-501/ed609cf7",
+          "compiled-user/tmp/node-compile-cache/v22.17.1-arm64-9e3ad1fa-501/cef19533",
+          "compiled-user/tmp/node-compile-cache/v22.17.1-arm64-9e3ad1fa-501/4a909031",
+          "compiled-user/tmp/node-compile-cache/v22.17.1-arm64-9e3ad1fa-501/b1dd5065"
+        ]
+      },
+      "git_metadata": {
+        "files": 28,
+        "bytes": 594677,
+        "examples": [
+          "source-user/community-signal-analyst/.git/config",
+          "source-user/community-signal-analyst/.git/HEAD",
+          "source-user/community-signal-analyst/.git/description",
+          "source-user/community-signal-analyst/.git/index"
+        ]
+      }
+    }
   },
   "maintenance": {
     "version": "1.15.1",

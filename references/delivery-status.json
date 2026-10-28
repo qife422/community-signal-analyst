@@ -323,7 +323,7 @@
   "maintenanceDelivery": {
     "version": "1.15.1",
     "date": "2026-10-28",
-    "status": "verified_local_candidate",
+    "status": "verified_from_public_github",
     "evidence": "artifacts/dependency-fix/manifest.json",
     "publicReport": "references/install-validation.md",
     "auditVulnerabilities": 0,
@@ -334,6 +334,7 @@
     "sourceDevelopmentNode": "^22.12.0 || ^24.0.0 || >=26.0.0",
     "distribution": "distribution/community-signal-analyst.zip",
     "distributionSha256": "473fcd8f3da21d21ce728bf43e3d27d03e023361cdb31a5401066f58f59b3cbf",
-    "liveScopeUnchanged": true
+    "liveScopeUnchanged": true,
+    "verifiedGithubCommit": "ecd6aaf61bb859170b4b34f40cc41e7eaa6d5e17"
   }
 }

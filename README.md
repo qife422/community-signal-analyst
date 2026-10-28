@@ -257,7 +257,7 @@ npm run test:installation -- --out "$HOME/.community-signal-analyst/reports/inst
 
 ## 验证与证据
 
-1.15.1已验证：干净npm ci、npm audit零告警、类型检查、构建、211项应用测试、4项安装脚本回归以及编译包/空HOME安装验收通过。工作树与Node编译缓存分开计量，原500文件工作树门槛不变。此前1.15.0的真实HN查询和Codex本地发现结果保留历史来源；本轮未追加付费或会员平台请求。详情见 [安装实测](references/install-validation.md)。
+1.15.1已验证：干净npm ci、npm audit零告警、类型检查、构建、211项应用测试、4项安装脚本回归以及编译包/空HOME安装验收通过。工作树与Node编译缓存分开计量，原500文件工作树门槛不变。此前1.15.0的真实HN查询和Codex本地发现结果保留历史来源；本轮未追加付费或会员平台请求。已从公开GitHub重新下载1.15.1并完成14步骤安装复验。详情见 [安装实测](references/install-validation.md)。
 
 本轮备份前验证结果记录在 [backup-manifest.json](backup-manifest.json)。源码包含211项回归测试；恢复验收会核对实际 GitHub 提交与文件内容。集成回归使用明确标注的 [合成夹具](tests/fixtures/README.md)，没有真实频道正文或授权数据；测试不是线上全覆盖证明。
 
