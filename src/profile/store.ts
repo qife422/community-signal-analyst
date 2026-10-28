@@ -4,6 +4,8 @@ import { randomUUID } from "node:crypto";
 import { parseBrowserScope } from "../whop/browserDigest.js";
 import { defaultProfile, parseProfile, type Profile } from "./schema.js";
 
+export function pathKey(path: string): string { return process.platform === "win32" ? path.toLowerCase() : path; }
+
 export function assertRegular(path: string, max = 65_536): void {
   const st = lstatSync(path);
   if (!st.isFile() || st.isSymbolicLink() || st.size > max) throw new Error("输入必须是容量以内的普通文件");
@@ -29,8 +31,8 @@ export function childPath(file: string, child: string): string {
 export function pathsFor(file: string, profile: Profile) {
   const filePath = profileLocation(file);
   const paths = { file: filePath, scope: childPath(filePath, profile.whop.scopeFile), state: childPath(filePath, profile.whop.stateFile), reports: childPath(filePath, profile.reportDirectory) };
-  if (new Set(Object.values(paths)).size !== 4) throw new Error("配置文件目标冲突");
-  if ([paths.scope, paths.state].some(p => paths.reports === p || p.startsWith(paths.reports + sep)) || filePath.startsWith(paths.reports + sep)) throw new Error("报告目录不能混放配置/状态");
+  if (new Set(Object.values(paths).map(pathKey)).size !== 4) throw new Error("配置文件目标冲突");
+  if ([paths.scope, paths.state].some(p => pathKey(paths.reports) === pathKey(p) || pathKey(p).startsWith(pathKey(paths.reports) + sep)) || pathKey(filePath).startsWith(pathKey(paths.reports) + sep)) throw new Error("报告目录不能混放配置/状态");
   return paths;
 }
 export function loadProfile(file: string): { profile: Profile; paths: ReturnType<typeof pathsFor> } {

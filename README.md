@@ -84,7 +84,7 @@ Discord/Reddit 暂缓；Whop OAuth/API 保留实验代码，成员 API 读取未
 
 **此方式无需 `npm ci` 或 `npm run build`**，包内运行命令直接使用已编译文件。源码、参考资料和编译文件须保持相对布局。
 
-编译包版本1.15.2，SHA-256：`341062fb75428f2c30db578b7359b5950afcc05413d430139a5db5f22637f9d8`。macOS可用 `shasum -a 256 /实际下载路径/community-signal-analyst.zip` 核对下载内容。
+编译包版本1.15.2，SHA-256：`9b0b96277d9816047ce4ef0c881851658e22ff6b577783ca2d27881034e29d6d`。macOS可用 `shasum -a 256 /实际下载路径/community-signal-analyst.zip` 核对下载内容。
 
 ### B. 开发者：克隆源码并构建
 

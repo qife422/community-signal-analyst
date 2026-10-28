@@ -46,6 +46,7 @@ describe("independent profiles and local doctor", () => {
     const base = home(), f = join(base, "profile.json"); initProfile(f);
     expect(loadProfile(f.split("\\").join("/")).paths.scope).toBe(join(base, "scope.json"));
     expect(() => childPath(f, "../outside")).toThrow();
+    if(process.platform === "win32") expect(() => setProfile(f, {...defaultProfile(),whop:{scopeFile:"PROFILE.JSON",stateFile:"state.json"}})).toThrow();
     const link = join(base, "linked.json"); symlinkSync(f, link); expect(() => loadProfile(link)).toThrow();
     mkdirSync(join(base, "elsewhere")); symlinkSync(join(base, "elsewhere"), join(base, "linkdir"), process.platform === "win32" ? "junction" : "dir");
     expect(() => childPath(f, "linkdir/state.json")).toThrow();

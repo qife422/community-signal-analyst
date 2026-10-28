@@ -2,7 +2,7 @@ import { existsSync, lstatSync, openSync, closeSync, readFileSync, writeFileSync
 import { resolve, dirname, join } from "node:path";
 import { randomUUID } from "node:crypto";
 import { parseBrowserSnapshot, parseBrowserScope, parseDigestState, digestBrowserSnapshot } from "./whop/browserDigest.js";
-import { loadProfile } from "./profile/store.js";
+import { loadProfile, pathKey } from "./profile/store.js";
 import { checkReport, writeReport } from "./profile/output.js";
 import { personalizeDigest } from "./whop/preferences.js";
 
@@ -20,11 +20,11 @@ try {
   const configured=flags.has("--profile")?loadProfile(flags.get("--profile")!):undefined;
   if(configured) {
     for(const [flag,path] of [["--state",configured.paths.state],["--scope",configured.paths.scope]]) {
-      if(flags.has(flag) && flags.get(flag)!==path)throw new Error("Profile path conflicts with explicit scope/state"); flags.set(flag,path);
+      if(flags.has(flag) && pathKey(flags.get(flag)!)!==pathKey(path))throw new Error("Profile path conflicts with explicit scope/state"); flags.set(flag,path);
     }
     if(!flags.has("--delta") && flags.has("--out"))flags.set("--delta",flags.get("--out")!+".delta.json");
   }
-  if(!["--snapshot","--state","--out","--scope"].every(k=>flags.has(k)) || new Set(flags.values()).size!==flags.size)throw new Error("Distinct input/state/report/delta/scope paths are required");
+  if(!["--snapshot","--state","--out","--scope"].every(k=>flags.has(k)) || new Set([...flags.values()].map(pathKey)).size!==flags.size)throw new Error("Distinct input/state/report/delta/scope paths are required");
   const input=flags.get("--snapshot")!,statePath=flags.get("--state")!,out=flags.get("--out")!;
   const deltaPath=flags.get("--delta");
   const scope=parseBrowserScope(bounded(flags.get("--scope")!,20_000));

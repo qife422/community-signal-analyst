@@ -75,6 +75,12 @@ describe("profile Whop integration",()=>{
     const f=fixture(),state=join(f.dir,"whop-state.json");
     expect(()=>f.run("cli.js",["--demo","--profile",f.file,"--out",state])).toThrow();
     expect(existsSync(state)).toBe(false);
+    if(process.platform === "win32") {
+      const alias=join(f.dir,"WHOP-STATE.JSON");
+      expect(()=>f.run("cli.js",["--demo","--profile",f.file,"--out",alias])).toThrow();
+      expect(()=>f.run("whopDigestCli.js",["--profile",f.file,"--snapshot",join(f.dir,"sample.json"),"--out",alias])).toThrow();
+      expect(existsSync(state)).toBe(false);
+    }
     for(let i=0;i<99;i++)writeFileSync(join(f.dir,"reports",`existing-${i}.md`),"keep");
     expect(()=>f.run("whopDigestCli.js",["--profile",f.file,"--snapshot",join(f.dir,"sample.json"),"--out",join(f.dir,"reports/cap.md")])).toThrow();
     expect(existsSync(state)).toBe(false);expect(existsSync(join(f.dir,"reports/cap.md"))).toBe(false);

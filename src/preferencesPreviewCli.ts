@@ -1,4 +1,4 @@
-import { loadProfile, loadProfileScope, readJson } from "./profile/store.js";
+import { pathKey, loadProfile, loadProfileScope, readJson } from "./profile/store.js";
 import { writeReport, checkReport } from "./profile/output.js";
 import { parseBrowserSnapshot, digestBrowserSnapshot, type BrowserSource } from "./whop/browserDigest.js";
 import { personalizeDigest } from "./whop/preferences.js";
@@ -18,7 +18,7 @@ try {
   if(!["--profile","--input","--out"].every(k=>flags.has(k)))throw new Error("Expected profile/input/new out");
   const configured=loadProfile(flags.get("--profile")!);
   const input=resolve(flags.get("--input")!),out=checkReport(flags.get("--out")!);
-  if([input,...Object.values(configured.paths)].includes(out))throw new Error("Conflicting output");
+  if([input,...Object.values(configured.paths)].map(pathKey).includes(pathKey(out)))throw new Error("Conflicting output");
   const value=readJson(input,1_000_000) as Record<string,unknown>;
   let report: {markdown:string};
   if(value?.retrievalMethod==="browser_visible") {
