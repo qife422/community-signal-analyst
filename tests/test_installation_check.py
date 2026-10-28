@@ -42,6 +42,7 @@ class InstallationInventoryTests(unittest.TestCase):
                 subprocess.run(["cmd", "/c", "mklink", "/J", str(root / "registered"), str(root / "source")], check=True, capture_output=True)
             else:
                 (root / "registered").symlink_to(root / "source", target_is_directory=True)
+            self.assertTrue(os.path.samefile(root / "registered", root / "source"))
             counts = check.inventory(root)
             self.assertEqual(counts["dependencies"]["files"], 1)
             self.assertEqual(counts["work"]["files"], 2)  # source plus link metadata

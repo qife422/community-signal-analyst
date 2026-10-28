@@ -255,7 +255,7 @@ def execute(args):
                                   ("source_packaging", ["npm", "run", "package", "--", "--out", str(source_home / "candidate.zip")]),
                                   ("source_bundle_acceptance", ["node", "scripts/run-python.mjs", "scripts/verify_distribution.py", "--zip", str(source_home / "candidate.zip")])]:
                 run(name, command, source, source_env)
-            if (source_home / ".agents/skills/community-signal-analyst").resolve() != source:
+            if not os.path.samefile(source_home / ".agents/skills/community-signal-analyst", source):
                 raise ValueError("Source registration points elsewhere")
             result["inventory"] = inventory(base); check_limits(result["inventory"], source_bytes)
             result["temporaryDisposition"] = "only this context-owned tree removed; old state/evidence untouched"
