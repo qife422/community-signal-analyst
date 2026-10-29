@@ -80,7 +80,7 @@ function sse(response, items, number) {
   event("response.completed", { response: { id: "fixture_" + number, status: "completed", output: items, usage: { input_tokens: 0, output_tokens: 0, total_tokens: 0 } } });
   response.end();
 }
-async function fixture(command, cwd, skillText) {
+async function fixture(commands, cwd, skillText) {
   const state = { requests: 0, instructionInjected: false, toolName: null, functionOutputObserved: false };
   const server = createServer((request, response) => {
     let body = "";
@@ -94,12 +94,13 @@ async function fixture(command, cwd, skillText) {
         const instructionBody = skillText.replace(/^---[\s\S]*?---\s*/, "").replaceAll("\r\n", "\n").trim();
         state.instructionInjected ||= texts(data.input).some(text => text.replaceAll("\r\n", "\n").includes(instructionBody));
         state.expectedInstructionBodySha256 = hash(instructionBody);
-        if (state.requests === 1) {
+        if (state.requests <= commands.length) {
+          const command = commands[state.requests - 1];
           const tool = data.tools.find(t => ["exec_command", "shell_command", "shell"].includes(t.name));
           if (!tool || !state.instructionInjected) throw new Error("Expected a real injected skill and Codex shell tool");
           state.toolName = tool.name;
           const args = tool.name === "exec_command" ? { cmd: command, workdir: cwd, login: false, yield_time_ms: 10000, max_output_tokens: 2500 } : tool.name === "shell_command" ? { command, workdir: cwd, timeout_ms: 20_000 } : { command: process.platform === "win32" ? ["powershell", "-NoProfile", "-Command", command] : ["/bin/bash", "-c", command], workdir: cwd, timeout_ms: 20_000 };
-          sse(response, [{ type: "function_call", id: "fixture_function_1", call_id: "fixture_call_1", name: tool.name, arguments: JSON.stringify(args) }], state.requests);
+          sse(response, [{ type: "function_call", id: "fixture_function_" + state.requests, call_id: "fixture_call_" + state.requests, name: tool.name, arguments: JSON.stringify(args) }], state.requests);
         } else {
           state.functionOutputObserved ||= serialized.includes("ready") && serialized.includes("networkRequests");
           sse(response, [{ type: "message", role: "assistant", id: "fixture_message", content: [{ type: "output_text", text: "Local scripted protocol fixture completed. No real model inference." }] }], state.requests);
@@ -130,13 +131,18 @@ async function checkCase(kind) {
     if (matches.length !== 1 || matches[0].enabled !== true || matches[0].scope !== "user" || (statSync(matches[0].path).ino !== statSync(entry).ino || statSync(matches[0].path).dev !== statSync(entry).dev)) throw new Error("Normal user Skill discovery failed: " + JSON.stringify(catalog));
     result.discovery = { status: "passed", name: matches[0].name, enabled: matches[0].enabled, scope: matches[0].scope, errors: catalog.data.flatMap(x => x.errors || []) };
   } finally { await rpc.close(); }
-  const privateDir = join(home, ".community-signal-analyst"); mkdirSync(privateDir, { mode: 0o700 }); const profile = join(privateDir, "profile.json"), action = join(cwd, "fixture-action.mjs"), guard = join(cwd, "network-guard.mjs");
+  const privateDir = join(home, ".community-signal-analyst"); mkdirSync(privateDir, { mode: 0o700 }); const profile = join(privateDir, "profile.json"), guard = join(cwd, "network-guard.mjs");
   writeFileSync(guard, 'globalThis.fetch=()=>{throw new Error("community network forbidden")};');
-  writeFileSync(action, `import {spawnSync} from 'node:child_process';import {writeFileSync} from 'node:fs';writeFileSync(${JSON.stringify(join(cwd, 'action.started'))},'started');process.stdout.write('FIXTURE_ACTION_STARTED\\n');\nconst calls=${JSON.stringify([[join(installed, "dist/src/profileCli.js"), "init", "--file", profile], [join(installed, "dist/src/doctorCli.js"), "--profile", profile]])};\nfor(const args of calls){const r=spawnSync(process.execPath,['--import',${JSON.stringify(pathToFileURL(guard).href)},...args],{encoding:'utf8'});process.stdout.write(r.stdout||'');process.stderr.write(r.stderr||'');if(r.status!==0)process.exit(r.status||1);}\n`);
   const quote = value => "'" + value.replaceAll("'", process.platform === "win32" ? "''" : "'\\''") + "'";
-  const command = (process.platform === "win32" ? "& " : "") + quote(process.execPath) + " " + quote(action);
-  const backend = await fixture(command, cwd, skillText);
-  writeFileSync(join(env.CODEX_HOME, "config.toml"), `cli_auth_credentials_store = "ephemeral"\nmodel_provider = "fixture"\nmodel = "fixture-codex-skill"\n[model_providers.fixture]\nname = "Local scripted protocol fixture (not inference)"\nbase_url = ${JSON.stringify(backend.url)}\nwire_api = "responses"\nrequires_openai_auth = false\n${process.platform === "win32" ? '[windows]\nsandbox = "mxc"\n' : ""}`);
+  const commands = [[join(installed, "dist/src/profileCli.js"), "init", "--file", profile], [join(installed, "dist/src/doctorCli.js"), "--profile", profile]].map(args => (process.platform === "win32" ? "& " : "") + [process.execPath, "--import", pathToFileURL(guard).href, ...args].map(quote).join(" "));
+  if (process.platform === "win32") {
+    const identity = process.env.USERDOMAIN + "\\" + process.env.USERNAME;
+    const setup = spawnSync(codex, ["sandbox", "setup", "--elevated", "--user", identity, "--codex-home", env.CODEX_HOME], {cwd, env, encoding:"utf8", timeout:60_000});
+    result.windowsSandbox = {mode:"elevated",setupExitCode:setup.status};
+    if(setup.status !== 0) throw new Error("Native Windows sandbox setup failed: " + (setup.stderr || setup.stdout).slice(-2500));
+  }
+  const backend = await fixture(commands, cwd, skillText);
+  writeFileSync(join(env.CODEX_HOME, "config.toml"), `cli_auth_credentials_store = "ephemeral"\nmodel_provider = "fixture"\nmodel = "fixture-codex-skill"\n[model_providers.fixture]\nname = "Local scripted protocol fixture (not inference)"\nbase_url = ${JSON.stringify(backend.url)}\nwire_api = "responses"\nrequires_openai_auth = false\n${process.platform === "win32" ? '[windows]\nsandbox = "elevated"\n' : ""}`);
   rpc = startServer(cwd, env);
   try {
     await initialize(rpc);
@@ -144,7 +150,7 @@ async function checkCase(kind) {
     await rpc.request("turn/start", { threadId: thread.thread.id, input: [{ type: "text", text: "$community-signal-analyst 初始化并检查我指定的临时profile；这是离线安装测试，不访问社区、不启用自动化。" }, { type: "skill", name: "community-signal-analyst", path: entry }], sandboxPolicy: { type: "workspaceWrite", writableRoots: [cwd, privateDir], networkAccess: false } });
     await waitTurn(rpc);
     const commands = rpc.events.filter(e => e.method === "item/completed" && e.params.item.type === "commandExecution").map(e => ({ status: e.params.item.status, exitCode: e.params.item.exitCode, command: e.params.item.command, cwd: e.params.item.cwd, output: e.params.item.aggregatedOutput }));
-    if (backend.state.error || !backend.state.instructionInjected || !backend.state.functionOutputObserved || !commands.some(x => x.exitCode === 0)) throw new Error("Incomplete fixture execution: " + JSON.stringify({ state: backend.state, commands, profileExists: existsSync(profile), actionStarted: existsSync(join(cwd,"action.started")), stderr: rpc.stderr() }));
+    if (backend.state.error || !backend.state.instructionInjected || !backend.state.functionOutputObserved || commands.length !== 2 || !commands.every(x => x.exitCode === 0)) throw new Error("Incomplete fixture execution: " + JSON.stringify({ state: backend.state, commands, profileExists: existsSync(profile), stderr: rpc.stderr() }));
     const scope = JSON.parse(readFileSync(join(privateDir, "scope.json"), "utf8")); if (scope.channels.length !== 0 || existsSync(join(privateDir, "whop-state.json"))) throw new Error("Expected a new zero-bound user without state");
     result.protocolFixture = { status: "passed", ...backend.state, commands, zeroBindings: true, realModel: false };
     if (existsSync(join(env.CODEX_HOME, "auth.json"))) throw new Error("Credential file unexpectedly created");
