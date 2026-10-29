@@ -20,7 +20,8 @@
     "preferences:preview": "node dist/src/preferencesPreviewCli.js",
     "package": "node scripts/run-python.mjs scripts/package_skill.py",
     "test:installation": "node scripts/run-python.mjs scripts/check_installation.py",
-    "test:installation-unit": "node scripts/run-python.mjs -B -m unittest discover -s tests -p test_installation_check.py"
+    "test:installation-unit": "node scripts/run-python.mjs -B -m unittest discover -s tests -p test_installation_check.py",
+    "test:codex": "node scripts/check_codex.mjs"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
