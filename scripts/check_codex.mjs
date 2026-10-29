@@ -83,9 +83,9 @@ async function fixture(command, cwd, skillText) {
         const data = JSON.parse(body); state.requests++;
         const serialized = JSON.stringify(data.input);
         const texts = value => typeof value === "string" ? [value] : value && typeof value === "object" ? Object.values(value).flatMap(texts) : [];
-        const body = skillText.replace(/^---[\s\S]*?---\s*/, "").replaceAll("\r\n", "\n").trim();
-        state.instructionInjected ||= texts(data.input).some(text => text.replaceAll("\r\n", "\n").includes(body));
-        state.expectedInstructionBodySha256 = hash(body);
+        const instructionBody = skillText.replace(/^---[\s\S]*?---\s*/, "").replaceAll("\r\n", "\n").trim();
+        state.instructionInjected ||= texts(data.input).some(text => text.replaceAll("\r\n", "\n").includes(instructionBody));
+        state.expectedInstructionBodySha256 = hash(instructionBody);
         if (state.requests === 1) {
           const tool = data.tools.find(t => ["exec_command", "shell_command", "shell"].includes(t.name));
           if (!tool || !state.instructionInjected) throw new Error("Expected a real injected skill and Codex shell tool");
@@ -96,7 +96,7 @@ async function fixture(command, cwd, skillText) {
           state.functionOutputObserved ||= serialized.includes("ready") && serialized.includes("networkRequests");
           sse(response, [{ type: "message", role: "assistant", id: "fixture_message", content: [{ type: "output_text", text: "Local scripted protocol fixture completed. No real model inference." }] }], state.requests);
         }
-      } catch (error) { state.error = error.message; response.writeHead(500); response.end(JSON.stringify({ error: { message: error.message } })); }
+      } catch (error) { state.error = error.message; sse(response, [{type:"message",role:"assistant",id:"fixture_error",content:[{type:"output_text",text:"Scripted fixture error: "+error.message}]}], state.requests); }
     });
   });
   await new Promise(r => server.listen(0, "127.0.0.1", r));
