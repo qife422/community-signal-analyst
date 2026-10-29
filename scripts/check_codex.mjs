@@ -23,16 +23,32 @@ function removeOwnedEntry(entry) {
   rmSync(entry, { recursive: !lstatSync(entry).isSymbolicLink(), force: true, maxRetries: 5, retryDelay: 200 });
   ownedNativeEntries.delete(entry);
 }
-const base = realpathSync(mkdtempSync(join(tmpdir(), "community codex ")));
+const base = realpathSync(mkdtempSync(join(process.env.RUNNER_TEMP || tmpdir(), "community codex ")));
 const report = { schemaVersion: 1, platform: platform(), release: release(), node: process.version, status: "running", cases: [], realModelVerified: false, credentialsUsed: false, fixture: "scripted local Responses protocol; not LLM inference", communityRequests: 0 };
 const hash = data => createHash("sha256").update(data).digest("hex");
 function save() { const data = JSON.stringify(report, null, 2).replaceAll(base.replaceAll("\\", "\\\\"), "<isolated-root>").replaceAll(base, "<isolated-root>"); if (Buffer.byteLength(data) > 500_000) throw new Error("Report capacity reached"); writeFileSync(output, data + "\n"); }
 function inventory() {
-  let files = 0, bytes = 0;
-  const visit = dir => { for (const item of readdirSync(dir)) { const p = join(dir, item), st = lstatSync(p); if (st.isSymbolicLink()) { files++; bytes += st.size; } else if (st.isDirectory()) visit(p); else { files++; bytes += st.size; } } };
-  visit(base); for (const entry of ownedNativeEntries) { const st = lstatSync(entry); if (st.isSymbolicLink()) { files++; bytes += st.size; } else visit(entry); } if (files >= 500 || bytes >= 20_000_000) throw new Error("New-user test capacity reached; inspect before continuing");
-  return { files, bytes, limits: { files: 500, bytes: 20_000_000, sourceAmplification: 100 } };
+  let files = 0, bytes = 0, externalRuntimeHardLinks = 0, aliasedLogicalBytes = 0;
+  const runtime = statSync(codex), largest = [];
+  const visit = dir => { for (const item of readdirSync(dir)) {
+    const p = join(dir, item), st = lstatSync(p);
+    if (st.isSymbolicLink()) { files++; bytes += st.size; }
+    else if (st.isDirectory()) visit(p);
+    else {
+      files++;
+      if (st.nlink > 1 && st.dev === runtime.dev && st.ino === runtime.ino) { externalRuntimeHardLinks++; aliasedLogicalBytes += st.size; }
+      else { bytes += st.size; largest.push({path:p.replace(base,"<isolated-root>"),bytes:st.size}); }
+    }
+  } };
+  visit(base);
+  for (const entry of ownedNativeEntries) { const st = lstatSync(entry); if (st.isSymbolicLink()) { files++; bytes += st.size; } else visit(entry); }
+  largest.sort((a,b)=>b.bytes-a.bytes);
+  const measured = {files,bytes,externalRuntimeHardLinks,aliasedLogicalBytes,largest:largest.slice(0,8),limits:{files:500,bytes:20_000_000,sourceAmplification:100}};
+  report.inventory = measured;
+  if (files >= 500 || bytes >= 20_000_000) { report.capacityReached = true; save(); throw new Error("New-user test capacity reached: " + JSON.stringify(measured)); }
+  return measured;
 }
+
 function envFor(home) {
   const env = { PATH: process.env.PATH, HOME: home, USERPROFILE: home, CODEX_HOME: join(home, ".codex"), APPDATA: join(home, "AppData/Roaming"), LOCALAPPDATA: join(home, "AppData/Local"), TEMP: join(home, "tmp"), TMP: join(home, "tmp"), TMPDIR: join(home, "tmp"), LANG: "en_US.UTF-8", PYTHONUTF8: "1" };
   for (const k of ["SystemRoot", "WINDIR", "COMSPEC", "PATHEXT"]) if (process.env[k]) env[k] = process.env[k];
@@ -167,7 +183,7 @@ try {
 } catch (error) { report.status = "failed"; report.error = error.message.replaceAll(base, "<isolated-root>"); save(); console.error(report.error); process.exitCode = 1; }
 finally {
   for (const entry of [...ownedNativeEntries]) { try { removeOwnedEntry(entry); } catch(error) { report.entryCleanup = error.code; } }
-  try { rmSync(base, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 }); report.temporaryDisposition = "context-owned tree removed"; }
+  try { if(report.capacityReached) report.temporaryDisposition = "capacity stop; context-owned tree retained for inventory"; else { rmSync(base, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 }); report.temporaryDisposition = "context-owned tree removed"; } }
   catch(error) { report.temporaryDisposition = "context-owned CI tree retained because locked: " + error.code; }
   save();
 }
