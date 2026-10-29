@@ -4,8 +4,8 @@ import { spawn, spawnSync } from "node:child_process";
 import { createServer } from "node:http";
 import { createHash } from "node:crypto";
 import { createInterface } from "node:readline";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, readdirSync, lstatSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
-import { tmpdir, platform, release } from "node:os";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, readdirSync, lstatSync, statSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import { tmpdir, homedir, platform, release } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -16,6 +16,13 @@ for (let i = 2; i < process.argv.length; i += 2) {
 }
 const source = resolve(options.get("--source") || "."), codex = resolve(options.get("--codex") || ""), output = resolve(options.get("--out") || "");
 if (!options.has("--codex") || !options.has("--out") || existsSync(output) || !existsSync(dirname(output))) throw new Error("Choose an existing Codex executable and a new report path");
+const nativeHome = homedir(), ownedNativeEntries = new Set();
+if (process.platform === "win32" && process.env.GITHUB_ACTIONS !== "true") throw new Error("Windows isolation uses a disposable GitHub runner account; this script will not modify a real user Skill registry");
+function removeOwnedEntry(entry) {
+  if (!ownedNativeEntries.has(entry)) throw new Error("Not a context-owned CI entry");
+  rmSync(entry, { recursive: !lstatSync(entry).isSymbolicLink(), force: true, maxRetries: 5, retryDelay: 200 });
+  ownedNativeEntries.delete(entry);
+}
 const base = realpathSync(mkdtempSync(join(tmpdir(), "community codex ")));
 const report = { schemaVersion: 1, platform: platform(), release: release(), node: process.version, status: "running", cases: [], realModelVerified: false, credentialsUsed: false, fixture: "scripted local Responses protocol; not LLM inference", communityRequests: 0 };
 const hash = data => createHash("sha256").update(data).digest("hex");
@@ -23,7 +30,7 @@ function save() { const data = JSON.stringify(report, null, 2).replaceAll(base.r
 function inventory() {
   let files = 0, bytes = 0;
   const visit = dir => { for (const item of readdirSync(dir)) { const p = join(dir, item), st = lstatSync(p); if (st.isSymbolicLink()) { files++; bytes += st.size; } else if (st.isDirectory()) visit(p); else { files++; bytes += st.size; } } };
-  visit(base); if (files >= 500 || bytes >= 20_000_000) throw new Error("New-user test capacity reached; inspect before continuing");
+  visit(base); for (const entry of ownedNativeEntries) { const st = lstatSync(entry); if (st.isSymbolicLink()) { files++; bytes += st.size; } else visit(entry); } if (files >= 500 || bytes >= 20_000_000) throw new Error("New-user test capacity reached; inspect before continuing");
   return { files, bytes, limits: { files: 500, bytes: 20_000_000, sourceAmplification: 100 } };
 }
 function envFor(home) {
@@ -82,6 +89,7 @@ async function fixture(command, cwd, skillText) {
       try {
         const data = JSON.parse(body); state.requests++;
         const serialized = JSON.stringify(data.input);
+        state.toolOutputs = (data.input || []).filter(item => item.type === "function_call_output").map(item => typeof item.output === "string" ? item.output.slice(-2000) : JSON.stringify(item.output).slice(-2000));
         const texts = value => typeof value === "string" ? [value] : value && typeof value === "object" ? Object.values(value).flatMap(texts) : [];
         const instructionBody = skillText.replace(/^---[\s\S]*?---\s*/, "").replaceAll("\r\n", "\n").trim();
         state.instructionInjected ||= texts(data.input).some(text => text.replaceAll("\r\n", "\n").includes(instructionBody));
@@ -90,7 +98,7 @@ async function fixture(command, cwd, skillText) {
           const tool = data.tools.find(t => ["exec_command", "shell_command", "shell"].includes(t.name));
           if (!tool || !state.instructionInjected) throw new Error("Expected a real injected skill and Codex shell tool");
           state.toolName = tool.name;
-          const args = tool.name === "exec_command" ? { cmd: command, workdir: cwd, yield_time_ms: 1000, max_output_tokens: 2500 } : tool.name === "shell_command" ? { command, workdir: cwd, timeout_ms: 20_000 } : { command: process.platform === "win32" ? ["powershell", "-NoProfile", "-Command", command] : ["/bin/bash", "-c", command], workdir: cwd, timeout_ms: 20_000 };
+          const args = tool.name === "exec_command" ? { cmd: command, workdir: cwd, yield_time_ms: 10000, max_output_tokens: 2500 } : tool.name === "shell_command" ? { command, workdir: cwd, timeout_ms: 20_000 } : { command: process.platform === "win32" ? ["powershell", "-NoProfile", "-Command", command] : ["/bin/bash", "-c", command], workdir: cwd, timeout_ms: 20_000 };
           sse(response, [{ type: "function_call", id: "fixture_function_1", call_id: "fixture_call_1", name: tool.name, arguments: JSON.stringify(args) }], state.requests);
         } else {
           state.functionOutputObserved ||= serialized.includes("ready") && serialized.includes("networkRequests");
@@ -103,21 +111,23 @@ async function fixture(command, cwd, skillText) {
   return { state, url: "http://127.0.0.1:" + server.address().port + "/v1", close: () => new Promise(r => server.close(r)) };
 }
 async function checkCase(kind) {
-  const home = join(base, kind); mkdirSync(home); const env = envFor(home), cwd = join(home, "unrelated project"), skills = join(home, ".agents/skills"); mkdirSync(cwd); mkdirSync(skills, { recursive: true });
+  const home = join(base, kind); mkdirSync(home); const env = envFor(home), cwd = join(home, "unrelated project"), skills = join(process.platform === "win32" ? nativeHome : home, ".agents/skills"); mkdirSync(cwd); mkdirSync(skills, { recursive: true });
   const installed = join(skills, "community-signal-analyst");
+  try { lstatSync(installed); throw new Error("Existing user Skill entry preserved; use a fresh CI account"); } catch(error) { if (error.code !== "ENOENT") throw error; }
+  if (process.platform === "win32") ownedNativeEntries.add(installed);
   if (kind === "compiled") {
     const extraction = 'import sys,zipfile,pathlib\nz=zipfile.ZipFile(sys.argv[1]); entries=z.infolist(); assert len(entries)<200 and sum(x.file_size for x in entries)<2044210; assert all(not pathlib.Path(x.filename).is_absolute() and ".." not in pathlib.Path(x.filename).parts for x in entries); z.extractall(sys.argv[2])';
     const child = spawnSync(process.execPath, [join(source, "scripts/run-python.mjs"), "-c", extraction, resolve(options.get("--bundle") || join(source, "distribution/community-signal-analyst.zip")), skills], { encoding: "utf8", timeout: 20_000 }); if (child.status !== 0) throw new Error(child.stderr);
   } else symlinkSync(source, installed, process.platform === "win32" ? "junction" : "dir");
   const entry = join(installed, "SKILL.md"), skillText = readFileSync(entry, "utf8");
-  const result = { kind, sourceRegistration: kind === "source" ? (process.platform === "win32" ? "junction" : "symlink") : "complete compiled folder", cwdUnrelatedToSkill: true, skillSha256: hash(skillText) }; report.cases.push(result); save();
+  const result = { kind, sourceRegistration: kind === "source" ? (process.platform === "win32" ? "junction" : "symlink") : "complete compiled folder", cwdUnrelatedToSkill: true, discoveryHome: process.platform === "win32" ? "disposable native Windows CI account" : "isolated HOME", skillSha256: hash(skillText) }; report.cases.push(result); save();
   let rpc = startServer(cwd, env);
   try {
     await initialize(rpc);
     const account = await rpc.request("account/read", { refreshToken: false }); if (account.account !== null) throw new Error("Expected signed-out new user"); result.account = "signed_out";
     const catalog = await rpc.request("skills/list", { cwds: [cwd], forceReload: true });
     const matches = catalog.data.flatMap(x => x.skills).filter(x => x.name === "community-signal-analyst");
-    if (matches.length !== 1 || matches[0].enabled !== true || matches[0].scope !== "user" || realpathSync(matches[0].path) !== realpathSync(entry)) throw new Error("Normal user Skill discovery failed: " + JSON.stringify(catalog));
+    if (matches.length !== 1 || matches[0].enabled !== true || matches[0].scope !== "user" || (statSync(matches[0].path).ino !== statSync(entry).ino || statSync(matches[0].path).dev !== statSync(entry).dev)) throw new Error("Normal user Skill discovery failed: " + JSON.stringify(catalog));
     result.discovery = { status: "passed", name: matches[0].name, enabled: matches[0].enabled, scope: matches[0].scope, errors: catalog.data.flatMap(x => x.errors || []) };
   } finally { await rpc.close(); }
   const privateDir = join(home, ".community-signal-analyst"); mkdirSync(privateDir, { mode: 0o700 }); const profile = join(privateDir, "profile.json"), action = join(cwd, "fixture-action.mjs"), guard = join(cwd, "network-guard.mjs");
@@ -141,6 +151,7 @@ async function checkCase(kind) {
     result.credentialsWritten = false;
   } finally { await rpc.close(); await backend.close(); }
   report.inventory = inventory(); save();
+  if (process.platform === "win32") removeOwnedEntry(installed);
 }
 try {
   const version = spawnSync(codex, ["--version"], { encoding: "utf8", timeout: 10_000 }); if (version.status !== 0) throw new Error(version.stderr); report.codexVersion = version.stdout.trim();
@@ -148,4 +159,9 @@ try {
   report.status = "discovery_and_scripted_protocol_passed"; report.realModelStatus = "not_verified_user_selected_no_credentials";
   save(); console.log(JSON.stringify({ status: report.status, codex: report.codexVersion, cases: report.cases.map(x => ({ kind: x.kind, discovery: x.discovery.status, fixture: x.protocolFixture.status })), realModelVerified: false }));
 } catch (error) { report.status = "failed"; report.error = error.message.replaceAll(base, "<isolated-root>"); save(); console.error(report.error); process.exitCode = 1; }
-finally { rmSync(base, { recursive: true, force: true }); }
+finally {
+  for (const entry of [...ownedNativeEntries]) { try { removeOwnedEntry(entry); } catch(error) { report.entryCleanup = error.code; } }
+  try { rmSync(base, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 }); report.temporaryDisposition = "context-owned tree removed"; }
+  catch(error) { report.temporaryDisposition = "context-owned CI tree retained because locked: " + error.code; }
+  save();
+}
