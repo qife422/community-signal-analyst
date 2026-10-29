@@ -24,7 +24,7 @@ function removeOwnedEntry(entry) {
   ownedNativeEntries.delete(entry);
 }
 const base = realpathSync(mkdtempSync(join(process.env.RUNNER_TEMP || tmpdir(), "community codex ")));
-const report = { schemaVersion: 1, platform: platform(), release: release(), node: process.version, status: "running", cases: [], realModelVerified: false, credentialsUsed: false, fixture: "scripted local Responses protocol; not LLM inference", communityRequests: 0 };
+const report = { schemaVersion: 1, platform: platform(), release: release(), node: process.version, status: "running", cases: [], realModelVerified: false, credentialsUsed: false, featuresDisabled: ["apps","plugins","remote_plugin"], fixture: "scripted local Responses protocol; not LLM inference", communityRequests: 0 };
 const hash = data => createHash("sha256").update(data).digest("hex");
 function save() { const data = JSON.stringify(report, null, 2).replaceAll(base.replaceAll("\\", "\\\\"), "<isolated-root>").replaceAll(base, "<isolated-root>"); if (Buffer.byteLength(data) > 500_000) throw new Error("Report capacity reached"); writeFileSync(output, data + "\n"); }
 function inventory() {
@@ -57,7 +57,7 @@ function envFor(home) {
   return env;
 }
 function startServer(cwd, env) {
-  const child = spawn(codex, ["app-server", "--listen", "stdio://"], { cwd, env, stdio: ["pipe", "pipe", "pipe"] });
+  const child = spawn(codex, ["app-server", "--disable", "apps", "--disable", "plugins", "--disable", "remote_plugin", "--listen", "stdio://"], { cwd, env, stdio: ["pipe", "pipe", "pipe"] });
   let next = 0, stderr = "", closed = false;
   const requests = new Map(), events = [];
   child.stderr.setEncoding("utf8"); child.stderr.on("data", s => { stderr = (stderr + s).slice(-3000); });
@@ -158,12 +158,14 @@ async function checkCase(kind) {
     if(setup.status !== 0) throw new Error("Native Windows sandbox setup failed: " + (setup.stderr || setup.stdout).slice(-2500));
   }
   const backend = await fixture(commands, cwd, skillText);
-  writeFileSync(join(env.CODEX_HOME, "config.toml"), `cli_auth_credentials_store = "ephemeral"\nmodel_provider = "fixture"\nmodel = "fixture-codex-skill"\n[model_providers.fixture]\nname = "Local scripted protocol fixture (not inference)"\nbase_url = ${JSON.stringify(backend.url)}\nwire_api = "responses"\nrequires_openai_auth = false\n${process.platform === "win32" ? '[windows]\nsandbox = "elevated"\n' : ""}`);
+  const readRoots = [...new Set([installed,realpathSync(installed),dirname(process.execPath)])];
+  const permissionConfig = '\n[permissions.skill-test]\nextends = ":workspace"\n[permissions.skill-test.filesystem]\n' + readRoots.map(path => JSON.stringify(path) + ' = "read"').join('\n') + '\n' + JSON.stringify(privateDir) + ' = "write"\n[permissions.skill-test.network]\nenabled = false\n';
+  writeFileSync(join(env.CODEX_HOME, "config.toml"), `default_permissions = "skill-test"\ncli_auth_credentials_store = "ephemeral"\nmodel_provider = "fixture"\nmodel = "fixture-codex-skill"\n[model_providers.fixture]\nname = "Local scripted protocol fixture (not inference)"\nbase_url = ${JSON.stringify(backend.url)}\nwire_api = "responses"\nrequires_openai_auth = false\n${process.platform === "win32" ? '[windows]\nsandbox = "elevated"\n' : ""}${permissionConfig}`);
   rpc = startServer(cwd, env);
   try {
     await initialize(rpc);
-    const thread = await rpc.request("thread/start", { cwd, ephemeral: true, approvalPolicy: "never", sandbox: "workspace-write" });
-    await rpc.request("turn/start", { threadId: thread.thread.id, input: [{ type: "text", text: "$community-signal-analyst 初始化并检查我指定的临时profile；这是离线安装测试，不访问社区、不启用自动化。" }, { type: "skill", name: "community-signal-analyst", path: entry }], sandboxPolicy: { type: "workspaceWrite", writableRoots: [cwd, privateDir], networkAccess: false } });
+    const thread = await rpc.request("thread/start", { cwd, ephemeral: true, approvalPolicy: "never", permissions: "skill-test" });
+    await rpc.request("turn/start", { threadId: thread.thread.id, input: [{ type: "text", text: "$community-signal-analyst 初始化并检查我指定的临时profile；这是离线安装测试，不访问社区、不启用自动化。" }, { type: "skill", name: "community-signal-analyst", path: entry }], permissions: "skill-test" });
     await waitTurn(rpc);
     const commands = rpc.events.filter(e => e.method === "item/completed" && e.params.item.type === "commandExecution").map(e => ({ status: e.params.item.status, exitCode: e.params.item.exitCode, command: e.params.item.command, cwd: e.params.item.cwd, output: e.params.item.aggregatedOutput }));
     if (backend.state.error || !backend.state.instructionInjected || !backend.state.functionOutputObserved || commands.length !== 2 || !commands.every(x => x.exitCode === 0)) throw new Error("Incomplete fixture execution: " + JSON.stringify({ state: backend.state, commands, profileExists: existsSync(profile), stderr: rpc.stderr() }));
