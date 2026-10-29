@@ -158,8 +158,8 @@ async function checkCase(kind) {
     if(setup.status !== 0) throw new Error("Native Windows sandbox setup failed: " + (setup.stderr || setup.stdout).slice(-2500));
   }
   const backend = await fixture(commands, cwd, skillText);
-  const readRoots = [...new Set([installed,realpathSync(installed),dirname(process.execPath)])];
-  const permissionConfig = '\n[permissions.skill-test]\nextends = ":workspace"\n[permissions.skill-test.filesystem]\n' + readRoots.map(path => JSON.stringify(path) + ' = "read"').join('\n') + '\n' + JSON.stringify(privateDir) + ' = "write"\n[permissions.skill-test.network]\nenabled = false\n';
+  const readRoots = [...new Set([installed,realpathSync(installed),dirname(process.execPath),...["/System/Library/OpenSSL","/etc/ssl","/usr/lib/ssl"].filter(existsSync)])];
+  const permissionConfig = '\n[permissions.skill-test]\nextends = ":workspace"\n[permissions.skill-test.filesystem]\n":root" = "deny"\n":minimal" = "read"\n' + readRoots.map(path => JSON.stringify(path) + ' = "read"').join('\n') + '\n' + JSON.stringify(privateDir) + ' = "write"\n[permissions.skill-test.network]\nenabled = false\n';
   writeFileSync(join(env.CODEX_HOME, "config.toml"), `default_permissions = "skill-test"\ncli_auth_credentials_store = "ephemeral"\nmodel_provider = "fixture"\nmodel = "fixture-codex-skill"\n[model_providers.fixture]\nname = "Local scripted protocol fixture (not inference)"\nbase_url = ${JSON.stringify(backend.url)}\nwire_api = "responses"\nrequires_openai_auth = false\n${process.platform === "win32" ? '[windows]\nsandbox = "elevated"\n' : ""}${permissionConfig}`);
   rpc = startServer(cwd, env);
   try {
