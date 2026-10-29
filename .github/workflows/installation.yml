@@ -2,7 +2,7 @@ name: Native installation
 on:
   push:
     branches: [main, codex/cross-platform-install, codex/codex-skill-validation]
-    paths-ignore: ['CHANGELOG.md', 'backup-manifest.json', 'references/cross-platform-validation.md', 'references/delivery-status.json']
+    paths-ignore: ['CHANGELOG.md', 'backup-manifest.json', 'references/cross-platform-validation.md', 'references/codex-validation.md', 'references/delivery-status.json']
   workflow_dispatch:
 permissions:
   contents: read

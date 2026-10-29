@@ -50,7 +50,7 @@ function inventory() {
 }
 
 function envFor(home) {
-  const env = { PATH: process.env.PATH, HOME: home, USERPROFILE: home, CODEX_HOME: join(home, ".codex"), APPDATA: join(home, "AppData/Roaming"), LOCALAPPDATA: join(home, "AppData/Local"), TEMP: join(home, "tmp"), TMP: join(home, "tmp"), TMPDIR: join(home, "tmp"), LANG: "en_US.UTF-8", PYTHONUTF8: "1" };
+  const env = { PATH: process.env.PATH, HOME: process.platform === "win32" ? nativeHome : home, USERPROFILE: process.platform === "win32" ? nativeHome : home, CODEX_HOME: process.platform === "win32" ? join(base,".codex-windows-ci") : join(home, ".codex"), APPDATA: join(home, "AppData/Roaming"), LOCALAPPDATA: join(home, "AppData/Local"), TEMP: join(home, "tmp"), TMP: join(home, "tmp"), TMPDIR: join(home, "tmp"), LANG: "en_US.UTF-8", PYTHONUTF8: "1" };
   for (const k of ["SystemRoot", "WINDIR", "COMSPEC", "PATHEXT"]) if (process.env[k]) env[k] = process.env[k];
   for (const p of [env.CODEX_HOME, env.APPDATA, env.LOCALAPPDATA, env.TEMP]) mkdirSync(p, { recursive: true });
   writeFileSync(join(env.CODEX_HOME, "config.toml"), 'cli_auth_credentials_store = "ephemeral"\n');
@@ -136,8 +136,9 @@ async function checkCase(kind) {
     const extraction = 'import sys,zipfile,pathlib\nz=zipfile.ZipFile(sys.argv[1]); entries=z.infolist(); assert len(entries)<200 and sum(x.file_size for x in entries)<2044210; assert all(not pathlib.Path(x.filename).is_absolute() and ".." not in pathlib.Path(x.filename).parts for x in entries); z.extractall(sys.argv[2])';
     const child = spawnSync(process.execPath, [join(source, "scripts/run-python.mjs"), "-c", extraction, resolve(options.get("--bundle") || join(source, "distribution/community-signal-analyst.zip")), skills], { encoding: "utf8", timeout: 20_000 }); if (child.status !== 0) throw new Error(child.stderr);
   } else symlinkSync(source, installed, process.platform === "win32" ? "junction" : "dir");
+  const runtimeSkillRoot = realpathSync(installed);
   const entry = join(installed, "SKILL.md"), skillText = readFileSync(entry, "utf8");
-  const result = { kind, sourceRegistration: kind === "source" ? (process.platform === "win32" ? "junction" : "symlink") : "complete compiled folder", cwdUnrelatedToSkill: true, discoveryHome: process.platform === "win32" ? "disposable native Windows CI account" : "isolated HOME", skillSha256: hash(skillText) }; report.cases.push(result); save();
+  const result = { kind, sourceRegistration: kind === "source" ? (process.platform === "win32" ? "junction" : "symlink") : "complete compiled folder", discoveryCwdUnrelatedToSkill: true, executionCwd: "canonical Skill directory as required by README", discoveryHome: process.platform === "win32" ? "disposable native Windows CI account" : "isolated HOME", skillSha256: hash(skillText) }; report.cases.push(result); save();
   let rpc = startServer(cwd, env);
   try {
     await initialize(rpc);
@@ -150,16 +151,16 @@ async function checkCase(kind) {
   const privateDir = join(home, ".community-signal-analyst"); mkdirSync(privateDir, { mode: 0o700 }); const profile = join(privateDir, "profile.json"), guard = join(cwd, "network-guard.mjs");
   writeFileSync(guard, 'globalThis.fetch=()=>{throw new Error("community network forbidden")};');
   const quote = value => "'" + value.replaceAll("'", process.platform === "win32" ? "''" : "'\\''") + "'";
-  const commands = [[join(installed, "dist/src/profileCli.js"), "init", "--file", profile], [join(installed, "dist/src/doctorCli.js"), "--profile", profile]].map(args => (process.platform === "win32" ? "& " : "") + [process.execPath, "--import", pathToFileURL(guard).href, ...args].map(quote).join(" "));
+  const commands = [[join(runtimeSkillRoot, "dist/src/profileCli.js"), "init", "--file", profile], [join(runtimeSkillRoot, "dist/src/doctorCli.js"), "--profile", profile]].map(args => (process.platform === "win32" ? "& " : "") + [process.execPath, "--import", pathToFileURL(guard).href, ...args].map(quote).join(" "));
   if (process.platform === "win32") {
     const identity = process.env.USERDOMAIN + "\\" + process.env.USERNAME;
     const setup = spawnSync(codex, ["sandbox", "setup", "--elevated", "--user", identity, "--codex-home", env.CODEX_HOME], {cwd, env, encoding:"utf8", timeout:60_000});
     result.windowsSandbox = {mode:"elevated",setupExitCode:setup.status};
     if(setup.status !== 0) throw new Error("Native Windows sandbox setup failed: " + (setup.stderr || setup.stdout).slice(-2500));
   }
-  const backend = await fixture(commands, cwd, skillText);
+  const backend = await fixture(commands, runtimeSkillRoot, skillText);
   const readRoots = [...new Set([installed,realpathSync(installed),dirname(process.execPath),...["/System/Library/OpenSSL","/etc/ssl","/usr/lib/ssl"].filter(existsSync)])];
-  const permissionConfig = '\n[permissions.skill-test]\nextends = ":workspace"\n[permissions.skill-test.filesystem]\n":root" = "deny"\n":minimal" = "read"\n' + readRoots.map(path => JSON.stringify(path) + ' = "read"').join('\n') + '\n' + JSON.stringify(privateDir) + ' = "write"\n[permissions.skill-test.network]\nenabled = false\n';
+  const permissionConfig = '\n[permissions.skill-test]\nextends = ":workspace"\n[permissions.skill-test.filesystem]\n":root" = "read"\n":minimal" = "read"\n' + readRoots.map(path => JSON.stringify(path) + ' = "read"').join('\n') + '\n' + JSON.stringify(privateDir) + ' = "write"\n[permissions.skill-test.network]\nenabled = false\n';
   writeFileSync(join(env.CODEX_HOME, "config.toml"), `default_permissions = "skill-test"\ncli_auth_credentials_store = "ephemeral"\nmodel_provider = "fixture"\nmodel = "fixture-codex-skill"\n[model_providers.fixture]\nname = "Local scripted protocol fixture (not inference)"\nbase_url = ${JSON.stringify(backend.url)}\nwire_api = "responses"\nrequires_openai_auth = false\n${process.platform === "win32" ? '[windows]\nsandbox = "elevated"\n' : ""}${permissionConfig}`);
   rpc = startServer(cwd, env);
   try {

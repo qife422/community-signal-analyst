@@ -1,6 +1,10 @@
 # Community Signal Analyst
 
-社区信号分析器，版本1.15.2。按需研究公开社区讨论，或整理使用者自己绑定且有权读取的 Whop 频道。
+社区信号分析器，版本1.15.3。按需研究公开社区讨论，或整理使用者自己绑定且有权读取的 Whop 频道。
+
+## 命令位置
+
+以本SKILL.md所在目录为安装根；symlink或Windows junction解析到实际目标。运行npm/Node命令时使用该实际目录作为工作目录，不在调用者的其他项目里运行本Skill的npm脚本。Windows使用npm.cmd。包已有dist，无需npm ci/build；profile使用包外的用户自选绝对路径。发现Skill不等于沙箱已允许执行；路径被拒绝时说明具体缺项并按Codex权限流程处理，不声称调用成功。
 
 ## 配置与规则
 

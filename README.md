@@ -2,7 +2,7 @@
 
 社区信号分析器：把公开社区讨论、项目和评论，以及自己有权访问的 Whop 频道，整理成带出处、筛选依据和限制说明的研究报告。
 
-**版本：1.15.2 · Node.js 22+ · 公开展示与源码备份**
+**版本：1.15.3 · Node.js 22+ · 公开展示与源码备份**
 
 当前版本可用于社区研究、个人关注规则与 Whop 按需整理。后续功能继续迭代，实际改动与验证结果见 [更新记录](CHANGELOG.md)。
 
@@ -84,7 +84,7 @@ Discord/Reddit 暂缓；Whop OAuth/API 保留实验代码，成员 API 读取未
 
 **此方式无需 `npm ci` 或 `npm run build`**，包内运行命令直接使用已编译文件。源码、参考资料和编译文件须保持相对布局。
 
-编译包版本1.15.2，SHA-256：`9b0b96277d9816047ce4ef0c881851658e22ff6b577783ca2d27881034e29d6d`。macOS可用 `shasum -a 256 /实际下载路径/community-signal-analyst.zip` 核对下载内容。
+编译包版本1.15.3，SHA-256：`9acb0e7d4e21783b4fd6a7f63cf607925b1ed26bdf7482b2f6754be0f9bab9f6`。macOS可用 `shasum -a 256 /实际下载路径/community-signal-analyst.zip` 核对下载内容。
 
 ### B. 开发者：克隆源码并构建
 
@@ -115,6 +115,47 @@ fi
 上述检查遇到同名目录/链接时保留原入口；不要加覆盖参数。注册后仍在源码根目录运行后续命令。若通过GitHub **Code → Download ZIP** 下载源码，先解压、进入含package.json的根目录，再执行 `npm ci`、`npm run build` 和同样的注册步骤。
 
 Codex用户级发现目录为 `~/.agents/skills`，支持符号链接；未出现时重启Codex。安装位置与发现行为见 [OpenAI官方说明](https://learn.chatgpt.com/docs/build-skills#where-to-save-skills)。
+
+## Codex 的安装、发现与首次调用
+
+已经通过桌面应用使用Codex的使用者可以先检查其中的Skill列表；本轮自动验收针对原生Codex CLI/App Server，不是桌面或IDE界面自动化。只运行本项目CLI不需要安装Codex。
+
+如需安装可复现版本的Codex CLI，本轮验证版本为 **0.165.0**。在macOS/Linux终端执行：
+
+```bash
+npm install -g @openai/codex@0.165.0
+codex --version
+codex login
+codex
+```
+
+Windows通过npm安装时，在PowerShell使用 `.cmd` 入口，避免把npm生成的 `.ps1` 包装器当成原生程序：
+
+```powershell
+npm.cmd install -g @openai/codex@0.165.0
+if ($LASTEXITCODE -ne 0) { throw "Codex install failed" }
+codex.cmd --version
+codex.cmd login
+codex.cmd
+```
+
+若Codex来自官方独立可执行文件，则使用该 `codex.exe`。已有Codex无需重复安装或退出原账号。`codex login` 使用自己的账号登录；API方式使用自己的凭据与额度，不能把登录文件/Key写入Skill、profile或Git。本项目不附带账号或额度。完整登录方式见 [OpenAI官方认证说明](https://learn.chatgpt.com/docs/auth)。
+
+**Linux/WSL的沙箱前提：** Codex执行命令还需要系统支持。Ubuntu/Debian先执行 `sudo apt install bubblewrap`，Fedora执行 `sudo dnf install bubblewrap`。Ubuntu24.04若仍报user namespace/AppArmor错误，按 [官方沙箱前提](https://learn.chatgpt.com/docs/sandboxing#prerequisites)安装并加载 `bwrap` 的AppArmor配置。Docker/受限容器还可能不允许namespace创建，要按实际宿主策略处理。该前提属于Codex运行环境，单独运行本项目Node CLI不依赖它。
+
+**Windows的沙箱前提：** 首次使用Codex时完成它的原生沙箱设置。若看到 `blocked by policy` 或 `native MXC is unavailable`，先在Codex中用 `/permissions` 检查当前模式，按 [官方Windows沙箱指南](https://learn.chatgpt.com/docs/windows/windows-sandbox)核对MXC兼容性或完成管理员批准的elevated设置。组织设备遵守既有策略；Skill的绑定与配置不能授予系统权限。
+
+完成上方安装方式A或B后，可以从无关项目中检查Skill发现。首次调用时让Codex以Skill的实际安装/源码根目录作为命令工作目录；symlink/junction应解析到真实目标。自己的profile仍放在安装目录外。输入 `/skills` 或输入 `$` 选择 `community-signal-analyst`，再发下面这段话（这是发给Codex的文本，不是在系统shell直接执行的命令）：
+
+```text
+$community-signal-analyst 仅做离线安装检查：在我的用户目录 .community-signal-analyst 中初始化独立profile并运行doctor；已有配置时不要覆盖，改为检查。请实际运行并说明结果，不访问社区、不启用自动化。
+```
+
+预期生成自己的profile、空scope和reports目录，doctor显示本地ready；首次digest前没有Whop去重state。ready不验证在线来源权限。正常模型调用要求自己的登录与可用额度；只在列表中发现Skill不代表已经成功调用模型。
+
+发现不到时依次核对：`SKILL.md`层级、源码链接目标、Codex版本和是否已禁用该Skill，再重启Codex。在Windows使用该Windows账号的真实用户目录；仅改HOME/USERPROFILE不等于切换系统账号。Windows原生与WSL有各自的用户目录，应在实际使用的环境中安装。官方说明见 [Skill发现目录与显式调用](https://learn.chatgpt.com/docs/build-skills)。
+
+无凭据开发验收会使用明确标注的本地Responses协议夹具，检查真实Codex是否发现两种安装入口、加载完整指令、执行离线init/doctor；**夹具不做推理，不能证明模型会自主选Skill或完成研究**。原生系统结果与重放方法见 [Codex发现与执行验证](references/codex-validation.md)。本轮按用户选择不提供模型凭据，真实模型调用继续未验证。
 
 ## 第二步：初始化自己的配置
 
@@ -346,7 +387,7 @@ npm run test:installation -- --out "$HOME/.community-signal-analyst/reports/inst
 
 ## 验证与证据
 
-1.15.2已在原生Windows/Linux运行器与本机macOS完成公开GitHub重新克隆、编译包下载和16步骤验收：干净npm ci/audit零告警、类型检查、构建、211项应用测试、4项安装脚本回归、源码重新打包和编译Whop/重筛通过。Windows使用PowerShell7与junction注册；完整环境、CI来源和初期失败修复见 [跨平台安装验证](references/cross-platform-validation.md)。此前真实HN查询与Codex本地发现结果保留于 [安装实测](references/install-validation.md)；本轮没有增加付费/会员请求。
+1.15.2已在原生Windows/Linux运行器与本机macOS完成公开GitHub重新克隆、编译包下载和16步骤验收：干净npm ci/audit零告警、类型检查、构建、211项应用测试、4项安装脚本回归、源码重新打包和编译Whop/重筛通过。Codex发现与无凭据执行链结果另见 [Codex专项验证](references/codex-validation.md)。Windows使用PowerShell7与junction注册；完整环境、CI来源和初期失败修复见 [跨平台安装验证](references/cross-platform-validation.md)。此前真实HN查询与Codex本地发现结果保留于 [安装实测](references/install-validation.md)；本轮没有增加付费/会员请求。
 
 本轮备份前验证结果记录在 [backup-manifest.json](backup-manifest.json)。源码包含211项回归测试；恢复验收会核对实际 GitHub 提交与文件内容。集成回归使用明确标注的 [合成夹具](tests/fixtures/README.md)，没有真实频道正文或授权数据；测试不是线上全覆盖证明。
 
