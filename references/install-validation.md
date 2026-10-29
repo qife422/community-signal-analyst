@@ -1,6 +1,6 @@
 # 新用户安装实测
 
-当前跨平台结果见 [1.15.2 Windows/Linux安装验证](cross-platform-validation.md)。以下保留此前每轮实际结果。
+当前增量见 [1.15.3 Codex专项验证](codex-validation.md)；此前跨平台结果见 [1.15.2 Windows/Linux安装验证](cross-platform-validation.md)。以下保留此前每轮实际结果。
 
 ## 1.15.1依赖与脚本修复（2026-10-28）
 

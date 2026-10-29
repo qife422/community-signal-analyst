@@ -2,6 +2,15 @@
 
 按时间倒序记录实际交付。功能版本与 package.json 一致；纯文档/仓库设置更新不改变功能版本。后续每次更新记录新增/修复、实际验证和已知限制，并随对应提交推送。
 
+## 1.15.3 · 2026-10-28
+
+- 补齐Windows/Linux的真实Codex0.165.0发现验收：编译包及源码symlink/junction在无关cwd中均为user、enabled=true，完整Skill正文加载通过。
+- 以明确标注的本地Responses协议夹具驱动Codex执行init/doctor，两种安装在两种原生系统均真实生成独立零绑定profile并返回ready；没有模型推理或社区读取。按用户选择暂不提供模型凭据，真实模型自主调用仍未验证。
+- Skill入口/包内onboarding明确使用解析后的实际安装目录作为命令workdir、Windows用npm.cmd，修正跨工程调用可能使用错误目录的问题；重新生成1.15.3分发ZIP及SHA-256。
+- README补齐Codex CLI安装/登录、/skills发现、首次调用、Windows真实用户目录、Linux bubblewrap/AppArmor与Windows原生沙箱前提。
+- 新增固定版本/官方指纹的原生Codex运行时准备与CI执行链验证；修复测试的Windows隔离路径、原生沙箱配置、完整正文校验和无关插件后台下载问题，保留容量门槛及旧失败记录。
+- 两种原生系统的公开GitHub16步骤安装、211项应用测试、4项脚本回归、审计0告警、打包及编译Whop/重筛再次通过。应用TypeScript逻辑与依赖版本不变；[原生CI](https://github.com/qife422/community-signal-analyst/actions/runs/40819707660)、[详细验收](references/codex-validation.md)。
+
 ## 1.15.2 · 2026-10-28
 
 - 完成原生Ubuntu24.04与Windows Server2025/PowerShell7验收，另复验macOS；各自从公开GitHub重新克隆源码、下载ZIP并完成16步骤，全新npm ci/audit零告警、211项应用测试和4项脚本回归通过。

@@ -99,7 +99,7 @@ npm ci
 npm run build
 ```
 
-**1.15.2跨平台已验证（2026-10-28）：** 原生Ubuntu24.04、Windows Server2025/PowerShell7以及本机macOS，均从公开GitHub完成16步骤安装验收；各211项应用测试、4项脚本回归通过，`npm audit` 为0项告警。具体环境、修复和边界见 [跨平台安装验证](references/cross-platform-validation.md)。旧依赖告警记录见 [安装实测](references/install-validation.md)。
+**1.15.2历史跨平台结果（2026-10-28；1.15.3增量见下文）：** 原生Ubuntu24.04、Windows Server2025/PowerShell7以及本机macOS，均从公开GitHub完成16步骤安装验收；各211项应用测试、4项脚本回归通过，`npm audit` 为0项告警。具体环境、修复和边界见 [跨平台安装验证](references/cross-platform-validation.md)。旧依赖告警记录见 [安装实测](references/install-validation.md)。
 
 为让Codex在其他项目中也发现它，在**源码根目录**执行下面的软链接注册；链接指向唯一源码，不维护第二份：
 
@@ -139,7 +139,7 @@ codex.cmd login
 codex.cmd
 ```
 
-若Codex来自官方独立可执行文件，则使用该 `codex.exe`。已有Codex无需重复安装或退出原账号。`codex login` 使用自己的账号登录；API方式使用自己的凭据与额度，不能把登录文件/Key写入Skill、profile或Git。本项目不附带账号或额度。完整登录方式见 [OpenAI官方认证说明](https://learn.chatgpt.com/docs/auth)。
+上述npm全局安装需要当前账号有该npm目录的写权限；也可按 [官方CLI安装说明](https://learn.chatgpt.com/docs/codex/cli)使用用户级独立安装。CI采用固定版本的官方独立二进制。若Codex来自官方独立可执行文件，则使用该 `codex.exe`。已有Codex无需重复安装或退出原账号。`codex login` 使用自己的账号登录；API方式使用自己的凭据与额度，不能把登录文件/Key写入Skill、profile或Git。本项目不附带账号或额度。完整登录方式见 [OpenAI官方认证说明](https://learn.chatgpt.com/docs/auth)。
 
 **Linux/WSL的沙箱前提：** Codex执行命令还需要系统支持。Ubuntu/Debian先执行 `sudo apt install bubblewrap`，Fedora执行 `sudo dnf install bubblewrap`。Ubuntu24.04若仍报user namespace/AppArmor错误，按 [官方沙箱前提](https://learn.chatgpt.com/docs/sandboxing#prerequisites)安装并加载 `bwrap` 的AppArmor配置。Docker/受限容器还可能不允许namespace创建，要按实际宿主策略处理。该前提属于Codex运行环境，单独运行本项目Node CLI不依赖它。
 
@@ -386,6 +386,8 @@ npm run test:installation -- --out "$HOME/.community-signal-analyst/reports/inst
 更多恢复、重新绑定和后续推送步骤见 [RESTORE.md](RESTORE.md)。
 
 ## 验证与证据
+
+**1.15.3 Codex专项已验证：** 原生Windows/Linux的编译包和源码入口均可被真实Codex0.165.0发现、完整加载指令，并在本地协议夹具驱动下实际执行离线init/doctor。夹具不做模型推理；按用户选择，真实模型调用仍未验证。源码安装、211项应用测试、4项脚本回归、审计0告警与打包也再次通过。详细范围见 [Codex专项验证](references/codex-validation.md)。
 
 1.15.2已在原生Windows/Linux运行器与本机macOS完成公开GitHub重新克隆、编译包下载和16步骤验收：干净npm ci/audit零告警、类型检查、构建、211项应用测试、4项安装脚本回归、源码重新打包和编译Whop/重筛通过。Codex发现与无凭据执行链结果另见 [Codex专项验证](references/codex-validation.md)。Windows使用PowerShell7与junction注册；完整环境、CI来源和初期失败修复见 [跨平台安装验证](references/cross-platform-validation.md)。此前真实HN查询与Codex本地发现结果保留于 [安装实测](references/install-validation.md)；本轮没有增加付费/会员请求。
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "skill": "community-signal-analyst",
-  "version": "1.15.2",
+  "version": "1.15.3",
   "userLocalDate": "2026-10-13",
   "repository": "https://github.com/qife422/community-signal-analyst",
   "visibility": "public",
@@ -9,8 +9,8 @@
   "payload": [
     {
       "path": ".github/workflows/installation.yml",
-      "bytes": 1208,
-      "sha256": "016cf18bd73ec6d14846eb96e1dadfd890e20b8b3b6048c0a660772ae6500c6a"
+      "bytes": 3417,
+      "sha256": "e916127f2143d5c9f6a01aea73a4b7496fe4b46f84546622a5fbcbb9009306f9"
     },
     {
       "path": ".gitignore",
@@ -24,13 +24,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 6887,
-      "sha256": "02dde4ae1acccd825fca551c68f9c62c8767bd789bb6ba1a9f24b7f4074b7f90"
+      "bytes": 8303,
+      "sha256": "7f285ad1f09fc0b7d3d630b6f5a1a4069d86a4c83e7fbb168d69456d2edc7d82"
     },
     {
       "path": "README.md",
-      "bytes": 21371,
-      "sha256": "e483df737b21e78efb1f40a98a197728bfa2f322312671b6845a878e6dde44df"
+      "bytes": 26084,
+      "sha256": "73ebd92df7966df213fb03b1c119d135eef88f34b2dbd0b8d7cca0f14315c677"
     },
     {
       "path": "RESTORE.md",
@@ -39,8 +39,8 @@
     },
     {
       "path": "SKILL.md",
-      "bytes": 18125,
-      "sha256": "b3882cddfd5a5ec167c25bb5a658d08ff6beda8a5474095d8748e07781351e3a"
+      "bytes": 18858,
+      "sha256": "f28cd470abb062e9765086917e06ea178ff535385e1a2369fb863174a2d5870e"
     },
     {
       "path": "SPEC.md",
@@ -59,8 +59,8 @@
     },
     {
       "path": "distribution/community-signal-analyst.zip",
-      "bytes": 236859,
-      "sha256": "9b0b96277d9816047ce4ef0c881851658e22ff6b577783ca2d27881034e29d6d"
+      "bytes": 237345,
+      "sha256": "9acb0e7d4e21783b4fd6a7f63cf607925b1ed26bdf7482b2f6754be0f9bab9f6"
     },
     {
       "path": "mock-data/devto.mock.json",
@@ -80,12 +80,12 @@
     {
       "path": "package-lock.json",
       "bytes": 45835,
-      "sha256": "28caee25e07c58799add8919a631c4a09718543e07bf3b86846b9841f42d0a6f"
+      "sha256": "39a9f392fa4dd2be4794a61871191c2f2af635a0e975dde68579c3311d96380e"
     },
     {
       "path": "package.json",
-      "bytes": 1242,
-      "sha256": "376b222ca6c02beb2531b36b535e759f00fb870308e18a32f00642a42cef171b"
+      "bytes": 1292,
+      "sha256": "c1457e6e2a20002e50db64c55e6ffb90553fad80d8ba74b3156ea95cc0ac3a46"
     },
     {
       "path": "references/api-contract.md",
@@ -98,14 +98,19 @@
       "sha256": "217e6554b164d510bd28e36c04e9db96ed232551e65b88f18f3588c0d3f45aee"
     },
     {
+      "path": "references/codex-validation.md",
+      "bytes": 6530,
+      "sha256": "c730e8409aeb1a747c9317aeb506a293e6352207e48456bc580d93c14187cc2b"
+    },
+    {
       "path": "references/cross-platform-validation.md",
-      "bytes": 4336,
-      "sha256": "22a9a13cbb62040270e153c4f7ca51e69237606083084b9e37357a2294f10f3d"
+      "bytes": 4433,
+      "sha256": "fafc35e81095762ff2e6850e295c644e781418f6e14eeebc02fdacb5f027b8ea"
     },
     {
       "path": "references/delivery-status.json",
-      "bytes": 17669,
-      "sha256": "17e03ceea58cdca9de29243b9ffd3dc3eaec73713ccd167326cada2b9a14aa4d"
+      "bytes": 17899,
+      "sha256": "e1355dbab9a7a65a5ab3a156d22ad83d84208270d267aa364f88097a1bcc2550"
     },
     {
       "path": "references/discord-access.md",
@@ -114,8 +119,8 @@
     },
     {
       "path": "references/distribution-entry.md",
-      "bytes": 2725,
-      "sha256": "1d68eb7a3adfe2d5bcf7608590725aa9145c1224c7ef750e332c46347c87ed15"
+      "bytes": 3207,
+      "sha256": "44d7da4abf44cca1c0ecfbd4e75521a49030c7610167618beb72e4846f49e354"
     },
     {
       "path": "references/final-delivery.md",
@@ -124,8 +129,8 @@
     },
     {
       "path": "references/install-validation.md",
-      "bytes": 7286,
-      "sha256": "84dea2d7b4b63dd4ab8d9d5d64ae22a54cfaab5cbcc519c7d0955e6b2d8d4b4f"
+      "bytes": 7352,
+      "sha256": "2346b5d11a76e68934d6ce5bde4eb6370bf491a12c6f596d0285766c58c9d3f7"
     },
     {
       "path": "references/member-access.md",
@@ -134,8 +139,8 @@
     },
     {
       "path": "references/onboarding.md",
-      "bytes": 7333,
-      "sha256": "79777dc77a8638e77e00c30bad105c73af862fe120f0e9291e7a27c807a622a7"
+      "bytes": 7773,
+      "sha256": "c1505f6890de7a895d18acd4f46f6a91c9be5f41363db43ad76e8eb8e2468e3e"
     },
     {
       "path": "references/platform-fields.md",
@@ -173,9 +178,19 @@
       "sha256": "e981373684cb61ec5c5335177329bad2d95f3a7717399783d9c7358d32182baa"
     },
     {
+      "path": "scripts/check_codex.mjs",
+      "bytes": 19455,
+      "sha256": "9b0d22e961ba174b8d2264012941ce96256420ed3a2cbc0e538f0d7ad82d85ec"
+    },
+    {
       "path": "scripts/check_installation.py",
       "bytes": 16057,
       "sha256": "0b10a570c18650ae4874895c13ecde0c0bcae8015571cd3f55bff0e29edbd681"
+    },
+    {
+      "path": "scripts/install_codex.py",
+      "bytes": 4515,
+      "sha256": "62bb5d61cb61ac85d3a31ce49600d593bbb25b52f32116e077724035fffb5535"
     },
     {
       "path": "scripts/native-validation.mjs",
@@ -583,18 +598,21 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 958326,
+  "payloadBytes": 999748,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
     "tests": 211,
     "testFiles": 27,
     "integrationSamples": "explicit synthetic fixtures, no historical member bodies",
-    "compiledZipAcceptance": "passed; 1.15.2, native Windows/Linux and macOS",
-    "zipSha256": "9b0b96277d9816047ce4ef0c881851658e22ff6b577783ca2d27881034e29d6d",
+    "compiledZipAcceptance": "passed; 1.15.3 native Windows/Linux",
+    "zipSha256": "9acb0e7d4e21783b4fd6a7f63cf607925b1ed26bdf7482b2f6754be0f9bab9f6",
     "inventoryTests": 4,
     "npmAuditVulnerabilities": 0,
-    "officialSkillValidator": "passed"
+    "officialSkillValidator": "passed",
+    "codexDiscovery": "passed native Windows/Linux both installations",
+    "codexScriptedExecution": "passed both installations, full instruction body and two real tool commands each",
+    "realModelVerified": false
   },
   "excluded": [
     "state",
@@ -805,11 +823,11 @@
   },
   "publication": {
     "authorizedBy": "User requested public GitHub publication, then Windows/Linux installation verification, fixes and documentation synchronization on 2026-10-28",
-    "functionalVersion": "1.15.2",
+    "functionalVersion": "1.15.3",
     "updates": "CHANGELOG.md",
-    "scope": "Source portability, native installation CI, documentation and compiled ZIP; no product automation enabled"
+    "scope": "Canonical Skill command directories, native Codex discovery and scripted tool execution, installation documents and compiled ZIP; real model deferred by user"
   },
-  "newUserAcceptance": {
+  "historicalNewUserAcceptance_1_15_2": {
     "version": "1.15.2",
     "status": "passed_public_github_native_windows_linux_and_macos",
     "verifiedGithubCommit": "1e95012327aa03120b24a898db216043a64ec4a8",
@@ -827,7 +845,7 @@
     "liveScopeUnchanged": true,
     "authenticatedModelAndNewMemberAccess": "not verified"
   },
-  "maintenance": {
+  "historicalMaintenance_1_15_2": {
     "version": "1.15.2",
     "fixes": [
       "platform-aware paths and report collisions",
@@ -837,6 +855,39 @@
     ],
     "runtimeNode": ">=22",
     "sourceNode": "^22.12.0 || ^24.0.0 || >=26.0.0",
+    "automation": "PAUSED"
+  },
+  "newUserAcceptance": {
+    "version": "1.15.3",
+    "status": "passed_native_installation_discovery_and_scripted_execution",
+    "verifiedGithubCommit": "8f499cb3fd9ed47e07b4c61e61658459b62948b6",
+    "ci": "https://github.com/qife422/community-signal-analyst/actions/runs/40819707660",
+    "installationStepsPerPlatform": 16,
+    "applicationTestsPerPlatform": 211,
+    "inventoryRegressionTestsPerPlatform": 4,
+    "npmAuditVulnerabilities": 0,
+    "codexCli": "0.165.0",
+    "codexInstallations": [
+      "compiled folder",
+      "source symlink/junction"
+    ],
+    "realModelVerified": false,
+    "modelStatus": "user selected no credentials",
+    "publicReport": "references/codex-validation.md",
+    "scope": "Native CLI/App Server; not desktop/IDE selectors or new member access"
+  },
+  "maintenance": {
+    "version": "1.15.3",
+    "fixes": [
+      "canonical Skill working directory instructions",
+      "Windows native user-directory and sandbox test setup",
+      "Linux bubblewrap/AppArmor prerequisites",
+      "deterministic instruction loading and two direct CLI tool calls",
+      "unrelated plugin sync disabled within bounded credential-free validation"
+    ],
+    "runtimeNode": ">=22",
+    "sourceNode": "^22.12.0 || ^24.0.0 || >=26.0.0",
+    "applicationTypescriptUnchanged": true,
     "automation": "PAUSED"
   }
 }

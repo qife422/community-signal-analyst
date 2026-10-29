@@ -1,5 +1,7 @@
 # Windows / Linux 安装验证
 
+这是1.15.2的历史记录；当前1.15.3增量见 [Codex专项验证](codex-validation.md)。
+
 日期：2026-10-28；功能版本：1.15.2。原生 GitHub Actions 运行器执行，未用 macOS 路径模拟代替系统验证。
 
 [完整原生验收记录](https://github.com/qife422/community-signal-analyst/actions/runs/40778012503)；公开下载并验收的代码提交：`1e95012327aa03120b24a898db216043a64ec4a8`。后续收尾提交仅更新文档、交付状态与备份清单；应用代码、验证脚本和编译包以该提交为准。
