@@ -24,13 +24,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 12921,
-      "sha256": "6313838716f3b7d020e0bc11c23056b9c503403f2116208700ef692521993d87"
+      "bytes": 13244,
+      "sha256": "dd174fd607695fa823832430238d2ebb50f801a2f318cafa0e8efb73437fa1c5"
     },
     {
       "path": "README.md",
-      "bytes": 28874,
-      "sha256": "ccb9811744b0ca0717398854df2766b6e1974dd9d0a948f6eb68ea2f780608e3"
+      "bytes": 29250,
+      "sha256": "e1156838eb299d5cc16e67222f0fc57bf8496512f80e817e9725f98076005d10"
     },
     {
       "path": "RESTORE.md",
@@ -109,8 +109,8 @@
     },
     {
       "path": "references/delivery-status.json",
-      "bytes": 21089,
-      "sha256": "f057df22a5ce66e5adbcc0cf587db47eab2419216cbd8dfc18ba429863051e54"
+      "bytes": 21266,
+      "sha256": "28fe8a3dd24ce479afe233553af97e1e4a4128d7522770f1d4eebb556296183d"
     },
     {
       "path": "references/discord-access.md",
@@ -613,7 +613,7 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 1037251,
+  "payloadBytes": 1038127,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
@@ -881,7 +881,10 @@
     "independentLiveWhopReads": 2,
     "realModelVerifiedThisVersion": false,
     "browserTransportFixed": false,
-    "publicReport": "references/whop-browser.md"
+    "publicReport": "references/whop-browser.md",
+    "nativeCi": "https://github.com/qife422/community-signal-analyst/actions/runs/41262805849",
+    "nativeCiConclusion": "success_4_jobs",
+    "verifiedExecutableCommit": "75365946d62ff5db3660d5d646081928b32ce5b1"
   },
   "maintenance": {
     "version": "1.15.4",

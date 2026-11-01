@@ -341,7 +341,9 @@
     "channelWrites": 0,
     "automation": "PAUSED",
     "realModelInvocation": "not_retested_1_15_4; prior1_15_3 local result preserved",
-    "nativeCi": "pending_publication"
+    "nativeCi": "https://github.com/qife422/community-signal-analyst/actions/runs/41262805849",
+    "nativeCiConclusion": "success_4_jobs",
+    "verifiedExecutableCommit": "75365946d62ff5db3660d5d646081928b32ce5b1"
   },
   "storageMaintenance": {
     "date": "2026-10-31",
