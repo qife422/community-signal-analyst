@@ -19,18 +19,18 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 2112,
-      "sha256": "22ded4dd10f725ec641456a18b82c39ec9161d11f3da74eaec1d23139f8704e0"
+      "bytes": 4013,
+      "sha256": "a70921d39f7dc062e52d5098a3115f418ea7ff0b1e430950c87eb4a42dd323f1"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 9344,
-      "sha256": "bf3c91aefcf30bf27a1e4f075d38f964aad8910dc751432eb02ebdd5b7f33f49"
+      "bytes": 10050,
+      "sha256": "eae6e863e0b9505bd7a47187eab1713b2a21309bdc4b97d8489457ce17a70fe0"
     },
     {
       "path": "README.md",
-      "bytes": 26567,
-      "sha256": "4572af5407beadd27763188d0d45f6170a245eff6998e42b7acf66aa9c09d787"
+      "bytes": 27230,
+      "sha256": "436ce4b0415e7c4efcab61a57ea1a2cea0f886388397d60e75cb2d4ba2cb325e"
     },
     {
       "path": "RESTORE.md",
@@ -598,7 +598,7 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 1004598,
+  "payloadBytes": 1007868,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
@@ -915,5 +915,16 @@
       "online community access"
     ],
     "publicReport": "references/codex-validation.md"
+  },
+  "storageMaintenance": {
+    "authorizationDate": "2026-10-31",
+    "rules": "AGENTS.md",
+    "status": "planned_after_public_readback",
+    "targets": [
+      "inactive historical node_modules",
+      "byte-identical duplicate ZIP"
+    ],
+    "plannedBytes": 48733722,
+    "preserve": "active runtime/dependencies, source, historical unique source, private config/reports and formal evidence"
   }
 }
