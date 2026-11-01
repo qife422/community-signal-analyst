@@ -346,6 +346,23 @@
     "codexCli": "0.165.0",
     "codexDiscovery": "passed_compiled_and_source_windows_linux",
     "codexScriptedExecution": "passed_init_doctor_both_installations",
-    "realModelInvocation": "not_verified_user_selected_no_credentials"
+    "realModelInvocation": "passed_local_macos_explicit_compiled_init_doctor_only",
+    "localRealModelValidation": {
+      "clientDate": "2026-10-31",
+      "status": "passed",
+      "codexCli": "codex-cli 0.166.0-alpha.5.1",
+      "model": "gpt-6.1-sol",
+      "registration": "temporary_repo_scope",
+      "credentials": "existing_local_chatgpt_login_not_copied_or_uploaded",
+      "evidence": "artifacts/real-model-validation/manifest.json",
+      "publicReport": "references/codex-validation.md",
+      "notVerified": [
+        "windows_linux_real_model",
+        "global_user_root_real_model_this_run",
+        "implicit_skill_selection",
+        "online_community_access"
+      ]
+    },
+    "localRealModelVerifiedAt": "2026-10-31"
   }
 }

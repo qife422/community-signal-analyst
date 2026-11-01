@@ -2,6 +2,14 @@
 
 按时间倒序记录实际交付。功能版本与 package.json 一致；纯文档/仓库设置更新不改变功能版本。后续每次更新记录新增/修复、实际验证和已知限制，并随对应提交推送。
 
+## 2026-10-31 · 1.15.3本机真实模型调用补验
+
+- 使用本机现有ChatGPT登录，由原生macOS Codex0.166.0-alpha.5.1调用真实`gpt-6.1-sol`；从公开GitHub重新下载1.15.3编译ZIP并核对已发布SHA-256。
+- 测试副本位于临时项目`.agents/skills`，标准skills/list发现后显式选择；模型自行读取说明、确定命令并实际执行README中的profile init和doctor，两者退出0。生成独立profile、空scope和空reports，doctor ready且networkRequests为0，未生成Whop state。
+- 未复制/导出登录凭据，未上传账号信息或本机运行日志；用户原有Skill入口、频道绑定、报告和自动化保持原状。仅发布验证方法与结论。
+- 补齐README和[验收说明](references/codex-validation.md)中的本机真实推理结果；Windows/Linux真实推理、隐式选Skill、用户级目录安装的本轮真实模型验证、Whop在线会员访问仍未覆盖。
+- 功能代码、依赖、版本和编译ZIP不变；本轮没有重跑全量应用测试。
+
 ## 1.15.3 · 2026-10-28
 
 - 补齐Windows/Linux的真实Codex0.165.0发现验收：编译包及源码symlink/junction在无关cwd中均为user、enabled=true，完整Skill正文加载通过。

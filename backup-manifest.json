@@ -24,13 +24,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 8303,
-      "sha256": "7f285ad1f09fc0b7d3d630b6f5a1a4069d86a4c83e7fbb168d69456d2edc7d82"
+      "bytes": 9344,
+      "sha256": "bf3c91aefcf30bf27a1e4f075d38f964aad8910dc751432eb02ebdd5b7f33f49"
     },
     {
       "path": "README.md",
-      "bytes": 26084,
-      "sha256": "73ebd92df7966df213fb03b1c119d135eef88f34b2dbd0b8d7cca0f14315c677"
+      "bytes": 26567,
+      "sha256": "4572af5407beadd27763188d0d45f6170a245eff6998e42b7acf66aa9c09d787"
     },
     {
       "path": "RESTORE.md",
@@ -99,8 +99,8 @@
     },
     {
       "path": "references/codex-validation.md",
-      "bytes": 6530,
-      "sha256": "c730e8409aeb1a747c9317aeb506a293e6352207e48456bc580d93c14187cc2b"
+      "bytes": 9188,
+      "sha256": "6ca5378b2d7f90e8b664d4ecdcb53855c8e3422389db176892f588d6a46cc460"
     },
     {
       "path": "references/cross-platform-validation.md",
@@ -109,8 +109,8 @@
     },
     {
       "path": "references/delivery-status.json",
-      "bytes": 17899,
-      "sha256": "e1355dbab9a7a65a5ab3a156d22ad83d84208270d267aa364f88097a1bcc2550"
+      "bytes": 18567,
+      "sha256": "ea404da1e527798405046c9b9fc769ea46f0e3ce97c1a5febbe2cf5610432a6f"
     },
     {
       "path": "references/discord-access.md",
@@ -598,7 +598,7 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 999748,
+  "payloadBytes": 1004598,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
@@ -643,7 +643,7 @@
     "skill-creator"
   ],
   "createdAtUtc": "2026-10-13T18:28:54Z",
-  "lastUpdatedLocalDate": "2026-10-28",
+  "lastUpdatedLocalDate": "2026-10-31",
   "historicalNewUserAcceptance_1_15_0": {
     "date": "2026-10-28",
     "downloadedCommit": "7b852c4017a3213ca5d0bc402f4ba82763f96f77",
@@ -825,7 +825,7 @@
     "authorizedBy": "User requested public GitHub publication, then Windows/Linux installation verification, fixes and documentation synchronization on 2026-10-28",
     "functionalVersion": "1.15.3",
     "updates": "CHANGELOG.md",
-    "scope": "Canonical Skill command directories, native Codex discovery and scripted tool execution, installation documents and compiled ZIP; real model deferred by user"
+    "scope": "Native discovery/scripted execution plus separately scoped macOS local real-model offline init/doctor; documents only for 2026-10-31 supplement, compiled ZIP unchanged"
   },
   "historicalNewUserAcceptance_1_15_2": {
     "version": "1.15.2",
@@ -872,7 +872,7 @@
       "source symlink/junction"
     ],
     "realModelVerified": false,
-    "modelStatus": "user selected no credentials",
+    "modelStatus": "Native CI used no credentials; local macOS real inference later passed separately under localRealModelAcceptance",
     "publicReport": "references/codex-validation.md",
     "scope": "Native CLI/App Server; not desktop/IDE selectors or new member access"
   },
@@ -889,5 +889,31 @@
     "sourceNode": "^22.12.0 || ^24.0.0 || >=26.0.0",
     "applicationTypescriptUnchanged": true,
     "automation": "PAUSED"
+  },
+  "localRealModelAcceptance": {
+    "date": "2026-10-31",
+    "version": "1.15.3",
+    "status": "passed_local_macos_explicit_compiled_init_doctor",
+    "testedPublishedCommit": "23a81acc4fb3540cf082b3486168dbcc8ff268aa",
+    "codexCli": "0.166.0-alpha.5.1",
+    "model": "gpt-6.1-sol",
+    "authentication": "existing local ChatGPT login; no credential export",
+    "discoveryScope": "temporary repo .agents/skills; existing user roots preserved",
+    "commandExitCodes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "doctor": "ready; networkRequests0; liveAccessVerifiedfalse",
+    "published": "prose and status only; no local logs, profiles, auth or identifiers",
+    "notVerified": [
+      "Windows/Linux real model",
+      "user-global install real model this run",
+      "implicit skill selection",
+      "online community access"
+    ],
+    "publicReport": "references/codex-validation.md"
   }
 }

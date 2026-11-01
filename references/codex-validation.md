@@ -1,5 +1,26 @@
 # Codex Skill发现与执行验证
 
+## 2026-10-31本机真实模型补验
+
+用户随后明确授权使用本机已登录Codex做一次真实调用，要求登录信息不上传GitHub。本次使用原生macOS arm64、Node22.17.1、Codex CLI/App Server **0.166.0-alpha.5.1** 和OpenAI **gpt-6.1-sol**；标准account/read仅记录认证类型为ChatGPT，不保存账号标识、邮箱或凭据。它与下方0.165.0的Windows/Linux无凭据CI是两组独立证据。
+
+从公开GitHub重新下载1.15.3编译ZIP，SHA-256与下方已发布指纹一致。为保留已有用户Skill入口和唯一活动源码，将完整编译文件夹放在系统临时项目的`.agents/skills/community-signal-analyst`，使用标准skills/list发现为repo、enabled=true；没有覆盖全局目录、复制auth.json、更换HOME/CODEX_HOME或使用伪造Responses服务。使用者原有本机登录由Codex自行复用；测试进程不注入API Key。
+
+通过标准显式Skill输入发送与README同意图的中文离线首次检查请求，只补充临时profile和编译包路径，不预先指定init/doctor工具调用或返回值。真实模型自行读取SKILL.md/onboarding/README、检查Node和目标是否存在、选择并运行命令、检查实际文件，最后解释结果。实际5条shell命令均退出0，关键两条为：
+
+```text
+npm run profile -- init --file <安装包外测试目录>/profile.json
+npm run doctor -- --profile <安装包外测试目录>/profile.json
+```
+
+独立核对生成profile、`channels: []`的scope和空reports，未生成Whop state。doctor原始结果为ready、exitCode=0、networkRequests=0、filesModified=0、liveAccessVerified=false。模型返回的结论与命令输出一致。模型服务通信是真实在线请求；“离线”仅指本次Skill的初始化和检查没有访问社区。测试保留本机既有hook与执行规则，没有请求full access或改写信任配置。
+
+范围：证明**本机已登录环境、显式选择、临时项目入口、编译包首次配置与doctor**的真实模型调用。没有补验Windows/Linux真实模型、用户级目录的本轮真实调用、桌面/IDE选择器、隐式自主选Skill、研究质量、Whop会员页面或实时/自动化。旧CI中的用户级发现证明仍按原范围成立，不能与此次repo范围合并成“所有环境真实调用均通过”。无需为这次纯验证修改应用代码、依赖或编译ZIP；没有重跑全量测试。
+
+本机固定证据见`artifacts/real-model-validation/manifest.json`；只发布本说明和结论，原始本地测试日志、账号缓存和个人配置不入Git。旧无凭据证据不改写。
+
+## 2026-10-28 Windows/Linux无凭据CI
+
 日期：2026-10-28（America/Los_Angeles）。交付版本1.15.3，原生Codex CLI/App Server 0.165.0。[原生CI](https://github.com/qife422/community-signal-analyst/actions/runs/40819707660)；受测提交 `8f499cb3fd9ed47e07b4c61e61658459b62948b6`。模型凭据由用户明确选择暂不提供。
 
 | 实际验收 | Ubuntu24.04 x64 | Windows Server2025 x64 |
@@ -16,7 +37,7 @@
 
 调用真实Codex二进制，通过标准本地App Server JSON-RPC完成initialize、account/read、skills/list、thread/start和turn/start。首次account/read均为未登录；不借用本机ChatGPT/API登录，不复制auth.json，不注入额外Skill扫描根路径。
 
-执行阶段使用仅监听127.0.0.1的**脚本化Responses协议夹具**，返回预先写好的两次工具调用；Codex执行真实Node CLI，检查实际文件、退出码与doctor输出。每种安装3次本地协议请求，对应init、doctor、结束。它不做模型推理，不验证自然语言理解、自动选择或研究质量，不能写成“真实模型调用已通过”。未来真实模型验收需要使用者自己的登录与可用额度。
+该CI执行阶段使用仅监听127.0.0.1的**脚本化Responses协议夹具**，返回预先写好的两次工具调用；Codex执行真实Node CLI，检查实际文件、退出码与doctor输出。每种安装3次本地协议请求，对应init、doctor、结束。它不做模型推理，不验证自然语言理解、自动选择或研究质量，不能将该CI写成“真实模型调用已通过”。本机真实模型结果另见上方补验。
 
 发现检查的cwd与Skill无关；执行命令的workdir为解析链接后的真实安装/源码目录，与README和新版Skill指引一致。profile放在安装目录外。调用者项目里的package.json不会被误用。
 

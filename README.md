@@ -155,7 +155,7 @@ $community-signal-analyst 仅做离线安装检查：在我的用户目录 .comm
 
 发现不到时依次核对：`SKILL.md`层级、源码链接目标、Codex版本和是否已禁用该Skill，再重启Codex。在Windows使用该Windows账号的真实用户目录；仅改HOME/USERPROFILE不等于切换系统账号。Windows原生与WSL有各自的用户目录，应在实际使用的环境中安装。官方说明见 [Skill发现目录与显式调用](https://learn.chatgpt.com/docs/build-skills)。
 
-无凭据开发验收会使用明确标注的本地Responses协议夹具，检查真实Codex是否发现两种安装入口、加载完整指令、执行离线init/doctor；**夹具不做推理，不能证明模型会自主选Skill或完成研究**。原生系统结果与重放方法见 [Codex发现与执行验证](references/codex-validation.md)。本轮按用户选择不提供模型凭据，真实模型调用继续未验证。
+无凭据开发验收会使用明确标注的本地Responses协议夹具，检查真实Codex是否发现两种安装入口、加载完整指令、执行离线init/doctor；**夹具不做推理，不能证明模型会自主选Skill或完成研究**。2026-10-31另完成本机macOS真实模型验证：借用使用者现有ChatGPT登录，下载公开编译包，在临时项目的`.agents/skills`发现并显式调用，由`gpt-6.1-sol`自行选择命令，实际初始化独立profile并运行doctor成功。没有复制登录文件或将账号信息上传GitHub。该结果不代替Windows/Linux真实推理、全局用户目录安装或在线社区访问验收。详情与重放边界见 [Codex发现与执行验证](references/codex-validation.md)。
 
 ## 第二步：初始化自己的配置
 
@@ -387,7 +387,7 @@ npm run test:installation -- --out "$HOME/.community-signal-analyst/reports/inst
 
 ## 验证与证据
 
-**1.15.3 Codex专项已验证：** 原生Windows/Linux的编译包和源码入口均可被真实Codex0.165.0发现、完整加载指令，并在本地协议夹具驱动下实际执行离线init/doctor。夹具不做模型推理；按用户选择，真实模型调用仍未验证。源码安装、211项应用测试、4项脚本回归、审计0告警与打包也再次通过。详细范围见 [Codex专项验证](references/codex-validation.md)。
+**1.15.3 Codex专项已验证：** 原生Windows/Linux的编译包和源码入口均可被真实Codex0.165.0发现、完整加载指令，并在本地协议夹具驱动下实际执行离线init/doctor。2026-10-31本机macOS的Codex0.166.0-alpha.5.1与真实`gpt-6.1-sol`另通过编译包首次配置/doctor调用；Windows/Linux的真实模型调用仍未验证。此前源码安装、211项应用测试、4项脚本回归、审计0告警与打包通过，本次仅新增真实离线调用与文档核对，没有重跑全量测试。详细范围见 [Codex专项验证](references/codex-validation.md)。
 
 1.15.2已在原生Windows/Linux运行器与本机macOS完成公开GitHub重新克隆、编译包下载和16步骤验收：干净npm ci/audit零告警、类型检查、构建、211项应用测试、4项安装脚本回归、源码重新打包和编译Whop/重筛通过。Codex发现与无凭据执行链结果另见 [Codex专项验证](references/codex-validation.md)。Windows使用PowerShell7与junction注册；完整环境、CI来源和初期失败修复见 [跨平台安装验证](references/cross-platform-validation.md)。此前真实HN查询与Codex本地发现结果保留于 [安装实测](references/install-validation.md)；本轮没有增加付费/会员请求。
 
