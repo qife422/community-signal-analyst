@@ -19,7 +19,7 @@
   "allPlatformQueryForCurrentDelivery": "找最近全平台（不含 Discord 和 Reddit）以及 Whop 的 AI coding 讨论",
   "backwardCompatibility": "Explicit seven-platform and legacy six-platform requests remain compatible. Current delivery uses an explicit exclusion of Discord and Reddit and explicitly names Whop; browser-mode Whop sources use scoped snapshot/digest workflow, not unverified API access.",
   "sourceRoot": "/Users/ffq/Documents/aicoding项目/Community Signal Analyst",
-  "sourceSelection": "User explicitly authorized consolidation into the current project. Installed 1.14.0 is the active capability baseline; workspace 0.1.0 fully preserved at .history/community-signal-analyst. Both prior paths are compatibility symlinks to this root.",
+  "sourceSelection": "User authorized consolidation into this canonical project; prior paths remain compatibility symlinks. Legacy0.1.0 unique source, lock, tests and output remain in .history/community-signal-analyst; only its inactive dependency cache was removed under separate2026-10-31 storage authorization.",
   "platformStatus": {
     "hacker_news": {
       "status": "complete_with_recorded_sample_limits",
@@ -364,5 +364,26 @@
       ]
     },
     "localRealModelVerifiedAt": "2026-10-31"
+  },
+  "storageMaintenance": {
+    "date": "2026-10-31",
+    "status": "completed",
+    "removedFiles": 1020,
+    "removedBytes": 48733722,
+    "activeRuntimePreserved": true,
+    "typecheck": "passed",
+    "build": "passed",
+    "doctor": "passed_expected_unverified_access_for_new_whop_profile",
+    "evidence": "artifacts/storage-maintenance/manifest.json"
+  },
+  "whopLiveRecheck": {
+    "date": "2026-10-31",
+    "status": "blocked_browser_connection_waiting_for_user",
+    "isolatedBinding": "passed",
+    "freshBodyRead": "not_captured",
+    "contentReport": "not_run",
+    "channelWrites": 0,
+    "existingStateUnchanged": true,
+    "evidence": "artifacts/whop-live-validation/manifest.json"
   }
 }

@@ -24,8 +24,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 10050,
-      "sha256": "eae6e863e0b9505bd7a47187eab1713b2a21309bdc4b97d8489457ce17a70fe0"
+      "bytes": 10521,
+      "sha256": "99df38b5f2dd7922c5cfe65c2538caba188d9da349c9e26a6585b5a63198bd61"
     },
     {
       "path": "README.md",
@@ -109,8 +109,8 @@
     },
     {
       "path": "references/delivery-status.json",
-      "bytes": 18567,
-      "sha256": "ea404da1e527798405046c9b9fc769ea46f0e3ce97c1a5febbe2cf5610432a6f"
+      "bytes": 19312,
+      "sha256": "3c7546d50b0b31ae3fd1ff8eb91b1789e07c3344c5ef7182c7660cafc0938b7f"
     },
     {
       "path": "references/discord-access.md",
@@ -124,8 +124,8 @@
     },
     {
       "path": "references/final-delivery.md",
-      "bytes": 4596,
-      "sha256": "ba38e9bc5b68573df3f2510aa8277e6dd4c88fe1d382bc09df7978a448769914"
+      "bytes": 4886,
+      "sha256": "bf39eef3b1a9f3294ad8713a6d1ee63e2a8198beb8cca782de6b214c0eb877a0"
     },
     {
       "path": "references/install-validation.md",
@@ -164,8 +164,8 @@
     },
     {
       "path": "references/whop-access.md",
-      "bytes": 14445,
-      "sha256": "af51f868baa901dcfc2e47ccb9df68940565765b145875c410e3e9aaf66857f7"
+      "bytes": 15381,
+      "sha256": "e0783d195acb3dcf9a6cc1cfd21ace2edb97ea84162c31874ad6c55b80c05718"
     },
     {
       "path": "references/whop-binding.md",
@@ -598,7 +598,7 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 1007868,
+  "payloadBytes": 1010310,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
@@ -919,12 +919,29 @@
   "storageMaintenance": {
     "authorizationDate": "2026-10-31",
     "rules": "AGENTS.md",
-    "status": "planned_after_public_readback",
+    "status": "completed_and_validated",
     "targets": [
       "inactive historical node_modules",
       "byte-identical duplicate ZIP"
     ],
     "plannedBytes": 48733722,
-    "preserve": "active runtime/dependencies, source, historical unique source, private config/reports and formal evidence"
+    "preserve": "active runtime/dependencies, source, historical unique source, private config/reports and formal evidence",
+    "removedFiles": 1020,
+    "removedBytes": 48733722,
+    "postChecks": [
+      "typecheck",
+      "build",
+      "doctor",
+      "1148 preserved fingerprints",
+      "136 protected files",
+      "2 compatibility links"
+    ]
+  },
+  "whopLiveRecheck": {
+    "date": "2026-10-31",
+    "binding": "passed_isolated_configuration",
+    "freshReadingAndReport": "pending_browser_recovery",
+    "channelWrites": 0,
+    "privateStatePublished": false
   }
 }

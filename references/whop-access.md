@@ -1,5 +1,11 @@
 # Whop member chat access
 
+## 2026-10-31本机只读复验状态
+
+使用者授权再次验证绑定、读取和报告，全程只读。1.15.3编译包中的profile init/set和whop:bind add/list已在独立测试配置通过，只绑定先前明确授权的stock and option原生频道；原有scope/state和报告未改动。doctor正确返回unverified_access，不将本地绑定成功当作会员访问成功。
+
+Chrome中能打开目标URL并显示频道标题，但页面读取连接连续超时；本轮尚未取得正文、没有运行真实新采集内容的digest，也没有生成社区精华报告。已请求使用者恢复Chrome页面/连接后继续；没有读取cookie/token、绕过权限、操作输入框或发消息。历史浏览器样本的通过记录仍按当时范围保留，不能代替这次在线复验。本机待续证据入口为`artifacts/whop-live-validation/manifest.json`，公开仓库不包含个人配置或频道正文。
+
 ## 当前交付入口
 
 收尾版 1.14.1 的范围见 [最终交付说明](final-delivery.md)。Whop 默认使用已绑定页面的按需浏览器模式。实时接收研究已停止；App webhook 需要创建者安装/批准，不能当作普通成员跨社区订阅；未完成业务注册、App/OAuth 授权或 webhook 注册。以下保留浏览器模式和独立 API 实验的具体说明。
