@@ -24,13 +24,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 10521,
-      "sha256": "99df38b5f2dd7922c5cfe65c2538caba188d9da349c9e26a6585b5a63198bd61"
+      "bytes": 11457,
+      "sha256": "ba5a1f04fa0d6dc028e2bfc4fd54bc28e6fe55d4120633a63ac8cb15838c9a47"
     },
     {
       "path": "README.md",
-      "bytes": 27230,
-      "sha256": "436ce4b0415e7c4efcab61a57ea1a2cea0f886388397d60e75cb2d4ba2cb325e"
+      "bytes": 27783,
+      "sha256": "7c90e03b2873a8b9167b8a713382f82171bbdbf3c1774c88bd9da07c9eb00016"
     },
     {
       "path": "RESTORE.md",
@@ -109,8 +109,8 @@
     },
     {
       "path": "references/delivery-status.json",
-      "bytes": 19312,
-      "sha256": "3c7546d50b0b31ae3fd1ff8eb91b1789e07c3344c5ef7182c7660cafc0938b7f"
+      "bytes": 20218,
+      "sha256": "295e519b5fe89b14943f4f47c22f188ac6ece322c39a493e136e1fcb3bd4d116"
     },
     {
       "path": "references/discord-access.md",
@@ -164,8 +164,8 @@
     },
     {
       "path": "references/whop-access.md",
-      "bytes": 15381,
-      "sha256": "e0783d195acb3dcf9a6cc1cfd21ace2edb97ea84162c31874ad6c55b80c05718"
+      "bytes": 16333,
+      "sha256": "51406114c05e723a7eee99da8edc7cc942c16510d86190f225807ea9ab1e8aa0"
     },
     {
       "path": "references/whop-binding.md",
@@ -598,7 +598,7 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 1010310,
+  "payloadBytes": 1013657,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
@@ -938,6 +938,21 @@
     ]
   },
   "whopLiveRecheck": {
+    "date": "2026-10-31",
+    "binding": "passed_isolated_configuration",
+    "freshReadingAndReport": "passed_bounded_single_authorized_page",
+    "checkedRoots": 8,
+    "capturedText": 7,
+    "excludedAttachmentOnly": 1,
+    "firstRecords": 7,
+    "repeatNew": 0,
+    "repeatUnchanged": 7,
+    "channelWrites": 0,
+    "privateStatePublished": false,
+    "browserStabilityVerified": false,
+    "publicReport": "references/whop-access.md"
+  },
+  "whopLiveRecheckInitialAttempt": {
     "date": "2026-10-31",
     "binding": "passed_isolated_configuration",
     "freshReadingAndReport": "pending_browser_recovery",

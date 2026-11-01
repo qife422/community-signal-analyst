@@ -1,10 +1,14 @@
 # Whop member chat access
 
-## 2026-10-31本机只读复验状态
+## 2026-10-31本机只读复验
 
-使用者授权再次验证绑定、读取和报告，全程只读。1.15.3编译包中的profile init/set和whop:bind add/list已在独立测试配置通过，只绑定先前明确授权的stock and option原生频道；原有scope/state和报告未改动。doctor正确返回unverified_access，不将本地绑定成功当作会员访问成功。
+使用者授权再次验证绑定、读取和报告，全程只读。1.15.3编译包中的profile init/set和whop:bind add/list在独立测试配置通过，只绑定先前明确授权的stock and option原生频道；原有scope/state和报告未改动。用户打开页面后，通过本机已登录Chrome实际读取了8个有真实ID的根帖，其中7条文字进入快照，1条仅含附件而排除。只展开一条已有长文，没有操作输入框、发送消息、回复或反应。
 
-Chrome中能打开目标URL并显示频道标题，但页面读取连接连续超时；本轮尚未取得正文、没有运行真实新采集内容的digest，也没有生成社区精华报告。已请求使用者恢复Chrome页面/连接后继续；没有读取cookie/token、绕过权限、操作输入框或发消息。历史浏览器样本的通过记录仍按当时范围保留，不能代替这次在线复验。本机待续证据入口为`artifacts/whop-live-validation/manifest.json`，公开仓库不包含个人配置或频道正文。
+已用本次真实文字生成摘要、完整delta与人工语义整理报告。首次digest退出0，7条首次观察/0条相同；同一快照再次执行退出0，0条新增/7条相同。两次本地处理均禁止fetch且networkRequests=0；实际delta正文逐条与snapshot一致，独立状态有7条，原136个受保护文件及2个链接未变。doctor仍按设计返回本地unverified_access；这与外部浏览器已成功读取的证据分开，不修改doctor来冒充在线检测。
+
+最初页面连接超时；恢复后成功返回实际DOM、作者、日期和帖ID，随后批量提取再次超时。本次快照从已成功返回的DOM逐字段转录，不使用旧样本；只覆盖最初8个已检查ID的根帖，不包括后续额外加载内容。没有补造日期年份、读附件或读取回复，也未做第二次在线采集。此验收证明单个已授权页面的有界按需链路，不证明浏览器持续稳定、全历史、API/OAuth或无人值守定时。
+
+原失败证据`artifacts/whop-live-validation/manifest.json`保留；通过证据为`artifacts/whop-live-validation/accepted/manifest.json`，本机报告为`runs/whop/live-validation-20261031/brief.md`。公开GitHub仅记录方法、计数和限制，不包含频道正文、个人配置、登录文件或报告。历史样本仍按当时范围保留。
 
 ## 当前交付入口
 
