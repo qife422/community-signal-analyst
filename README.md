@@ -2,7 +2,7 @@
 
 社区信号分析器：把公开社区讨论、项目和评论，以及自己有权访问的 Whop 频道，整理成带出处、筛选依据和限制说明的研究报告。
 
-**版本：1.15.3 · Node.js 22+ · 公开展示与源码备份**
+**版本：1.15.4 · Node.js 22+ · 公开展示与源码备份**
 
 当前版本可用于社区研究、个人关注规则与 Whop 按需整理。后续功能继续迭代，实际改动与验证结果见 [更新记录](CHANGELOG.md)。
 
@@ -84,7 +84,7 @@ Discord/Reddit 暂缓；Whop OAuth/API 保留实验代码，成员 API 读取未
 
 **此方式无需 `npm ci` 或 `npm run build`**，包内运行命令直接使用已编译文件。源码、参考资料和编译文件须保持相对布局。
 
-编译包版本1.15.3，SHA-256：`9acb0e7d4e21783b4fd6a7f63cf607925b1ed26bdf7482b2f6754be0f9bab9f6`。macOS可用 `shasum -a 256 /实际下载路径/community-signal-analyst.zip` 核对下载内容。
+编译包版本1.15.4，SHA-256：`11183267990af811696bcea0fd72cd09e8e4463c3cae27aa383f225b271f12ef`。macOS可用 `shasum -a 256 /实际下载路径/community-signal-analyst.zip` 核对下载内容。
 
 ### B. 开发者：克隆源码并构建
 
@@ -256,6 +256,12 @@ CLI/IDE可用 `$community-signal-analyst` 显式提及；没有出现在列表�
 
 2026-10-31已在本机macOS与现有Whop登录下，用1.15.3编译包完成独立绑定、真实页面读取和报告验收：8个已检查ID的根帖中导入7条文字、排除1条附件帖；首次处理7条，再处理同一快照为0新增/7相同。全程没有频道输入或发消息。浏览器曾超时，恢复后取得实际DOM，本次仅证明有界按需链路，不承诺稳定无人值守、全历史、其他会员权限或API成功。方法与限制见 [Whop实测](references/whop-access.md)。正文与报告仅保存在本机。
 
+### 读取连接间歇超时
+
+1.15.4加入已随编译包分发的[只读采集模块](scripts/whop-browser-reader.mjs)和[操作说明](references/whop-browser.md)：复用授权Tab、分阶段渲染/读取、限制样本量，仅对连接错误最多顺序重试一次。加载未就绪、无可用文字、读取失败分别报告；折叠/附件/缺元数据单独排除，成功快照由主机直接保存，不手工重写。当前模块支持原生帖子页，聊天页沿用既有DOM流程。
+
+本机实测两次独立刷新后各直接导出6条完整文字；1.15.4编译包的独立绑定、报告生成和跨快照去重通过（首次6条，第二次0新增/6相同），全程无频道写入。一次超时经重试恢复，另一次连续失败正确停止，**底层Chrome连接的间歇超时尚未消除**。延长读取参数不能保证改变底层截止时间；若仍失败，先保存其他工作，再由使用者重连扩展，必要时重启Chrome。Skill不会关闭其他页面、修改扩展权限或启用自动化；完整历史与长期稳定性未验证。
+
 查看自己的绑定：
 
 ```bash
@@ -393,7 +399,7 @@ npm run test:installation -- --out "$HOME/.community-signal-analyst/reports/inst
 
 1.15.2已在原生Windows/Linux运行器与本机macOS完成公开GitHub重新克隆、编译包下载和16步骤验收：干净npm ci/audit零告警、类型检查、构建、211项应用测试、4项安装脚本回归、源码重新打包和编译Whop/重筛通过。Codex发现与无凭据执行链结果另见 [Codex专项验证](references/codex-validation.md)。Windows使用PowerShell7与junction注册；完整环境、CI来源和初期失败修复见 [跨平台安装验证](references/cross-platform-validation.md)。此前真实HN查询与Codex本地发现结果保留于 [安装实测](references/install-validation.md)；本轮没有增加付费/会员请求。
 
-本轮备份前验证结果记录在 [backup-manifest.json](backup-manifest.json)。源码包含211项回归测试；恢复验收会核对实际 GitHub 提交与文件内容。集成回归使用明确标注的 [合成夹具](tests/fixtures/README.md)，没有真实频道正文或授权数据；测试不是线上全覆盖证明。
+本轮备份前验证结果记录在 [backup-manifest.json](backup-manifest.json)。源码包含216项回归测试；恢复验收会核对实际 GitHub 提交与文件内容。集成回归使用明确标注的 [合成夹具](tests/fixtures/README.md)，没有真实频道正文或授权数据；测试不是线上全覆盖证明。
 
 ### 本项目空间管理
 

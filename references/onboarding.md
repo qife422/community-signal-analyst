@@ -1,6 +1,6 @@
 # 首次配置与个人关注规则
 
-版本1.15.3。本地命令需要 Node.js22+；分发包已编译，无需安装依赖。自然语言另需 Codex 加载 Skill，Whop 采集另需使用者自己的授权浏览器与成员访问。doctor 的本地 ready 不代表在线权限已验证。源码开发/测试采用Vitest5，Node22系列需22.12+，或使用其支持的Node24/26系列；开发重建另需 `npm ci` 与 `npm run build`。
+版本1.15.4。本地命令需要 Node.js22+；分发包已编译，无需安装依赖。自然语言另需 Codex 加载 Skill，Whop 采集另需使用者自己的授权浏览器与成员访问。doctor 的本地 ready 不代表在线权限已验证。源码开发/测试采用Vitest5，Node22系列需22.12+，或使用其支持的Node24/26系列；开发重建另需 `npm ci` 与 `npm run build`。
 
 ## Windows PowerShell 快速开始
 
@@ -60,6 +60,8 @@ init 新建 profile、空 scope、私有 reports；state 首次 digest 才创建
 profile≤64KiB；最多20规则，每规则10作者/20关键词，全局20排除词，单词/作者100字符，主题500字符，数量1–10。显式查询覆盖主题、时间、语言、数量默认，但来源取查询与 profile 的交集，过滤持续生效、不写回默认。公开研究先过原质量门槛，再筛选，再 Top N。Product Hunt/X 自行提供授权，X 付费门禁有效；新增 profile 不启用 Discord/Reddit 或 Whop API。
 
 ## 研究、Whop、离线重筛
+
+Whop页面采集使用[浏览器读取与超时处理](whop-browser.md)中的已分发只读辅助模块。先确认当前成员页面与精确绑定一致，再分阶段观察/读取，直接保存结构化结果。连接类错误最多重试一次；仍失败就停止，不把加载空页或旧样本写成新的成功采集。
 
 ```bash
 npm run live -- --profile /absolute/private/profile.json "用中文找近3天 GitHub AI coding讨论，2条" --json --out /absolute/private/reports/research.json

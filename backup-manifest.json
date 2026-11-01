@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "skill": "community-signal-analyst",
-  "version": "1.15.3",
+  "version": "1.15.4",
   "userLocalDate": "2026-10-13",
   "repository": "https://github.com/qife422/community-signal-analyst",
   "visibility": "public",
@@ -24,13 +24,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 11457,
-      "sha256": "ba5a1f04fa0d6dc028e2bfc4fd54bc28e6fe55d4120633a63ac8cb15838c9a47"
+      "bytes": 12921,
+      "sha256": "6313838716f3b7d020e0bc11c23056b9c503403f2116208700ef692521993d87"
     },
     {
       "path": "README.md",
-      "bytes": 27783,
-      "sha256": "7c90e03b2873a8b9167b8a713382f82171bbdbf3c1774c88bd9da07c9eb00016"
+      "bytes": 28874,
+      "sha256": "ccb9811744b0ca0717398854df2766b6e1974dd9d0a948f6eb68ea2f780608e3"
     },
     {
       "path": "RESTORE.md",
@@ -39,8 +39,8 @@
     },
     {
       "path": "SKILL.md",
-      "bytes": 18858,
-      "sha256": "f28cd470abb062e9765086917e06ea178ff535385e1a2369fb863174a2d5870e"
+      "bytes": 19239,
+      "sha256": "dea369e8de3f9896c1ac3f4512e54d0ffd4d32c81dfe16a98052c515f5f0d1ea"
     },
     {
       "path": "SPEC.md",
@@ -59,8 +59,8 @@
     },
     {
       "path": "distribution/community-signal-analyst.zip",
-      "bytes": 237345,
-      "sha256": "9acb0e7d4e21783b4fd6a7f63cf607925b1ed26bdf7482b2f6754be0f9bab9f6"
+      "bytes": 242951,
+      "sha256": "11183267990af811696bcea0fd72cd09e8e4463c3cae27aa383f225b271f12ef"
     },
     {
       "path": "mock-data/devto.mock.json",
@@ -80,12 +80,12 @@
     {
       "path": "package-lock.json",
       "bytes": 45835,
-      "sha256": "39a9f392fa4dd2be4794a61871191c2f2af635a0e975dde68579c3311d96380e"
+      "sha256": "59965bc03cde8fefd2be1f72378b1bdf798608ea611c26d26887a0d749d18865"
     },
     {
       "path": "package.json",
       "bytes": 1292,
-      "sha256": "c1457e6e2a20002e50db64c55e6ffb90553fad80d8ba74b3156ea95cc0ac3a46"
+      "sha256": "6995948ac0b954e19e732adaabb59d2c492eab2e030b6b7ee69caac02df7e631"
     },
     {
       "path": "references/api-contract.md",
@@ -109,8 +109,8 @@
     },
     {
       "path": "references/delivery-status.json",
-      "bytes": 20218,
-      "sha256": "295e519b5fe89b14943f4f47c22f188ac6ece322c39a493e136e1fcb3bd4d116"
+      "bytes": 21089,
+      "sha256": "f057df22a5ce66e5adbcc0cf587db47eab2419216cbd8dfc18ba429863051e54"
     },
     {
       "path": "references/discord-access.md",
@@ -119,8 +119,8 @@
     },
     {
       "path": "references/distribution-entry.md",
-      "bytes": 3207,
-      "sha256": "44d7da4abf44cca1c0ecfbd4e75521a49030c7610167618beb72e4846f49e354"
+      "bytes": 3552,
+      "sha256": "1ac23990bd93f77f31c94a3b2993d2edd83c5097031a6e2b4a28528e076e463e"
     },
     {
       "path": "references/final-delivery.md",
@@ -139,8 +139,8 @@
     },
     {
       "path": "references/onboarding.md",
-      "bytes": 7773,
-      "sha256": "c1505f6890de7a895d18acd4f46f6a91c9be5f41363db43ad76e8eb8e2468e3e"
+      "bytes": 8105,
+      "sha256": "e8951e445ca3b2189d286d7817e87f2c7cd47d97f5e2a84aa01dd7afbd84d475"
     },
     {
       "path": "references/platform-fields.md",
@@ -173,9 +173,14 @@
       "sha256": "27a31e2e210fe77a65cd61749e0e5e09987f74f8a77c8e6b1fde22ddd3df04fd"
     },
     {
+      "path": "references/whop-browser.md",
+      "bytes": 4278,
+      "sha256": "af915f420b06e3919276188bb8971c20325e058baae3f5557804aa9cf6258fae"
+    },
+    {
       "path": "references/whop-daily.md",
-      "bytes": 8735,
-      "sha256": "e981373684cb61ec5c5335177329bad2d95f3a7717399783d9c7358d32182baa"
+      "bytes": 9275,
+      "sha256": "f3ab4c7c3ae057344fb77c80b7e85418938e9253c747b14e8a20c3a142c893fb"
     },
     {
       "path": "scripts/check_codex.mjs",
@@ -199,8 +204,8 @@
     },
     {
       "path": "scripts/package_skill.py",
-      "bytes": 5703,
-      "sha256": "34447ea037983db56f03eedc16da7237b64f0f7ccf4da172e87d61071025add0"
+      "bytes": 5762,
+      "sha256": "9c66f1c0627c2cf4581ef4e54199456794964ec29a25b521d3c28372c95a95d6"
     },
     {
       "path": "scripts/run-python.mjs",
@@ -211,6 +216,11 @@
       "path": "scripts/verify_distribution.py",
       "bytes": 7004,
       "sha256": "ffd1ab6538a491ec2b6205a76e3a5168ffb48e931e559e3521916b3b01d2eaa4"
+    },
+    {
+      "path": "scripts/whop-browser-reader.mjs",
+      "bytes": 5362,
+      "sha256": "3958976bb0b614d622e03cd161b25abc86e9b82b7e8df2e4766ddb5ac02c2048"
     },
     {
       "path": "src/adapters/authorized.ts",
@@ -563,6 +573,11 @@
       "sha256": "4f873785aa9d5f5fa6622288a0164fd4aeb6285d8b5027f68c4a1e3dcb29839c"
     },
     {
+      "path": "tests/whop-browser-reader.test.ts",
+      "bytes": 3265,
+      "sha256": "af0eeaa5f04830ba0ea3bee62aa7ee7310f9fd0fb51563930d3140babe1ef2f8"
+    },
+    {
       "path": "tests/whop-oauth.test.ts",
       "bytes": 4781,
       "sha256": "24219035489420125addae21f0d2a0ab193ddac8b2f55fed151a57ac996f233c"
@@ -598,7 +613,7 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 1013657,
+  "payloadBytes": 1037251,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
@@ -823,9 +838,9 @@
   },
   "publication": {
     "authorizedBy": "User requested public GitHub publication, then Windows/Linux installation verification, fixes and documentation synchronization on 2026-10-28",
-    "functionalVersion": "1.15.3",
+    "functionalVersion": "1.15.4",
     "updates": "CHANGELOG.md",
-    "scope": "Native discovery/scripted execution plus separately scoped macOS local real-model offline init/doctor; documents only for 2026-10-31 supplement, compiled ZIP unchanged"
+    "scope": "Whop capture-side recovery and direct export with explicit unresolved external transport; updated compiled distribution, README and changelog; no member content or credentials"
   },
   "historicalNewUserAcceptance_1_15_2": {
     "version": "1.15.2",
@@ -858,36 +873,27 @@
     "automation": "PAUSED"
   },
   "newUserAcceptance": {
-    "version": "1.15.3",
-    "status": "passed_native_installation_discovery_and_scripted_execution",
-    "verifiedGithubCommit": "8f499cb3fd9ed47e07b4c61e61658459b62948b6",
-    "ci": "https://github.com/qife422/community-signal-analyst/actions/runs/40819707660",
-    "installationStepsPerPlatform": 16,
-    "applicationTestsPerPlatform": 211,
-    "inventoryRegressionTestsPerPlatform": 4,
-    "npmAuditVulnerabilities": 0,
-    "codexCli": "0.165.0",
-    "codexInstallations": [
-      "compiled folder",
-      "source symlink/junction"
-    ],
-    "realModelVerified": false,
-    "modelStatus": "Native CI used no credentials; local macOS real inference later passed separately under localRealModelAcceptance",
-    "publicReport": "references/codex-validation.md",
-    "scope": "Native CLI/App Server; not desktop/IDE selectors or new member access"
+    "version": "1.15.4",
+    "status": "local_compiled_package_and_real_read_recovery_passed_transport_unresolved",
+    "applicationTests": 216,
+    "pythonRegressions": 4,
+    "distributionVerified": true,
+    "independentLiveWhopReads": 2,
+    "realModelVerifiedThisVersion": false,
+    "browserTransportFixed": false,
+    "publicReport": "references/whop-browser.md"
   },
   "maintenance": {
-    "version": "1.15.3",
+    "version": "1.15.4",
     "fixes": [
-      "canonical Skill working directory instructions",
-      "Windows native user-directory and sandbox test setup",
-      "Linux bubblewrap/AppArmor prerequisites",
-      "deterministic instruction loading and two direct CLI tool calls",
-      "unrelated plugin sync disabled within bounded credential-free validation"
+      "bounded direct Whop post capture",
+      "one sequential transport retry",
+      "loading and incomplete text separate from success",
+      "local structured export; no transcription",
+      "reviewed distribution includes browser helper and guide"
     ],
-    "runtimeNode": ">=22",
-    "sourceNode": "^22.12.0 || ^24.0.0 || >=26.0.0",
     "applicationTypescriptUnchanged": true,
+    "dependenciesUnchanged": true,
     "automation": "PAUSED"
   },
   "localRealModelAcceptance": {
@@ -958,5 +964,38 @@
     "freshReadingAndReport": "pending_browser_recovery",
     "channelWrites": 0,
     "privateStatePublished": false
+  },
+  "historicalNewUserAcceptance_1_15_3": {
+    "version": "1.15.3",
+    "status": "passed_native_installation_discovery_and_scripted_execution",
+    "verifiedGithubCommit": "8f499cb3fd9ed47e07b4c61e61658459b62948b6",
+    "ci": "https://github.com/qife422/community-signal-analyst/actions/runs/40819707660",
+    "installationStepsPerPlatform": 16,
+    "applicationTestsPerPlatform": 211,
+    "inventoryRegressionTestsPerPlatform": 4,
+    "npmAuditVulnerabilities": 0,
+    "codexCli": "0.165.0",
+    "codexInstallations": [
+      "compiled folder",
+      "source symlink/junction"
+    ],
+    "realModelVerified": false,
+    "modelStatus": "Native CI used no credentials; local macOS real inference later passed separately under localRealModelAcceptance",
+    "publicReport": "references/codex-validation.md",
+    "scope": "Native CLI/App Server; not desktop/IDE selectors or new member access"
+  },
+  "historicalMaintenance_1_15_3": {
+    "version": "1.15.3",
+    "fixes": [
+      "canonical Skill working directory instructions",
+      "Windows native user-directory and sandbox test setup",
+      "Linux bubblewrap/AppArmor prerequisites",
+      "deterministic instruction loading and two direct CLI tool calls",
+      "unrelated plugin sync disabled within bounded credential-free validation"
+    ],
+    "runtimeNode": ">=22",
+    "sourceNode": "^22.12.0 || ^24.0.0 || >=26.0.0",
+    "applicationTypescriptUnchanged": true,
+    "automation": "PAUSED"
   }
 }

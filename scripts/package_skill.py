@@ -21,7 +21,7 @@ report/generateBrief report/generateLiveBrief scoring/scoreItem scoring/selectTo
 types/communitySignal verification whop/bindings whop/browserDigest whop/http whop/oauth
 whop/preferences whopAuthCli whopDigestCli whopScopeCli
 """.split()
-REFERENCES = ["onboarding", "report-template", "scoring-and-prompts", "claim-verification", "platform-fields"]
+REFERENCES = ["onboarding", "report-template", "scoring-and-prompts", "claim-verification", "platform-fields", "whop-browser"]
 MOCKS = ["devto", "github", "hacker-news"]
 LIMIT = min(5_000_000, 204421 * 10)
 
@@ -48,6 +48,7 @@ def payload():
         add("dist/mock-data/"+name+".mock.json")
     for name in REFERENCES:
         add("references/"+name+".md")
+    add("scripts/whop-browser-reader.mjs")
     add("agents/openai.yaml")
     add("tsconfig.json")
     add("package-lock.json")
