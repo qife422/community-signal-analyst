@@ -24,13 +24,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 15218,
-      "sha256": "5d3f08e95e4331dc3baa573e54422280b4792c00665bd0347740e57b9d499c7e"
+      "bytes": 16260,
+      "sha256": "41da20e779ed5156eb7441f781d99dd7d5f2cab47077e4d7fdc68da5a774223a"
     },
     {
       "path": "README.md",
-      "bytes": 29976,
-      "sha256": "1c3b1c0f2e35cdd88587f7d1d025893a81854468a65232402bd4515cf6af2922"
+      "bytes": 30328,
+      "sha256": "571f7b2e6676965d4cd3d7688062ff80d3b01554d5f84c437f2a41f3b1c37ed7"
     },
     {
       "path": "RESTORE.md",
@@ -109,8 +109,8 @@
     },
     {
       "path": "references/delivery-status.json",
-      "bytes": 22459,
-      "sha256": "e6d83325f2c2736cda5da40400b45c8264e82cca4cfe7a0dcb2b018923f7cf30"
+      "bytes": 24333,
+      "sha256": "689dce0c89029b7a27f2add1ad348c4ed02eca73ddd9dabef45743d8fa39652e"
     },
     {
       "path": "references/discord-access.md",
@@ -124,8 +124,8 @@
     },
     {
       "path": "references/final-delivery.md",
-      "bytes": 5295,
-      "sha256": "44bc73999360f744bce1065110ba0cbc8cbc974b85ede3df7cdb828486757555"
+      "bytes": 8199,
+      "sha256": "49b059e0ea83a3b3203378901f80e5da2b5bc831625e59c2fb01ae459df0a0a0"
     },
     {
       "path": "references/install-validation.md",
@@ -618,21 +618,22 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 1045231,
+  "payloadBytes": 1051403,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
-    "tests": 211,
-    "testFiles": 27,
+    "tests": 216,
+    "testFiles": 28,
     "integrationSamples": "explicit synthetic fixtures, no historical member bodies",
-    "compiledZipAcceptance": "passed; 1.15.3 native Windows/Linux",
-    "zipSha256": "9acb0e7d4e21783b4fd6a7f63cf607925b1ed26bdf7482b2f6754be0f9bab9f6",
+    "compiledZipAcceptance": "passed 2026-11-05 isolated offline actual 1.15.4 ZIP; native Windows/Linux candidate CI also passed",
+    "zipSha256": "11183267990af811696bcea0fd72cd09e8e4463c3cae27aa383f225b271f12ef",
     "inventoryTests": 4,
     "npmAuditVulnerabilities": 0,
     "officialSkillValidator": "passed",
     "codexDiscovery": "passed native Windows/Linux both installations",
     "codexScriptedExecution": "passed both installations, full instruction body and two real tool commands each",
-    "realModelVerified": false
+    "realModelVerified": false,
+    "realModelScope": "No new model inference in final audit; local macOS 1.15.3 real model result retained separately, Windows/Linux inference not tested."
   },
   "excluded": [
     "state",
@@ -845,7 +846,7 @@
     "authorizedBy": "User requested public GitHub publication, then Windows/Linux installation verification, fixes and documentation synchronization on 2026-10-28",
     "functionalVersion": "1.15.4",
     "updates": "CHANGELOG.md",
-    "scope": "Whop capture-side recovery and direct export with explicit unresolved external transport; updated compiled distribution, README and changelog; no member content or credentials"
+    "scope": "Final technical audit documentation; current on-demand development can stop, cross-day acceptance and formal Release remain pending; no executable or compiled ZIP changes"
   },
   "historicalNewUserAcceptance_1_15_2": {
     "version": "1.15.2",
@@ -1028,5 +1029,55 @@
     "release": "draft_created_not_published",
     "releaseTag": "v1.15.4",
     "releaseAssetsVerified": 2
+  },
+  "historicalValidation_1_15_3": {
+    "typecheck": "passed",
+    "build": "passed",
+    "tests": 211,
+    "testFiles": 27,
+    "integrationSamples": "explicit synthetic fixtures, no historical member bodies",
+    "compiledZipAcceptance": "passed; 1.15.3 native Windows/Linux",
+    "zipSha256": "9acb0e7d4e21783b4fd6a7f63cf607925b1ed26bdf7482b2f6754be0f9bab9f6",
+    "inventoryTests": 4,
+    "npmAuditVulnerabilities": 0,
+    "officialSkillValidator": "passed",
+    "codexDiscovery": "passed native Windows/Linux both installations",
+    "codexScriptedExecution": "passed both installations, full instruction body and two real tool commands each",
+    "realModelVerified": false
+  },
+  "finalTechnicalAudit": {
+    "date": "2026-11-05",
+    "version": "1.15.4",
+    "status": "passed_for_current_on_demand_scope",
+    "developmentCanStop": true,
+    "allOriginalPlatformAndRealtimeIdeasCompleted": false,
+    "specVersion": "0.1.0",
+    "workPackagesVerified": 4,
+    "acceptanceCriteriaVerified": 12,
+    "applicationTests": 216,
+    "testFiles": 28,
+    "installationRegressionTests": 4,
+    "typecheck": "passed",
+    "build": "passed",
+    "dependencyVulnerabilities": 0,
+    "distributionVerification": "passed_offline_compiled_isolated_users",
+    "zipSha256": "11183267990af811696bcea0fd72cd09e8e4463c3cae27aa383f225b271f12ef",
+    "protectedFilesVerified": 136,
+    "compatibilityLinksVerified": 2,
+    "nativeCiReused": "https://github.com/qife422/community-signal-analyst/actions/runs/41262805849",
+    "executableCandidateUnchanged": true,
+    "newPlatformRequests": 0,
+    "newPaidReads": 0,
+    "channelWrites": 0,
+    "automation": "PAUSED",
+    "finalHumanAcceptance": "pending",
+    "crossDayAcceptance": "1/3_pending",
+    "formalRelease": "draft",
+    "localEvidence": "artifacts/delivery-audit/manifest.json",
+    "publicReport": "references/final-delivery.md",
+    "skillsUsed": [
+      "community-signal-analyst",
+      "spec-development"
+    ]
   }
 }

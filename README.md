@@ -6,6 +6,8 @@
 
 当前版本可用于社区研究、个人关注规则与 Whop 按需整理。后续功能继续迭代，实际改动与验证结果见 [更新记录](CHANGELOG.md)。
 
+2026-11-05最终技术审计通过，当前约定的按需使用开发范围可阶段性收工。HN/GitHub/DEV、需自行授权的Product Hunt/X及有条件的Whop浏览器整理属于当前交付；Discord/Reddit暂缓。平台边界、已完成计划和保留项见[阶段收尾结论](references/final-delivery.md#2026-11-05阶段收尾审计)。
+
 2026-11-05开始按个人实际需求做跨天验收，当前1/3；正式GitHub Release先准备为草稿，后续不同日期真实验收通过后发布。源码与编译ZIP仍可按下文安装。进度及验收条件见 [Release准备](references/release-readiness.md)。本轮不启用自动化。
 
 ## 这个 Skill 能做什么

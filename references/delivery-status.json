@@ -286,7 +286,14 @@
       "Real-time receipt / author-triggered actions; stopped by user"
     ],
     "userFinalAcceptance": "not_yet_recorded",
-    "whopBindingManagement": "add/list/remove and empty/unbound/missing scope gates verified with tests and compiled CLI"
+    "whopBindingManagement": "add/list/remove and empty/unbound/missing scope gates verified with tests and compiled CLI",
+    "remainingAppliesTo": "Original implemented development scope only; excludes final human acceptance and the separate cross-day Release gate.",
+    "stageReadiness": "usable_on_demand_with_documented_limits_development_can_stop",
+    "separatePendingAcceptance": [
+      "Final human acceptance of Spec 0.1.0 remains pending",
+      "Personal configuration cross-day acceptance 1/3; later new or changed content not yet observed",
+      "Formal GitHub Release remains a draft"
+    ]
   },
   "canonicalLayout": {
     "root": "/Users/ffq/Documents/aicoding项目/Community Signal Analyst",
@@ -318,7 +325,8 @@
     "runtimePrerequisite": "Node.js >=22",
     "externalCodexInstall": "not_tested",
     "newLiveRequests": 0,
-    "automation": "PAUSED"
+    "automation": "PAUSED",
+    "recordAppliesTo": "Historical 1.15.0 Spec implementation evidence; later installation/model/browser verification is recorded in maintenanceDelivery and linked validation reports."
   },
   "maintenanceDelivery": {
     "version": "1.15.4",
@@ -473,5 +481,36 @@
     "releaseTag": "v1.15.4",
     "releaseTargetCommit": "b691b440c6800da6c6dc82876fa248097432bfa8",
     "releaseAssetsVerified": 2
+  },
+  "finalTechnicalAudit": {
+    "date": "2026-11-05",
+    "version": "1.15.4",
+    "status": "passed_for_current_on_demand_scope",
+    "developmentCanStop": true,
+    "allOriginalPlatformAndRealtimeIdeasCompleted": false,
+    "specVersion": "0.1.0",
+    "workPackagesVerified": 4,
+    "acceptanceCriteriaVerified": 12,
+    "applicationTests": 216,
+    "testFiles": 28,
+    "installationRegressionTests": 4,
+    "typecheck": "passed",
+    "build": "passed",
+    "dependencyVulnerabilities": 0,
+    "distributionVerification": "passed_offline_compiled_isolated_users",
+    "zipSha256": "11183267990af811696bcea0fd72cd09e8e4463c3cae27aa383f225b271f12ef",
+    "protectedFilesVerified": 136,
+    "compatibilityLinksVerified": 2,
+    "nativeCiReused": "https://github.com/qife422/community-signal-analyst/actions/runs/41262805849",
+    "executableCandidateUnchanged": true,
+    "newPlatformRequests": 0,
+    "newPaidReads": 0,
+    "channelWrites": 0,
+    "automation": "PAUSED",
+    "finalHumanAcceptance": "pending",
+    "crossDayAcceptance": "1/3_pending",
+    "formalRelease": "draft",
+    "localEvidence": "artifacts/delivery-audit/manifest.json",
+    "publicReport": "references/final-delivery.md"
   }
 }
