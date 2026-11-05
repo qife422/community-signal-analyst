@@ -24,13 +24,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 14185,
-      "sha256": "a1f5890dde4908bbf1d69cdafd430cdcfa0d2a21b7d7f562ca17f3e38757721a"
+      "bytes": 15062,
+      "sha256": "73be6f93648fa46c05208551f19577d0216763ca42e6d614325b6393347db26d"
     },
     {
       "path": "README.md",
-      "bytes": 29673,
-      "sha256": "d7dd0a1a4544b1b88d31bc6cfa7ae7f7625dc800da4cbf6d4419c44c2d73a230"
+      "bytes": 29976,
+      "sha256": "1c3b1c0f2e35cdd88587f7d1d025893a81854468a65232402bd4515cf6af2922"
     },
     {
       "path": "RESTORE.md",
@@ -109,8 +109,8 @@
     },
     {
       "path": "references/delivery-status.json",
-      "bytes": 21832,
-      "sha256": "f95057d64963807f7bf7dfca7ae369b104814ac70286544cef95feb109b0867a"
+      "bytes": 22318,
+      "sha256": "670bde9e773112c7b7e49861c1af72aac28aa4a61131ffe8020b9007a43dd7b7"
     },
     {
       "path": "references/discord-access.md",
@@ -124,8 +124,8 @@
     },
     {
       "path": "references/final-delivery.md",
-      "bytes": 4886,
-      "sha256": "bf39eef3b1a9f3294ad8713a6d1ee63e2a8198beb8cca782de6b214c0eb877a0"
+      "bytes": 5295,
+      "sha256": "44bc73999360f744bce1065110ba0cbc8cbc974b85ede3df7cdb828486757555"
     },
     {
       "path": "references/install-validation.md",
@@ -146,6 +146,11 @@
       "path": "references/platform-fields.md",
       "bytes": 7436,
       "sha256": "0c19a933f1f4a90ab81d0ee5daad724cce78beee5ea2d84efde63f2bfa23f024"
+    },
+    {
+      "path": "references/release-readiness.md",
+      "bytes": 2668,
+      "sha256": "1a622c8a4e06df3b072c6abb822ed8c85d85aead2056fe26d62dfaa82add2250"
     },
     {
       "path": "references/report-template.md",
@@ -613,7 +618,7 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 1040057,
+  "payloadBytes": 1044800,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
@@ -1011,5 +1016,14 @@
     "channelWrites": 0,
     "permanentRepairEstablished": false,
     "memberDataPublished": false
+  },
+  "actualUseAcceptance": {
+    "date": "2026-11-05",
+    "completedDistinctDates": 1,
+    "requiredDistinctDates": 3,
+    "status": "day1_passed_cross_day_pending",
+    "publicPlan": "references/release-readiness.md",
+    "privateUserDataPublished": false,
+    "automation": "PAUSED"
   }
 }

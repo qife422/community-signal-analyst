@@ -455,5 +455,20 @@
     "evidence": "artifacts/whop-connection-recheck/manifest.json",
     "localReport": "runs/whop/connection-recheck/brief.md",
     "existingStateUnchanged": true
+  },
+  "actualUseAcceptance": {
+    "date": "2026-11-05",
+    "status": "day1_passed_cross_day_pending",
+    "completedDistinctLocalDates": 1,
+    "requiredDistinctLocalDates": 3,
+    "captured": 6,
+    "matched": 1,
+    "unmatched": 5,
+    "fullStateEntries": 6,
+    "personalConfigPublished": false,
+    "automation": "PAUSED",
+    "release": "draft_preparation_only",
+    "publicPlan": "references/release-readiness.md",
+    "localEvidence": "artifacts/use-acceptance/manifest.json"
   }
 }
