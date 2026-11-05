@@ -431,5 +431,29 @@
       ]
     },
     "localRealModelVerifiedAt": "2026-10-31"
+  },
+  "whopConnectionRecheck": {
+    "date": "2026-11-05",
+    "status": "passed_current_session_no_timeout",
+    "directReads": 3,
+    "independentRefreshes": 2,
+    "postsPerRead": 6,
+    "digestNew": [
+      6,
+      0,
+      0
+    ],
+    "digestUnchanged": [
+      0,
+      6,
+      6
+    ],
+    "retries": 0,
+    "channelInputs": 0,
+    "channelWrites": 0,
+    "permanentRepairEstablished": false,
+    "evidence": "artifacts/whop-connection-recheck/manifest.json",
+    "localReport": "runs/whop/connection-recheck/brief.md",
+    "existingStateUnchanged": true
   }
 }

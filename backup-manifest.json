@@ -24,13 +24,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 13244,
-      "sha256": "dd174fd607695fa823832430238d2ebb50f801a2f318cafa0e8efb73437fa1c5"
+      "bytes": 14185,
+      "sha256": "a1f5890dde4908bbf1d69cdafd430cdcfa0d2a21b7d7f562ca17f3e38757721a"
     },
     {
       "path": "README.md",
-      "bytes": 29250,
-      "sha256": "e1156838eb299d5cc16e67222f0fc57bf8496512f80e817e9725f98076005d10"
+      "bytes": 29673,
+      "sha256": "d7dd0a1a4544b1b88d31bc6cfa7ae7f7625dc800da4cbf6d4419c44c2d73a230"
     },
     {
       "path": "RESTORE.md",
@@ -109,8 +109,8 @@
     },
     {
       "path": "references/delivery-status.json",
-      "bytes": 21266,
-      "sha256": "28fe8a3dd24ce479afe233553af97e1e4a4128d7522770f1d4eebb556296183d"
+      "bytes": 21832,
+      "sha256": "f95057d64963807f7bf7dfca7ae369b104814ac70286544cef95feb109b0867a"
     },
     {
       "path": "references/discord-access.md",
@@ -613,7 +613,7 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 1038127,
+  "payloadBytes": 1040057,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
@@ -658,7 +658,7 @@
     "skill-creator"
   ],
   "createdAtUtc": "2026-10-13T18:28:54Z",
-  "lastUpdatedLocalDate": "2026-10-31",
+  "lastUpdatedLocalDate": "2026-11-05",
   "historicalNewUserAcceptance_1_15_0": {
     "date": "2026-10-28",
     "downloadedCommit": "7b852c4017a3213ca5d0bc402f4ba82763f96f77",
@@ -1000,5 +1000,16 @@
     "sourceNode": "^22.12.0 || ^24.0.0 || >=26.0.0",
     "applicationTypescriptUnchanged": true,
     "automation": "PAUSED"
+  },
+  "whopConnectionRecheck": {
+    "date": "2026-11-05",
+    "status": "passed_current_session_no_timeout",
+    "directReads": 3,
+    "independentRefreshes": 2,
+    "textPostsPerRead": 6,
+    "retries": 0,
+    "channelWrites": 0,
+    "permanentRepairEstablished": false,
+    "memberDataPublished": false
   }
 }
