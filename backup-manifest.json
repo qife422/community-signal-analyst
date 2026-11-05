@@ -24,8 +24,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 15062,
-      "sha256": "73be6f93648fa46c05208551f19577d0216763ca42e6d614325b6393347db26d"
+      "bytes": 15218,
+      "sha256": "5d3f08e95e4331dc3baa573e54422280b4792c00665bd0347740e57b9d499c7e"
     },
     {
       "path": "README.md",
@@ -109,8 +109,8 @@
     },
     {
       "path": "references/delivery-status.json",
-      "bytes": 22318,
-      "sha256": "670bde9e773112c7b7e49861c1af72aac28aa4a61131ffe8020b9007a43dd7b7"
+      "bytes": 22459,
+      "sha256": "e6d83325f2c2736cda5da40400b45c8264e82cca4cfe7a0dcb2b018923f7cf30"
     },
     {
       "path": "references/discord-access.md",
@@ -149,8 +149,8 @@
     },
     {
       "path": "references/release-readiness.md",
-      "bytes": 2668,
-      "sha256": "1a622c8a4e06df3b072c6abb822ed8c85d85aead2056fe26d62dfaa82add2250"
+      "bytes": 2802,
+      "sha256": "fcac24909581f9862245b2634e22097ab225456f9010c0c535bcb3d62801897a"
     },
     {
       "path": "references/report-template.md",
@@ -618,7 +618,7 @@
       "sha256": "af6984b4d5d4f57ac5691b21ed29792e1fc08684183057615a4439f4b9bdf93a"
     }
   ],
-  "payloadBytes": 1044800,
+  "payloadBytes": 1045231,
   "validation": {
     "typecheck": "passed",
     "build": "passed",
@@ -1024,6 +1024,9 @@
     "status": "day1_passed_cross_day_pending",
     "publicPlan": "references/release-readiness.md",
     "privateUserDataPublished": false,
-    "automation": "PAUSED"
+    "automation": "PAUSED",
+    "release": "draft_created_not_published",
+    "releaseTag": "v1.15.4",
+    "releaseAssetsVerified": 2
   }
 }

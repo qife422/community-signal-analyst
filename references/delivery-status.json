@@ -467,8 +467,11 @@
     "fullStateEntries": 6,
     "personalConfigPublished": false,
     "automation": "PAUSED",
-    "release": "draft_preparation_only",
+    "release": "draft_created_pending_cross_day",
     "publicPlan": "references/release-readiness.md",
-    "localEvidence": "artifacts/use-acceptance/manifest.json"
+    "localEvidence": "artifacts/use-acceptance/manifest.json",
+    "releaseTag": "v1.15.4",
+    "releaseTargetCommit": "b691b440c6800da6c6dc82876fa248097432bfa8",
+    "releaseAssetsVerified": 2
   }
 }
